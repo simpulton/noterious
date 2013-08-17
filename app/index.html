@@ -38,8 +38,8 @@
                 <div class="nav-collapse collapse">
                     <ul class="nav">
                         <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#/boards">Boards</a></li>
+                        <li><a href="https://github.com/simpulton/noterious" target="_blank">GitHub</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -54,7 +54,9 @@
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/directives/tiles.js"></script>
+    <script src="scripts/services/noterious-service.js"></script>
     <script src="scripts/controllers/main.js"></script>
+
 
     <!-- endbuild -->
 
@@ -65,9 +67,8 @@
     <!-- endbuild -->
 
     <!-- build:js scripts/modules.js -->
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
     <!-- endbuild -->
 </body>
 </html>

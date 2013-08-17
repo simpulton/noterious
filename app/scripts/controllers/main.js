@@ -17,4 +17,12 @@ angular.module('noteriousApp')
             { content: "Lorem ipsum dolor sit amet, cto. Suspendisse potenti. Suspendisse dictum massa non mi posuere ac convallis nisi pellentesque. Morbi posuere mauris elementum metus is nibh et tortor."},
             { content: "er lectus, at pellentesque tortor luctus eget. Phasellus cursus tellus sed velit mattis feugiat. Phasellus non metus felis, dictum auctor justo. Sed pharetra malesuada accumsan. Nunc eget nisi libero, quis egestas eros. Duis sit amet fermentum dui. Nulla ullamcorper massa sit amet magna pulvinar volutpat. Mauris dictum congue mi eu molestie."}
         ];
+    })
+    .controller('BoardsCtrl', function ($scope, NoteriousService) {
+        $scope.boards = NoteriousService.getBoards();
+    })
+    .controller('BoardCtrl', function ($scope, NoteriousService, $routeParams) {
+        var boardId = $routeParams.boardId;
+
+        $scope.board = NoteriousService.getBoard(boardId);
     });
