@@ -18,7 +18,7 @@ angular.module('noteriousApp')
                     user_id: id, title: title, description: description, isPublic: isPublic
                 };
             };
-            $scope.deleteBoard = function(boardId) {
+            $scope.removeBoard = function(boardId) {
                 delete $scope.boards[boardId];
             };
         });
@@ -34,7 +34,7 @@ angular.module('noteriousApp')
                 $scope.notes[ref.push().name()] = {title: title, content: content};
             };
 
-            $scope.deleteNote = function(noteId) {
+            $scope.removeNote = function(noteId) {
                 delete $scope.notes[noteId];
             };
         });

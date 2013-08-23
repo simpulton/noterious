@@ -38,14 +38,21 @@ angular.module('noteriousApp')
                 });
             }
 
-            $timeout(setupBlocks, 100);
-
             $(window).resize(setupBlocks);
+
+            scope.$watch('collection', function(newValue, oldValue) {
+                setupBlocks();
+            }, true);
         }
 
         return {
             restrict: 'A',
-            link: linker
+            link: linker,
+            scope: {
+                collection:'=',
+                create:'&',
+                remove:'&'
+            }
         };
     });
 

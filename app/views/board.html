@@ -1,9 +1,9 @@
-<div tiles>
-    <div class="block" ng-repeat="(noteId, note) in notes" class="repeat-item">
-        <button type="button" class="close" ng-click="deleteNote(noteId)">&times;</button>
+<div tiles collection="notes" create="createNote(noteTitle, noteContent)" remove="removeNote(noteId)">
+    <div class="block" ng-repeat="(noteId, note) in collection" class="repeat-item">
+        <button type="button" class="close" ng-click="remove({noteId:noteId})">&times;</button>
         <div edit-in-place content="note" class="edit-in-place">
             <div ng-if="!editorEnabled" class="edited animate-if" ng-click="enableEditor()">
-                {{content.title}}
+                <strong>{{content.title}}</strong>
             </div>
             <div ng-if="editorEnabled" class="editing animate-if">
                 <input type="text" ng-model="content.title" ng-blur="disableEditor()">
@@ -11,7 +11,7 @@
         </div>
         <div edit-in-place content="note" class="edit-in-place">
             <div ng-if="!editorEnabled" class="edited animate-if" ng-click="enableEditor()">
-                <strong>{{content.content}}</strong>
+                <pre>{{content.content}}</pre>
             </div>
             <div ng-if="editorEnabled" class="editing animate-if">
                 <textarea autosize ng-model="content.content" ng-blur="disableEditor()"></textarea>
@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="block create">
-        <form ng-submit="createNote(noteTitle, noteContent);noteTitle='';noteContent='';">
+        <form ng-submit="create({noteTitle:noteTitle, noteContent:noteContent});noteTitle='';noteContent='';">
             <fieldset>
                 <input type="text" ng-model="noteTitle" placeholder="Note Title">
                 <textarea autosize ng-model="noteContent" placeholder="Note content"></textarea>

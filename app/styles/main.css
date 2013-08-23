@@ -20,6 +20,8 @@ body {
     background-color: #F6F6F6;
 }
 
+input:focus, textarea { outline: none !important; }
+
 .block {
     position: absolute;
     background: #fff;
@@ -42,23 +44,27 @@ body {
 }
 
 .edit-in-place {
-    position: relative;
+    /*position: relative;*/
     padding: 10px;
     margin: 10px;
 }
 
 .edit-in-place .edited {
     width: 100%;
+    /*
     position: absolute;
     z-index: 1;
+    */
     left: 0;
     top: 0;
 }
 
 .edit-in-place .editing {
     width: 100%;
+    /*
     position: absolute;
     z-index: 2;
+    */
     left: 0;
     top: 0;
 }
