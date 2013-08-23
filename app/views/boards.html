@@ -1,7 +1,37 @@
 <div tiles>
-    <div class="block" ng-repeat="board in boards">
-        <h3>{{board.title}}</h3>
-        <p>{{board.description}}</p>
-        <a href="#/boards/{{board.id}}">View Board</a>
+    <div class="block" ng-repeat="(boardId, board) in boards" class="repeat-item">
+        <button type="button" class="close" ng-click="deleteBoard(boardId)">&times;</button>
+        <div edit-in-place content="board" class="edit-in-place">
+            <div ng-if="!editorEnabled" class="edited animate-if" ng-click="enableEditor()">
+                <strong>{{content.title}}</strong>
+            </div>
+            <div ng-if="editorEnabled" class="editing animate-if">
+                <input type="text" ng-model="content.title" ng-blur="disableEditor()">
+            </div>
+        </div>
+        <div edit-in-place content="board" class="edit-in-place">
+            <div ng-if="!editorEnabled" class="edited animate-if" ng-click="enableEditor()">
+                <strong>{{content.description}}</strong>
+            </div>
+            <div ng-if="editorEnabled" class="editing animate-if">
+                <input type="text" ng-model="content.description" ng-blur="disableEditor()">
+            </div>
+        </div>
+        <label class="checkbox">
+          <input type="checkbox" ng-model="board.isPublic"> Board is Public
+        </label>
+        <a href="#/{{boardId}}" class="btn btn-default pull-right">View</a>
+    </div>
+    <div class="block create">
+        <form ng-submit="createBoard(boardTitle, boardDesc, isPublic)">
+            <fieldset>
+                <input type="text" ng-model="boardTitle" placeholder="Note Title">
+                <input type="text" ng-model="boardDesc" placeholder="Note content.">
+                <label class="checkbox">
+                  <input type="checkbox" ng-model="board.isPublic"> Board is Public
+                </label>
+                <button type="submit" class="btn btn-default pull-right">Create</button>
+            </fieldset>
+        </form>
     </div>
 </div>

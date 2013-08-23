@@ -1,17 +1,13 @@
 'use strict';
 
-angular.module('noteriousApp', ['ngRoute', 'ngAnimate'])
+angular.module('noteriousApp', ['ngRoute', 'ngAnimate', 'firebase'])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'views/main.html',
-                controller: 'MainCtrl'
-            })
-            .when('/boards', {
                 templateUrl: 'views/boards.html',
                 controller: 'BoardsCtrl'
             })
-            .when('/boards/:boardId', {
+            .when('/:boardId', {
                 templateUrl: 'views/board.html',
                 controller: 'BoardCtrl'
             })

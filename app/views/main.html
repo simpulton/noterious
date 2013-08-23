@@ -1,5 +1,19 @@
 <div tiles>
-    <div class="block" ng-repeat="note in notes">
-        <p>{{note.content}}</p>
+    <div class="block" ng-repeat="(boardId, board) in boards">
+        <h3>{{board.title}}</h3>
+        <p>{{board.description}}</p>
+        <a href="#/boards/{{boardId}}" class="btn">View</a>
+    </div>
+    <div class="block">
+        <form ng-submit="createBoard(boardTitle, boardDesc, isPublic)">
+            <fieldset>
+                <input type="text" ng-model="boardTitle" placeholder="Note Title">
+                <textarea rows="3" ng-model="boardDesc" placeholder="Note content."></textarea>
+                <label class="checkbox">
+                  <input type="checkbox" ng-model="isPublic"> Make board public?
+                </label>
+                <button type="submit" class="btn">Submit</button>
+            </fieldset>
+        </form>
     </div>
 </div>

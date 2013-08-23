@@ -1,146 +1,65 @@
 'use strict';
 
 angular.module('noteriousApp')
-    .factory('NoteriousService', function ($rootScope) {
-        var users = [
-            { id: 1,
-                displayName: 'User One',
-                username: 'userone',
-                password: 'insecure',
-                boards: [
-                    { id: 1,
-                        title: 'Board 1',
-                        description: 'Board description.',
-                        access: 'public',
-                        creationDate: '2013-08-17',
-                        lastUpdated: '2013-08-17',
-                        notes: [
-                            {
-                                id: 11,
-                                title: 'Note 1.1',
-                                content: 'Lorem ipsum dolor sit amet'
-                            },
-                            {
-                                id: 12,
-                                title: 'Note 1.2',
-                                content: 'Lorem ipsum dolor sit amet'
-                            },
-                            {
-                                id: 13,
-                                title: 'Note 1.3',
-                                content: 'Lorem ipsum dolor sit amet'
-                            },
-                        ]
-                    },
-                    { id: 2,
-                        title: 'Board 2',
-                        description: 'Board description.',
-                        access: 'public',
-                        creationDate: '2013-08-17',
-                        lastUpdated: '2013-08-17',
-                        notes: [
-                            {
-                                id: 21,
-                                title: 'Note 2.1',
-                                content: 'Lorem ipsum dolor sit amet'
-                            },
-                            {
-                                id: 22,
-                                title: 'Note 2.2',
-                                content: 'Lorem ipsum dolor sit amet'
-                            },
-                            {
-                                id: 23,
-                                title: 'Note 2.3',
-                                content: 'Lorem ipsum dolor sit amet'
-                            },
-                        ]
-                    }
-                ]
-            },
-            { id: 2,
-                displayName: 'User Two',
-                username: 'usertwo',
-                password: 'insecure',
-                boards: [
-                    { id: 3,
-                        title: 'Board 3',
-                        description: 'Board description.',
-                        access: 'public',
-                        creationDate: '2013-08-17',
-                        lastUpdated: '2013-08-17',
-                        notes: [
-                            {
-                                id: 31,
-                                title: 'Note 3.1',
-                                content: 'Lorem ipsum dolor sit amet'
-                            },
-                            {
-                                id: 32,
-                                title: 'Note 3.2',
-                                content: 'Lorem ipsum dolor sit amet'
-                            },
-                            {
-                                id: 33,
-                                title: 'Note 3.3',
-                                content: 'Lorem ipsum dolor sit amet'
-                            },
-                        ]
-                    },
-                    { id: 4,
-                        title: 'Board 4',
-                        description: 'Board description.',
-                        access: 'public',
-                        creationDate: '2013-08-17',
-                        lastUpdated: '2013-08-17',
-                        notes: [
-                            {
-                                id: 41,
-                                title: 'Note 4.1',
-                                content: 'Lorem ipsum dolor sit amet'
-                            },
-                            {
-                                id: 42,
-                                title: 'Note 4.2',
-                                content: 'Lorem ipsum dolor sit amet'
-                            },
-                            {
-                                id: 43,
-                                title: 'Note 4.3',
-                                content: 'Lorem ipsum dolor sit amet'
-                            },
-                        ]
-                    }
-                ]
+    .factory('NoteriousService', function ($rootScope, angularFire) {
+        var currentUser = 'blah blah blah';
+        var baseUrl = 'https://noterious.firebaseio.com/';
+        var noteriousRef = new Firebase(baseUrl);
+
+        //---------------------------------------------------------------------
+        // Authentication
+        // NOTE: Move to a separate service
+        //---------------------------------------------------------------------
+        var auth = new FirebaseSimpleLogin(noteriousRef, function (error, user) {
+            if (error) {
+                // an error occurred while attempting login
+                console.log(error);
+            } else if (user) {
+                // user authenticated with Firebase
+                // console.log('User ID: ' + user.id + ', Provider: ' + user.provider);
+                this.user = user;
+            } else {
+                // user is logged out
             }
-        ];
+        });
 
-        var currentUser = users[0];
-
-        var getCurrentUser = function () {
-            return currentUser;
-        };
-
-        var setCurrentUser = function (id) {
-            currentUser = users.find(function (n) {
-                return n['id'] == id;
+        var register = function (email, password) {
+            auth.createUser(email, password, function (error, user) {
+                if (!error) {
+                    console.log('User Id: ' + user.id + ', Email: ' + user.email);
+                }
             });
         };
 
-        var getBoards = function () {
-            return currentUser.boards;
-        };
-
-        var getBoard = function (id) {
-            return currentUser.boards.find(function (n) {
-                return n['id'] == id;
+        var login = function (email, password) {
+            auth.login('password', {
+                email: email,
+                password: password
             });
         };
+
+        var logout = function () {
+            auth.logout();
+        };
+
+        var changePassword = function (email, oldPassword, newPassword) {
+            auth.changePassword(email, oldPassword, newPassword, function (error, success) {
+                if (!error) {
+                    console.log('Password change successfully');
+                }
+            });
+        };
+
+        var getCurrentUser = function() {
+            return auth.user;
+        }
 
         return {
             getCurrentUser: getCurrentUser,
-            setCurrentUser: setCurrentUser,
-            getBoards: getBoards,
-            getBoard: getBoard
+            register: register,
+            login: login,
+            logout: logout,
+            changePassword: changePassword,
+            currentUser: currentUser
         }
     });

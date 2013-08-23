@@ -1,6 +1,30 @@
 <div tiles>
-    <div class="block" ng-repeat="note in board.notes">
-        <h3>{{note.title}}</h3>
-        <p>{{note.content}}</p>
+    <div class="block" ng-repeat="(noteId, note) in notes" class="repeat-item">
+        <button type="button" class="close" ng-click="deleteNote(noteId)">&times;</button>
+        <div edit-in-place content="note" class="edit-in-place">
+            <div ng-if="!editorEnabled" class="edited animate-if" ng-click="enableEditor()">
+                {{content.title}}
+            </div>
+            <div ng-if="editorEnabled" class="editing animate-if">
+                <input type="text" ng-model="content.title" ng-blur="disableEditor()">
+            </div>
+        </div>
+        <div edit-in-place content="note" class="edit-in-place">
+            <div ng-if="!editorEnabled" class="edited animate-if" ng-click="enableEditor()">
+                <strong>{{content.content}}</strong>
+            </div>
+            <div ng-if="editorEnabled" class="editing animate-if">
+                <textarea autosize ng-model="content.content" ng-blur="disableEditor()"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="block create">
+        <form ng-submit="createNote(noteTitle, noteContent);noteTitle='';noteContent='';">
+            <fieldset>
+                <input type="text" ng-model="noteTitle" placeholder="Note Title">
+                <textarea autosize ng-model="noteContent" placeholder="Note content"></textarea>
+                <button type="submit" class="btn btn-default pull-right">Create</button>
+            </fieldset>
+        </form>
     </div>
 </div>
