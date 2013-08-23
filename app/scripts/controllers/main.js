@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('noteriousApp')
-    .controller('MainCtrl', function ($scope) {
+    .controller('MainCtrl', function ($scope, NoteriousService) {
         $scope.notes = [];
+
+        NoteriousService.login('simpul@gmail.com', 'insecure');
     })
     .controller('BoardsCtrl', function ($scope, NoteriousService, angularFire) {
         var url = 'https://noterious.firebaseio.com/boards';

@@ -2,7 +2,6 @@
 
 angular.module('noteriousApp')
     .factory('NoteriousService', function ($rootScope, angularFire) {
-        var currentUser = 'blah blah blah';
         var baseUrl = 'https://noterious.firebaseio.com/';
         var noteriousRef = new Firebase(baseUrl);
 
@@ -59,7 +58,6 @@ angular.module('noteriousApp')
             register: register,
             login: login,
             logout: logout,
-            changePassword: changePassword,
-            currentUser: currentUser
+            changePassword: changePassword
         }
     });
