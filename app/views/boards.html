@@ -1,5 +1,5 @@
-<div id="boards-container" masonry options="{ gutter: 10  }">
-    <div class="masonry-brick create thumbnail col-md-3">
+<div id="content-container" masonry options="{ gutter: 10  }">
+    <div class="masonry-brick create thumbnail col-xs-12 col-md-3">
         <div class="caption">
             <form ng-submit="createBoard(boardTitle, boardDesc, isPublic)">
                 <fieldset>
@@ -13,7 +13,7 @@
             </form>
         </div>
     </div>
-    <div class="masonry-brick thumbnail col-md-3" ng-repeat="(boardId, board) in boards">
+    <div class="masonry-brick thumbnail col-xs-12 col-md-3" ng-repeat="(boardId, board) in boards">
         <div class="caption">
             <button type="button" class="close" ng-click="removeBoard(boardId)">&times;</button>
             <h3>{{board.title}}</h3>

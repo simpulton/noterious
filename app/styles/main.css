@@ -5,25 +5,21 @@ html, body {
 
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #F6F6F6;
+    background: url(/assets/img/tweed.png);
 }
 
 input:focus, textarea { outline: none !important; }
 
-#boards-container {
+#content-container {
     margin-top: 80px;
 }
 
-#boards-container .thumbnail {
+#content-container .thumbnail {
     margin-bottom: 10px;
 }
 
-#board-container {
-    margin-top: 80px;
-}
-
-#board-container .thumbnail {
-    margin-bottom: 10px;
+#content-container .masonry-brick {
+    width: 300px;
 }
 
 .create fieldset > * {
