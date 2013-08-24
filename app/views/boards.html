@@ -1,37 +1,25 @@
-<div tiles collection="boards" create="createBoard(boardTitle, boardDesc, isPublic)" remove="removeBoard(boardId)">
-    <div class="block" ng-repeat="(boardId, board) in collection">
-        <button type="button" class="close" ng-click="remove({boardId:boardId})">&times;</button>
-        <div edit-in-place content="board" class="edit-in-place">
-            <div ng-if="!editorEnabled" class="edited animate-if" ng-click="enableEditor()">
-                <strong>{{content.title}}</strong>
-            </div>
-            <div ng-if="editorEnabled" class="editing animate-if">
-                <input type="text" ng-model="content.title" ng-blur="disableEditor()">
-            </div>
+<div id="boards-container" masonry options="{ gutter: 10  }">
+    <div class="masonry-brick create thumbnail col-md-3">
+        <div class="caption">
+            <form ng-submit="createBoard(boardTitle, boardDesc, isPublic)">
+                <fieldset>
+                    <input type="text" ng-model="boardTitle" placeholder="Board Title">
+                    <input type="text" ng-model="boardDesc" placeholder="Board description.">
+                    <label class="checkbox">
+                      <input type="checkbox" ng-model="isPublic"> Board is Public
+                    </label>
+                    <button type="submit" class="btn btn-default pull-right">Create</button>
+                </fieldset>
+            </form>
         </div>
-        <div edit-in-place content="board" class="edit-in-place">
-            <div ng-if="!editorEnabled" class="edited animate-if" ng-click="enableEditor()">
-                <p>{{content.description}}</p>
-            </div>
-            <div ng-if="editorEnabled" class="editing animate-if">
-                <input type="text" ng-model="content.description" ng-blur="disableEditor()">
-            </div>
-        </div>
-        <label class="checkbox">
-          <input type="checkbox" ng-model="board.isPublic"> Board is Public
-        </label>
-        <a href="#/{{boardId}}" class="btn btn-default pull-right">View</a>
     </div>
-    <div class="block create">
-        <form ng-submit="create({boardTitle:boardTitle, boardDesc:boardDesc, isPublic:isPublic})">
-            <fieldset>
-                <input type="text" ng-model="boardTitle" placeholder="Note Title">
-                <input type="text" ng-model="boardDesc" placeholder="Note content.">
-                <label class="checkbox">
-                  <input type="checkbox" ng-model="board.isPublic"> Board is Public
-                </label>
-                <button type="submit" class="btn btn-default pull-right">Create</button>
-            </fieldset>
-        </form>
+    <div class="masonry-brick thumbnail col-md-3" ng-repeat="(boardId, board) in boards">
+        <div class="caption">
+            <button type="button" class="close" ng-click="removeBoard(boardId)">&times;</button>
+            <h3>{{board.title}}</h3>
+            <p>{{board.description}}</p>
+            <input type="checkbox" ng-model="board.isPublic"> Board is Public
+            <p><a href="#/{{boardId}}" class="btn btn-default pull-right">View</a></p>
+        </div>
     </div>
 </div>

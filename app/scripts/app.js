@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('noteriousApp', ['ngRoute', 'ngAnimate', 'firebase'])
+angular.module('noteriousApp', ['ngRoute', 'ngAnimate', 'firebase', 'wu.masonry'])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {

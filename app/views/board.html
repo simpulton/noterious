@@ -1,30 +1,20 @@
-<div tiles collection="notes" create="createNote(noteTitle, noteContent)" remove="removeNote(noteId)">
-    <div class="block" ng-repeat="(noteId, note) in collection" class="repeat-item">
-        <button type="button" class="close" ng-click="remove({noteId:noteId})">&times;</button>
-        <div edit-in-place content="note" class="edit-in-place">
-            <div ng-if="!editorEnabled" class="edited animate-if" ng-click="enableEditor()">
-                <strong>{{content.title}}</strong>
-            </div>
-            <div ng-if="editorEnabled" class="editing animate-if">
-                <input type="text" ng-model="content.title" ng-blur="disableEditor()">
-            </div>
-        </div>
-        <div edit-in-place content="note" class="edit-in-place">
-            <div ng-if="!editorEnabled" class="edited animate-if" ng-click="enableEditor()">
-                <pre>{{content.content}}</pre>
-            </div>
-            <div ng-if="editorEnabled" class="editing animate-if">
-                <textarea autosize ng-model="content.content" ng-blur="disableEditor()"></textarea>
-            </div>
+<div id="board-container" masonry options="{ gutter: 10 }">
+    <div class="masonry-brick create thumbnail col-md-3">
+        <div class="caption">
+            <form ng-submit="createNote(noteTitle, noteContent);noteTitle='';noteContent='';">
+                <fieldset>
+                    <input type="text" ng-model="noteTitle" placeholder="Note Title">
+                    <textarea autosize ng-model="noteContent" placeholder="Note content"></textarea>
+                    <button type="submit" class="btn btn-default pull-right">Create</button>
+                </fieldset>
+            </form>
         </div>
     </div>
-    <div class="block create">
-        <form ng-submit="create({noteTitle:noteTitle, noteContent:noteContent});noteTitle='';noteContent='';">
-            <fieldset>
-                <input type="text" ng-model="noteTitle" placeholder="Note Title">
-                <textarea autosize ng-model="noteContent" placeholder="Note content"></textarea>
-                <button type="submit" class="btn btn-default pull-right">Create</button>
-            </fieldset>
-        </form>
+    <div class="masonry-brick thumbnail col-md-3" ng-repeat="(noteId, note) in notes">
+        <div class="caption">
+            <button type="button" class="close" ng-click="removeNote(noteId)">&times;</button>
+            <h3>{{note.title}}</h3>
+            <pre>{{note.content}}</pre>
+        </div>
     </div>
 </div>
