@@ -44,4 +44,9 @@ angular.module('noteriousApp')
             setupBoards();
             setupUserBoards();
         })
+
+        if(NoteriousService.getCurrentUser() !== null) {
+            setupBoards();
+            setupUserBoards();
+        }
     });
