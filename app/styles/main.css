@@ -36,32 +36,26 @@ input:focus, textarea { outline: none !important; }
 }
 
 .edit-in-place {
-    /*position: relative;*/
-    padding: 10px;
-    margin: 10px;
+    position: relative;
+    min-height: 24px;
 }
 
 .edit-in-place .edited {
     width: 100%;
-    /*
     position: absolute;
     z-index: 1;
-    */
     left: 0;
     top: 0;
 }
 
 .edit-in-place .editing {
     width: 100%;
-    /*
     position: absolute;
     z-index: 2;
-    */
     left: 0;
     top: 0;
 }
 
-/*
 .animate-if.ng-enter, .animate-if.ng-leave {
     -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
     -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
@@ -78,4 +72,3 @@ input:focus, textarea { outline: none !important; }
 .animate-if.ng-leave {
     opacity: 1;
 }
-*/

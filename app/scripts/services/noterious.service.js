@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noteriousApp')
-    .factory('NoteriousService', function ($rootScope, angularFire) {
+    .factory('NoteriousService', function ($rootScope) {
         var baseUrl = 'https://noterious.firebaseio.com/';
         var noteriousRef = new Firebase(baseUrl);
 
@@ -12,14 +12,19 @@ angular.module('noteriousApp')
         var auth = new FirebaseSimpleLogin(noteriousRef, function (error, user) {
             if (error) {
                 // an error occurred while attempting login
+                this.user = null;
                 console.log(error);
             } else if (user) {
                 // user authenticated with Firebase
-                // console.log('User ID: ' + user.id + ', Provider: ' + user.provider);
+                console.log('User ID: ' + user.id + ', Provider: ' + user.provider);
                 this.user = user;
             } else {
                 // user is logged out
+                this.user = null;
+                console.log('User is logged out');
             }
+
+            $rootScope.$broadcast('onLogin');
         });
 
         var register = function (email, password) {

@@ -3,13 +3,13 @@
 angular.module('noteriousApp')
     .controller('BoardCtrl', function ($scope, $routeParams, angularFire) {
         var boardId = $routeParams.boardId;
-        var url = 'https://noterious.firebaseio.com/boards/' + boardId + '/notes';
-        var ref = new Firebase(url);
-        var promise = angularFire(ref, $scope, 'notes', {});
+        var notesUrl = 'https://noterious.firebaseio.com/boards/' + boardId + '/notes';
+        var notesRef = new Firebase(notesUrl);
+        var notesPromises = angularFire(notesRef, $scope, 'notes', {});
 
-        promise.then(function(){
+        notesPromises.then(function(){
             $scope.createNote = function (title, content) {
-                $scope.notes[ref.push().name()] = {title: title, content: content};
+                $scope.notes[notesRef.push().name()] = {title: title, content: content};
             };
 
             $scope.removeNote = function(noteId) {
