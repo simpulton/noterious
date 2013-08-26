@@ -30,6 +30,33 @@ input:focus, textarea { outline: none !important; }
     margin: 0px;
 }
 
+.form-signin {
+    max-width: 300px;
+    padding: 19px 29px 29px;
+    margin: 80px auto 20px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+    font-size: 16px;
+    height: auto;
+    margin-bottom: 15px;
+    padding: 7px 9px;
+}
+
 .edit-in-place input[type=text], .edit-in-place textarea,
 .create input[type=text], .create textarea {
     width: 100%;
@@ -71,4 +98,26 @@ input:focus, textarea { outline: none !important; }
 .animate-if.ng-enter.ng-enter-active,
 .animate-if.ng-leave {
     opacity: 1;
+}
+
+
+.show-hide-animation.ng-hide-add,
+.show-hide-animation.ng-hide-remove {
+  -webkit-transition:0.5s linear all;
+  -moz-transition:0.5s linear all;
+  -o-transition:0.5s linear all;
+  transition:0.5s linear all;
+  display:block!important;
+}
+.show-hide-animation.ng-hide-remove {
+  opacity:0;
+}
+.show-hide-animation.ng-hide-remove.ng-hide-remove-active {
+  opacity:1;
+}
+.show-hide-animation.ng-hide-add {
+  opacity:1;
+}
+.show-hide-animation.ng-hide-add.ng-hide-add-active {
+  opacity:0;
 }

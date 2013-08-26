@@ -2,8 +2,11 @@
 
 angular.module('noteriousApp')
     .controller('MainCtrl', function ($scope, NoteriousService) {
-        $scope.notes = [];
+            $scope.logout = function() {
+                NoteriousService.logout();
+            };
 
-        // NoteriousService.login('simpul@gmail.com', 'insecure');
-        // NoteriousService.logout();
-    });
+            $scope.currentUser = function() {
+                return NoteriousService.getCurrentUser();
+            };
+        });

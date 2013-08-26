@@ -32,15 +32,17 @@
     <![endif]-->
 
     <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
-      <div class="container">
-        <div class="navbar-header">
-          <a href="#" class="navbar-brand"><img src="assets/img/logo.png" alt="noterio.us"/></a>
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand"><img src="assets/img/logo.png" alt="noterio.us"/></a>
+            </div>
+            <button ng-if="currentUser()" ng-click="logout()" type="button" class="btn btn-default navbar-btn pull-right">Sign Out</button>
         </div>
-      </div>
     </header>
 
     <!-- Add your site or application content here -->
     <div class="container" ng-view=""></div>
+
 
     <!-- build:js scripts/plugins.js -->
     <script src="bower_components/jquery/jquery.js"></script>
@@ -72,6 +74,7 @@
     <script src="scripts/directives/tiles.directive.js"></script>
     <script src="scripts/services/noterious.service.js"></script>
     <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/login.controller.js"></script>
     <script src="scripts/controllers/boards.controller.js"></script>
     <script src="scripts/controllers/board.controller.js"></script>
     <!-- endbuild -->

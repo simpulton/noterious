@@ -1,0 +1,13 @@
+<form class="form-signin" ng-controller="LoginCtrl" ng-submit="login(user.email, user.password, user.register);reset();">
+    <h2 class="form-signin-heading">Please sign in</h2>
+    <fieldset>
+        <input type="text" ng-model="user.email" placeholder="Email address">
+        <input type="password" ng-model="user.password" placeholder="Password">
+        <label class="checkbox">
+            <input type="checkbox" ng-model="user.register"> New User?
+        </label>
+        <button type="submit" class="btn btn-default btn-sm pull-right">
+            <span class="glyphicon glyphicon-ok"></span> Sign In
+        </button>
+    </fieldset>
+</form>
