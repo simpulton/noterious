@@ -10,12 +10,25 @@ body {
 
 input:focus, textarea { outline: none !important; }
 
+
+*, *:before, *:after {box-sizing:  border-box !important;}
+
+
+
+
 #content-container {
     margin-top: 80px;
+    -moz-column-width: 20em;
+    -webkit-column-width: 20em;
+    -moz-column-gap: 1em;
+    -webkit-column-gap: 1em;
 }
 
 #content-container .thumbnail {
-    margin-bottom: 10px;
+    display: inline-block;
+    margin:  0.6rem;
+    padding:  1rem;
+    width:  100%;
 }
 
 #content-container .masonry-brick {
@@ -83,20 +96,23 @@ input:focus, textarea { outline: none !important; }
     top: 0;
 }
 
-.animate-if.ng-enter, .animate-if.ng-leave {
-    -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-    -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-    -o-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+
+
+
+.animate-in.ng-enter, .animate-in.ng-leave {
+    -webkit-transition:0.5s linear all;
+    -moz-transition:0.5s linear all;
+    -o-transition:0.5s linear all;
+    transition:0.5s linear all;
 }
 
-.animate-if.ng-enter,
-.animate-if.ng-leave.ng-leave-active {
+.animate-in.ng-enter,
+.animate-in.ng-leave.ng-leave-active {
     opacity: 0;
 }
 
-.animate-if.ng-enter.ng-enter-active,
-.animate-if.ng-leave {
+.animate-in.ng-enter.ng-enter-active,
+.animate-in.ng-leave {
     opacity: 1;
 }
 
@@ -120,4 +136,36 @@ input:focus, textarea { outline: none !important; }
 }
 .show-hide-animation.ng-hide-add.ng-hide-add-active {
   opacity:0;
+}
+
+
+
+.my-repeat-animation.ng-enter,
+.my-repeat-animation.ng-leave,
+.my-repeat-animation.ng-move {
+  -webkit-transition: 0.5s linear all;
+  -moz-transition: 0.5s linear all;
+  -o-transition: 0.5s linear all;
+  transition: 0.5s linear all;
+}
+
+.my-repeat-animation.ng-enter {
+  opacity:0;
+}
+.my-repeat-animation.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+.my-repeat-animation.ng-leave {
+  opacity:1;
+}
+.my-repeat-animation.ng-leave.ng-leave-active {
+  opacity:0;
+}
+
+.my-repeat-animation.ng-move {
+  opacity:0.5;
+}
+.my-repeat-animation.ng-move.ng-move-active {
+  opacity:1;
 }

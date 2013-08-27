@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('noteriousApp', ['ngRoute', 'ngAnimate', 'firebase', 'wu.masonry'])
+angular.module('noteriousApp', ['ngRoute', 'ngAnimate', 'firebase'])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
@@ -14,4 +14,6 @@ angular.module('noteriousApp', ['ngRoute', 'ngAnimate', 'firebase', 'wu.masonry'
             .otherwise({
                 redirectTo: '/'
             });
+    }).run(function ($animate) {
+        $animate.enabled(true)
     });

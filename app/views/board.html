@@ -1,29 +1,31 @@
-<div id="content-container" masonry options="{ gutter: 10 }">
-    <div class="masonry-brick create thumbnail">
-        <div class="caption">
-            <form ng-submit="createNote(noteTitle, noteContent);noteTitle='';noteContent='';">
-                <fieldset>
-                    <input type="text" ng-model="noteTitle" placeholder="Note Title">
-                    <textarea ng-model="noteContent" placeholder="Note content"></textarea>
-                    <button type="submit" class="btn btn-default btn-sm pull-right">
-                        <span class="glyphicon glyphicon-ok"></span> Create
-                    </button>
-                </fieldset>
-            </form>
-        </div>
-    </div>
-    <div class="masonry-brick thumbnail" ng-repeat="(noteId, note) in notes">
-        <div class="caption">
-            <button type="button" class="close" ng-click="removeNote(noteId)">&times;</button>
-            <div edit-in-place content="note" class="edit-in-place">
-                <div ng-if="!editorEnabled" class="edited animate-if" ng-click="enableEditor()">
-                    <strong>{{content.title}}</strong>
-                </div>
-                <div ng-if="editorEnabled" class="editing animate-if">
-                    <input type="text" ng-model="content.title" ng-blur="disableEditor()">
+<div ng-show="isLoaded()" class="show-hide-animation">
+    <div ng-show="currentUser()" class="show-hide-animation">
+        <div id="content-container">
+            <div class="thumbnail" ng-repeat="(noteId, note) in notes">
+                <div class="caption">
+                    <button type="button" class="close" ng-click="removeNote(noteId)">&times;</button>
+                    <strong>{{note.title}}</strong>
+                    <pre>{{note.content}}</pre>
                 </div>
             </div>
-            <pre>{{note.content}}</pre>
+            <div class="create thumbnail">
+                <div class="caption">
+                    <form ng-submit="createNote(noteTitle, noteContent);noteTitle='';noteContent='';">
+                        <fieldset>
+                            <input type="text" ng-model="noteTitle" placeholder="Note Title">
+                            <textarea ng-model="noteContent" placeholder="Note content"></textarea>
+                            <button type="submit" class="btn btn-default btn-sm pull-right">
+                                <span class="glyphicon glyphicon-ok"></span> Create
+                            </button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
+    <div ng-show="!currentUser()" class="show-hide-animation">
+        <ng-include class="show-hide-animation" src="'views/login.html'"></ng-include>
+    </div>
 </div>
+
+

@@ -5,6 +5,8 @@ angular.module('noteriousApp')
         var baseUrl = 'https://noterious.firebaseio.com/';
         var noteriousRef = new Firebase(baseUrl);
 
+        var loaded = false;
+
         //---------------------------------------------------------------------
         // Authentication
         // NOTE: Move to a separate service
@@ -16,15 +18,18 @@ angular.module('noteriousApp')
                 console.log(error);
             } else if (user) {
                 // user authenticated with Firebase
-                console.log('User ID: ' + user.id + ', Provider: ' + user.provider);
+                // console.log('User ID: ' + user.id + ', Provider: ' + user.provider);
                 this.user = user;
+                $rootScope.$broadcast('onLogin');
             } else {
                 // user is logged out
                 this.user = null;
+                $rootScope.$broadcast('onLogout');
                 console.log('User is logged out');
             }
 
-            $rootScope.$broadcast('onLogin');
+            loaded = true;
+            $rootScope.$broadcast('dataLoaded');
         });
 
         var register = function (email, password) {
@@ -58,7 +63,12 @@ angular.module('noteriousApp')
             return auth.user;
         }
 
+        var isLoaded = function() {
+            return loaded;
+        }
+
         return {
+            isLoaded: isLoaded,
             getCurrentUser: getCurrentUser,
             register: register,
             login: login,
