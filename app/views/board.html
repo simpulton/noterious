@@ -1,19 +1,19 @@
 <div ng-show="isLoaded()" class="show-hide-animation">
     <div ng-show="currentUser()" class="show-hide-animation">
         <div id="content-container">
-            <div class="thumbnail" ng-repeat="(noteId, note) in notes">
+            <div class="edit thumbnail" ng-repeat="(noteId, note) in notes">
                 <div class="caption">
                     <button type="button" class="close" ng-click="removeNote(noteId)">&times;</button>
-                    <strong>{{note.title}}</strong>
-                    <pre>{{note.content}}</pre>
+                    <div><input type="text" ng-model="note.title"></div>
+                    <div><textarea autosize ng-model="note.content" placeholder="Note content"></textarea></div>
                 </div>
             </div>
             <div class="create thumbnail">
                 <div class="caption">
                     <form ng-submit="createNote(noteTitle, noteContent);noteTitle='';noteContent='';">
                         <fieldset>
-                            <input type="text" ng-model="noteTitle" placeholder="Note Title">
-                            <textarea ng-model="noteContent" placeholder="Note content"></textarea>
+                            <div><input type="text" ng-model="noteTitle" placeholder="Note Title"></div>
+                            <div><textarea autosize ng-model="noteContent" placeholder="Note content"></textarea></div>
                             <button type="submit" class="btn btn-default btn-sm pull-right">
                                 <span class="glyphicon glyphicon-ok"></span> Create
                             </button>

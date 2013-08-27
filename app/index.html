@@ -37,7 +37,7 @@
                 <a href="#" class="navbar-brand"><img src="assets/img/logo.png" alt="noterio.us"/></a>
             </div>
             <button ng-if="currentUser()" ng-click="logout()" type="button" class="btn btn-default navbar-btn pull-right">Sign Out</button>
-        </div>
+        </div>¡
     </header>
 
     <!-- Add your site or application content here -->
@@ -45,6 +45,7 @@
 
     <!-- build:js scripts/plugins.js -->
     <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/jquery-autosize/jquery.autosize.min.js"></script>
     <script src="bower_components/sugar/lib/core.js"></script>
     <script src="bower_components/sugar/lib/array.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -61,6 +62,7 @@
     <script src="scripts/controllers/login.controller.js"></script>
     <script src="scripts/controllers/boards.controller.js"></script>
     <script src="scripts/controllers/board.controller.js"></script>
+    <script src="scripts/directives/autosize.directive.js"></script>
     <!-- endbuild -->
 
     <!-- build:js scripts/modules.js -->
