@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noteriousApp')
-    .controller('BoardsCtrl', function ($scope, NoteriousService, angularFire) {
+    .controller('BoardsCtrl', function ($scope, UserService, angularFire) {
         var setupBoards = function () {
             var boardsUrl, boardsRef, boardsPromise;
 
@@ -26,11 +26,11 @@ angular.module('noteriousApp')
         };
 
         $scope.currentUser = function () {
-            return NoteriousService.getCurrentUser();
+            return UserService.getCurrentUser();
         };
 
         $scope.isLoaded = function () {
-            return NoteriousService.isLoaded();
+            return UserService.isLoaded();
         };
 
         $scope.$on('onLogin', function () {

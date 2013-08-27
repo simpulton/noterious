@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noteriousApp')
-    .controller('BoardCtrl', function ($scope, $routeParams, NoteriousService, angularFire) {
+    .controller('BoardCtrl', function ($scope, $routeParams, UserService, angularFire) {
         var setupNotes = function () {
             var boardId, notesUrl, notesRef, notesPromise;
 
@@ -9,9 +9,6 @@ angular.module('noteriousApp')
             notesUrl = 'https://noterious.firebaseio.com/users/' + $scope.userId + '/boards/' + boardId + '/notes';
             notesRef = new Firebase(notesUrl);
             notesPromise = angularFire(notesRef, $scope, 'notes', {});
-
-            console.log('notesUrl', notesUrl);
-
 
             notesPromise.then(function (disassociate) {
                 $scope.createNote = function (title, content) {
@@ -27,11 +24,11 @@ angular.module('noteriousApp')
         };
 
         $scope.currentUser = function () {
-            return NoteriousService.getCurrentUser();
+            return UserService.getCurrentUser();
         };
 
         $scope.isLoaded = function () {
-            return NoteriousService.isLoaded();
+            return UserService.isLoaded();
         };
 
         $scope.$on('onLogin', function () {

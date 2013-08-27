@@ -4,8 +4,6 @@ angular.module('noteriousApp')
     .factory('NotesService', function ($http, $q) {
         var baseUrl = 'https://noterious.firebaseio.com/boards';
 
-        // -J1bZhAx9R0rYh9DWEBi
-
         var find = function (board_id) {
             var deferred = $q.defer();
             var url = '/' + board_id + '/notes.json';

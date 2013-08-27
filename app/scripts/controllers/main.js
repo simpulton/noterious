@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('noteriousApp')
-    .controller('MainCtrl', function ($scope, NoteriousService) {
+    .controller('MainCtrl', function ($scope, $window, UserService) {
             $scope.logout = function() {
-                NoteriousService.logout();
+                UserService.logout();
+
+                $window.location.href = '/';
             };
 
             $scope.currentUser = function() {
-                return NoteriousService.getCurrentUser();
+                return UserService.getCurrentUser();
             };
         });

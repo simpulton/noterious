@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noteriousApp')
-    .factory('NoteriousService', function ($rootScope) {
+    .factory('UserService', function ($rootScope) {
         var baseUrl = 'https://noterious.firebaseio.com/';
         var noteriousRef = new Firebase(baseUrl);
 
@@ -32,14 +32,6 @@ angular.module('noteriousApp')
             $rootScope.$broadcast('dataLoaded');
         });
 
-        var register = function (email, password) {
-            auth.createUser(email, password, function (error, user) {
-                if (!error) {
-                    console.log('User Id: ' + user.id + ', Email: ' + user.email);
-                }
-            });
-        };
-
         var login = function (email, password) {
             auth.login('password', {
                 email: email,
@@ -49,6 +41,17 @@ angular.module('noteriousApp')
 
         var logout = function () {
             auth.logout();
+        };1
+
+        var register = function (email, password) {
+            var self = auth;
+            auth.createUser(email, password, function (error, user) {
+                if (!error) {
+                    self.user = user;
+                    $rootScope.$broadcast('onLogin');
+                    console.log('User Id: ' + user.id + ', Email: ' + user.email);
+                }
+            });
         };
 
         var changePassword = function (email, oldPassword, newPassword) {

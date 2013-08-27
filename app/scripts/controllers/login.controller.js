@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noteriousApp')
-    .controller('LoginCtrl', function ($scope, NoteriousService) {
+    .controller('LoginCtrl', function ($scope, UserService) {
         $scope.user = {
             email: '',
             password: '',
@@ -9,7 +9,7 @@ angular.module('noteriousApp')
         };
 
         $scope.login = function (email, password, register) {
-            ((register) ? NoteriousService.register : NoteriousService.login)(email, password);
+            ((register) ? UserService.register : UserService.login)(email, password);
         };
 
         $scope.reset = function () {

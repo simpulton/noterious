@@ -15,5 +15,5 @@ angular.module('noteriousApp', ['ngRoute', 'ngAnimate', 'firebase'])
                 redirectTo: '/'
             });
     }).run(function ($animate) {
-        $animate.enabled(true)
+        $animate.enabled(true);
     });
