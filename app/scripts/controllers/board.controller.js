@@ -27,10 +27,6 @@ angular.module('noteriousApp')
             return UserService.getCurrentUser();
         };
 
-        $scope.isLoaded = function () {
-            return UserService.isLoaded();
-        };
-
         $scope.$on('onLogin', function () {
             if (userExists()) {
                 $scope.userId = $scope.currentUser().id;
@@ -42,12 +38,16 @@ angular.module('noteriousApp')
             $scope.disassociateModel();
         });
 
+        $scope.loading = function () {
+            return UserService.loading();
+        };
+
         function existy(x) { return x != null; }
 
         function userExists() { return existy($scope.currentUser()) && existy($scope.currentUser().id); }
 
         // If a user and content has been loaded
-        if (existy($scope.isLoaded()) && userExists()) {
+        if (userExists()) {
             $scope.userId = $scope.currentUser().id;
 
             setupNotes();

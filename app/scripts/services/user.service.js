@@ -5,7 +5,7 @@ angular.module('noteriousApp')
         var baseUrl = 'https://noterious.firebaseio.com/';
         var noteriousRef = new Firebase(baseUrl);
 
-        var loaded = false;
+        var _loading = true;
 
         //---------------------------------------------------------------------
         // Authentication
@@ -28,11 +28,13 @@ angular.module('noteriousApp')
                 console.log('User is logged out');
             }
 
-            loaded = true;
+            _loading = false;
             $rootScope.$broadcast('dataLoaded');
         });
 
         var login = function (email, password) {
+            _loading = true;
+
             auth.login('password', {
                 email: email,
                 password: password
@@ -45,7 +47,10 @@ angular.module('noteriousApp')
 
         var register = function (email, password) {
             var self = auth;
+            _loading = true;
             auth.createUser(email, password, function (error, user) {
+                _loading = false;
+
                 if (!error) {
                     self.user = user;
                     $rootScope.$broadcast('onLogin');
@@ -55,10 +60,12 @@ angular.module('noteriousApp')
         };
 
         var changePassword = function (email, oldPassword, newPassword) {
+            _loading = true;
             auth.changePassword(email, oldPassword, newPassword, function (error, success) {
                 if (!error) {
                     console.log('Password change successfully');
                 }
+                _loading = false;
             });
         };
 
@@ -66,12 +73,12 @@ angular.module('noteriousApp')
             return auth.user;
         }
 
-        var isLoaded = function() {
-            return loaded;
+        var loading = function() {
+            return _loading;
         }
 
         return {
-            isLoaded: isLoaded,
+            loading: loading,
             getCurrentUser: getCurrentUser,
             register: register,
             login: login,

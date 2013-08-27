@@ -11,4 +11,8 @@ angular.module('noteriousApp')
             $scope.currentUser = function() {
                 return UserService.getCurrentUser();
             };
+
+            $scope.loading = function () {
+                return UserService.loading();
+            };
         });

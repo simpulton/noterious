@@ -1,4 +1,4 @@
-<div ng-show="isLoaded()" class="show-hide-animation">
+<div ng-show="!loading()" class="show-hide-animation">
     <div ng-show="currentUser()" class="show-hide-animation">
         <div id="content-container">
             <div class="edit thumbnail" ng-repeat="(noteId, note) in notes">
