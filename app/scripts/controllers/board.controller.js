@@ -6,7 +6,7 @@ angular.module('noteriousApp')
             var boardId, notesUrl, notesRef, notesPromise;
 
             boardId = $routeParams.boardId;
-            notesUrl = 'https://noterious.firebaseio.com/users/' + $scope.userId + '/boards/' + boardId + '/notes';
+            notesUrl = 'https://noterious.firebaseio.com/users/' + UserService.getCurrentUserId() + '/boards/' + boardId + '/notes';
             notesRef = new Firebase(notesUrl);
             notesPromise = angularFire(notesRef, $scope, 'notes', {});
 
@@ -23,15 +23,8 @@ angular.module('noteriousApp')
             });
         };
 
-        $scope.currentUser = function () {
-            return UserService.getCurrentUser();
-        };
-
         $scope.$on('onLogin', function () {
-            if (userExists()) {
-                $scope.userId = $scope.currentUser().id;
-                setupNotes();
-            }
+            setupNotes();
         });
 
         $scope.$on('onLogout', function () {
@@ -42,14 +35,12 @@ angular.module('noteriousApp')
             return UserService.loading();
         };
 
-        function existy(x) { return x != null; }
-
-        function userExists() { return existy($scope.currentUser()) && existy($scope.currentUser().id); }
+        $scope.userExists = function() {
+            return UserService.userExists();
+        };
 
         // If a user and content has been loaded
-        if (userExists()) {
-            $scope.userId = $scope.currentUser().id;
-
+        if ($scope.userExists()) {
             setupNotes();
         }
     });

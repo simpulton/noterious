@@ -36,7 +36,7 @@
             <div class="navbar-header">
                 <a href="#" class="navbar-brand"><img src="assets/img/logo.png" alt="noterio.us"/></a>
             </div>
-            <button ng-if="currentUser()" ng-click="logout()" type="button" class="btn btn-default navbar-btn pull-right">Sign Out</button>
+            <button ng-if="userExists()" ng-click="logout()" type="button" class="btn btn-default navbar-btn pull-right">Sign Out</button>
         </div>
     </header>
 

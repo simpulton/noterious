@@ -8,8 +8,8 @@ angular.module('noteriousApp')
                 $window.location.href = '/';
             };
 
-            $scope.currentUser = function() {
-                return UserService.getCurrentUser();
+            $scope.userExists = function() {
+                return UserService.userExists();
             };
 
             $scope.loading = function () {

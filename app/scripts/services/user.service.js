@@ -7,10 +7,6 @@ angular.module('noteriousApp')
 
         var _loading = true;
 
-        //---------------------------------------------------------------------
-        // Authentication
-        // NOTE: Move to a separate service
-        //---------------------------------------------------------------------
         var auth = new FirebaseSimpleLogin(noteriousRef, function (error, user) {
             if (error) {
                 // an error occurred while attempting login
@@ -69,8 +65,12 @@ angular.module('noteriousApp')
             });
         };
 
-        var getCurrentUser = function() {
-            return auth.user;
+        function existy(x) { return x != null; }
+
+        function userExists() { return existy(auth.user) && existy(auth.user.id); }
+
+        var getCurrentUserId = function() {
+            return userExists() ? auth.user.id : null;
         }
 
         var loading = function() {
@@ -79,7 +79,8 @@ angular.module('noteriousApp')
 
         return {
             loading: loading,
-            getCurrentUser: getCurrentUser,
+            userExists: userExists,
+            getCurrentUserId: getCurrentUserId,
             register: register,
             login: login,
             logout: logout,
