@@ -10,19 +10,33 @@ angular.module('noteriousApp')
             boardsPromise = angularFire(boardsRef, $scope, 'boards', {});
 
             boardsPromise.then(function (disassociate) {
-                $scope.createBoard = function (title, description, isPublic) {
+                $scope.createBoard = function (board) {
                     var boardId = boardsRef.push().name();
 
                     $scope.boards[boardId] = {
-                        userId: UserService.getCurrentUserId(), title: title, description: description, isPublic: isPublic
+                        userId: UserService.getCurrentUserId(), title: board.title, description: board.description, isPublic: board.isPublic
                     };
                 };
-                $scope.removeBoard = function (boardId) {
+                $scope.deleteBoard = function (boardId) {
                     delete $scope.boards[boardId];
                 };
 
                 $scope.disassociateModel = disassociate;;
             });
+        };
+
+        $scope.newBoard = {
+            title:'',
+            description:'',
+            isPublic: false
+        };
+
+        $scope.resetForm = function() {
+            $scope.newBoard = {
+                title:'',
+                description:'',
+                isPublic: false
+            };
         };
 
         $scope.$on('onLogin', function () {

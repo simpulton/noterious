@@ -1,52 +1,54 @@
 'use strict';
 
 angular.module('noteriousApp')
-    .factory('BoardsService', function ($http, $q) {
-        var baseUrl = 'https://noterious.firebaseio.com';
+    .factory('BoardsService', function ($http, $q, UserService) {
+        var baseUrl = 'https://noterious.firebaseio.com/';
+
+        delete $http.defaults.headers.post['Content-Type'];
 
         var find = function () {
             var deferred = $q.defer();
-            var url = '/boards.json';
+            var url = baseUrl +  'users/' + UserService.getCurrentUserId() + '/boards.json';
 
-            $http.get(baseUrl + url).success(deferred.resolve).error(deferred.reject);
+            $http.get(url).success(deferred.resolve).error(deferred.reject);
 
             return deferred.promise;
         };
 
         var fetch = function (board_id) {
             var deferred = $q.defer();
-            var url = '/boards/' + board_id + '.json';
+            var url = baseUrl + 'users/' + UserService.getCurrentUserId() + '/boards/' + board_id + '.json';
 
-            $http.get(baseUrl + url).success(deferred.resolve).error(deferred.reject)
-
-            return deferred.promise;
-        };
-
-        var create = function (user_id, title, description, isPublic) {
-            var deferred = $q.defer();
-            var url = '/boards.json';
-            var params = {user_id: user_id, title: title, description: description, isPublic: isPublic};
-
-            $http.post(baseUrl + url, params).success(deferred.resolve).error(deferred.reject);
+            $http.get(url).success(deferred.resolve).error(deferred.reject)
 
             return deferred.promise;
         };
 
-        var update = function (board_id, user_id, title, description, isPublic) {
+        var create = function (title, description, isPublic) {
             var deferred = $q.defer();
-            var url = '/boards/' + board_id + '.json';
-            var params = {user_id: user_id, title: title, description: description, isPublic: isPublic};
+            var url = baseUrl + 'users/' + UserService.getCurrentUserId() + '/boards.json';
+            var params = {title: title, description: description, isPublic: isPublic};
 
-            $http.put(baseUrl + url, params).success(deferred.resolve).error(deferred.reject);
+            $http.post(url, params).success(deferred.resolve).error(deferred.reject);
+
+            return deferred.promise;
+        };
+
+        var update = function (board_id, title, description, isPublic) {
+            var deferred = $q.defer();
+            var url = baseUrl + 'users/' + UserService.getCurrentUserId() + '/boards/' + board_id + '.json';
+            var params = {title: title, description: description, isPublic: isPublic};
+
+            $http.put(url, params).success(deferred.resolve).error(deferred.reject);
 
             return deferred.promise;
         };
 
         var destroy = function (board_id) {
             var deferred = $q.defer();
-            var url = '/baords/' + board_id + '.json';
+            var url = baseUrl + 'users/' + UserService.getCurrentUserId() + '/baords/' + board_id + '.json';
 
-            $http.delete(baseUrl + url).success(deferred.resolve).error(deferred.reject);
+            $http.delete(url).success(deferred.resolve).error(deferred.reject);
 
             return deferred.promise;
         };

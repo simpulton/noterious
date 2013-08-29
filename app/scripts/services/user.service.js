@@ -23,9 +23,9 @@ angular.module('noteriousApp')
                 $rootScope.$broadcast('onLogout');
                 console.log('User is logged out');
             }
-
-            _loading = false;
-            $rootScope.$broadcast('dataLoaded');
+            $rootScope.$apply(function(){
+                _loading = false;
+            })
         });
 
         var login = function (email, password) {
@@ -39,14 +39,13 @@ angular.module('noteriousApp')
 
         var logout = function () {
             auth.logout();
-        };1
+        };
 
         var register = function (email, password) {
             var self = auth;
             _loading = true;
             auth.createUser(email, password, function (error, user) {
                 _loading = false;
-
                 if (!error) {
                     self.user = user;
                     $rootScope.$broadcast('onLogin');
@@ -65,17 +64,21 @@ angular.module('noteriousApp')
             });
         };
 
-        function existy(x) { return x != null; }
+        var existy = function (x) {
+            return x != null;
+        };
 
-        function userExists() { return existy(auth.user) && existy(auth.user.id); }
+        var userExists = function () {
+            return existy(auth.user) && existy(auth.user.id);
+        };
 
-        var getCurrentUserId = function() {
+        var getCurrentUserId = function () {
             return userExists() ? auth.user.id : null;
-        }
+        };
 
-        var loading = function() {
+        var loading = function () {
             return _loading;
-        }
+        };
 
         return {
             loading: loading,

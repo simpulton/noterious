@@ -3,17 +3,17 @@
         <div id="content-container">
             <div class="edit thumbnail" ng-repeat="(noteId, note) in notes">
                 <div class="caption">
-                    <button type="button" class="close" ng-click="removeNote(noteId)">&times;</button>
-                    <div><input type="text" ng-model="note.title"></div>
+                    <button type="button" class="close" ng-click="deleteNote(noteId)">&times;</button>
+                    <div><input type="text" ng-model="note.title" placeholder="Note Title"></div>
                     <div><textarea autosize ng-model="note.content" placeholder="Note content"></textarea></div>
                 </div>
             </div>
             <div class="create thumbnail">
                 <div class="caption">
-                    <form ng-submit="createNote(noteTitle, noteContent);noteTitle='';noteContent='';">
+                    <form ng-submit="createNote(newNote);resetForm();">
                         <fieldset>
-                            <div><input type="text" ng-model="noteTitle" placeholder="Note Title"></div>
-                            <div><textarea autosize ng-model="noteContent" placeholder="Note content"></textarea></div>
+                            <div><input type="text" ng-model="newNote.title" placeholder="Note Title"></div>
+                            <div><textarea autosize ng-model="newNote.content" placeholder="Note content"></textarea></div>
                             <button type="submit" class="btn btn-default btn-sm pull-right">
                                 <span class="glyphicon glyphicon-ok"></span> Create
                             </button>

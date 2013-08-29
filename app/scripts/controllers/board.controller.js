@@ -11,16 +11,28 @@ angular.module('noteriousApp')
             notesPromise = angularFire(notesRef, $scope, 'notes', {});
 
             notesPromise.then(function (disassociate) {
-                $scope.createNote = function (title, content) {
-                    $scope.notes[notesRef.push().name()] = {title: title, content: content};
+                $scope.createNote = function (note) {
+                    $scope.notes[notesRef.push().name()] = {title: note.title, content: note.content};
                 };
     
-                $scope.removeNote = function(noteId) {
+                $scope.deleteNote = function(noteId) {
                     delete $scope.notes[noteId];
                 };
 
-                $scope.disassociateModel = disassociate;;
+                $scope.disassociateModel = disassociate;
             });
+        };
+
+        $scope.newNote = {
+            title:'',
+            content:''
+        };
+
+        $scope.resetForm = function() {
+            $scope.newNote = {
+                title:'',
+                content:''
+            };
         };
 
         $scope.$on('onLogin', function () {
