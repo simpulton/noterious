@@ -23,7 +23,8 @@ angular.module('noteriousApp')
                 $rootScope.$broadcast('onLogout');
                 console.log('User is logged out');
             }
-            $rootScope.$apply(function(){
+
+            $rootScope.safeApply(function(){
                 _loading = false;
             })
         });

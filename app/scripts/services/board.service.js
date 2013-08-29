@@ -30,7 +30,7 @@ angular.module('noteriousApp')
             var url = baseUrl + 'users/' + UserService.getCurrentUserId() + '/boards/' + board_id + '/notes.json';
             var params = {title: title, content: content};
 
-            $http.post(baseUrl + url, params).success(deferred.resolve).error(deferred.reject);
+            $http.post(url, params).success(deferred.resolve).error(deferred.reject);
 
             return deferred.promise;
         };
@@ -40,7 +40,7 @@ angular.module('noteriousApp')
             var url = baseUrl + 'users/' + UserService.getCurrentUserId() + '/boards/' + board_id + '/notes/' + note_id + '.json';
             var params = {title: title, content: content};
 
-            $http.put(baseUrl + url, params).success(deferred.resolve).error(deferred.reject);
+            $http.put(url, params).success(deferred.resolve).error(deferred.reject);
 
             return deferred.promise;
         };

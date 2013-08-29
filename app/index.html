@@ -34,9 +34,21 @@
     <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
         <div class="container">
             <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <a href="#" class="navbar-brand"><img src="assets/img/logo.png" alt="noterio.us"/></a>
             </div>
-            <button ng-if="userExists()" ng-click="logout()" type="button" class="btn btn-default navbar-btn pull-right">Sign Out</button>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <button ng-if="userExists()" type="button" class="btn btn-default navbar-btn" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</button>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
     </header>
 
@@ -64,7 +76,6 @@
     <script src="scripts/controllers/login.controller.js"></script>
     <script src="scripts/controllers/boards.controller.js"></script>
     <script src="scripts/controllers/board.controller.js"></script>
-
     <!--
     <script src="scripts/controllers/boards.rest.controller.js"></script>
     <script src="scripts/controllers/board.rest.controller.js"></script>

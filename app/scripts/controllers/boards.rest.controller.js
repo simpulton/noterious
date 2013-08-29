@@ -18,7 +18,7 @@ angular.module('noteriousApp')
 
         $scope.getBoards = function () {
             BoardsService.find().then(function (result) {
-                $scope.boards = result;
+                $scope.boards = (result !== 'null') ? result : {};;
             }, function (reason) {
                 //
             });
@@ -26,8 +26,7 @@ angular.module('noteriousApp')
 
         $scope.createBoard = function (board) {
             BoardsService.create(board.title, board.description, board.isPublic).then(function (result) {
-                console.log('RESULT', result);
-                // $scope.boards = result;
+                $scope.getBoards();
             }, function (reason) {
                 //
             });
@@ -35,8 +34,7 @@ angular.module('noteriousApp')
 
         $scope.updateBoard = function (boardId, board) {
             BoardsService.update(boardId, board.title, board.description, board.isPublic).then(function (result) {
-                console.log('RESULT', result);
-                // $scope.boards = result;
+                //
             }, function (reason) {
                 //
             });
@@ -44,8 +42,7 @@ angular.module('noteriousApp')
 
         $scope.deleteBoard = function (boardId) {
             BoardsService.destroy(boardId).then(function (result) {
-                console.log('RESULT', result);
-                // $scope.boards = result;
+                $scope.getBoards();
             }, function (reason) {
                 //
             });

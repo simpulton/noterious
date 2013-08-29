@@ -46,7 +46,7 @@ angular.module('noteriousApp')
 
         var destroy = function (board_id) {
             var deferred = $q.defer();
-            var url = baseUrl + 'users/' + UserService.getCurrentUserId() + '/baords/' + board_id + '.json';
+            var url = baseUrl + 'users/' + UserService.getCurrentUserId() + '/boards/' + board_id + '.json';
 
             $http.delete(url).success(deferred.resolve).error(deferred.reject);
 

@@ -14,6 +14,17 @@ angular.module('noteriousApp', ['ngRoute', 'ngAnimate', 'firebase'])
             .otherwise({
                 redirectTo: '/'
             });
-    }).run(function ($animate) {
+    }).run(function ($animate, $rootScope) {
         $animate.enabled(true);
+
+        $rootScope.safeApply = function (fn) {
+            var phase = this.$root.$$phase;
+            if (phase == '$apply' || phase == '$digest') {
+                if (fn && (typeof(fn) === 'function')) {
+                    fn();
+                }
+            } else {
+                this.$apply(fn);
+            }
+        };
     });
