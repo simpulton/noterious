@@ -5,14 +5,53 @@ html, body {
 
 body {
     font-family: Verdana, Helvetica, Arial, sans-serif;
-    background: url(/assets/img/bg.jpg) no-repeat center center fixed;
     padding: 10px;
     border: 10px solid #f5ead9;
+}
+
+.bg-blue {
+    background: url(../assets/img/bg-blue.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
+
+.bg-green {
+    background: url(../assets/img/bg-green.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+.bg-orange {
+    background: url(../assets/img/bg-orange.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+.bg-red {
+    background: url(../assets/img/bg-red.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+.bg-yellow {
+    background: url(../assets/img/bg-yellow.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 
 input:focus, textarea { outline: none !important; }
 
@@ -20,7 +59,7 @@ input:focus, textarea { outline: none !important; }
 
 .navbar-clear {
     background: rgb(255, 255, 255); /* Fall-back for browsers that don't support rgba */
-    background: rgba(255, 255, 255, .0);
+    background: rgba(255, 255, 255, 0);
 }
 
 .navbar-clear a {
@@ -28,6 +67,10 @@ input:focus, textarea { outline: none !important; }
     font-size: 11px;
     font-weight: bold;
     text-decoration: none;
+}
+
+.navbar-clear .icon-bar {
+    background-color: #f5ead9;
 }
 
 .navbar-clear .nav>li>a:hover, .navbar-clear .nav>li>a:focus {
@@ -76,6 +119,7 @@ body.loading .modal {
     -webkit-column-width: 350px;
     -moz-column-gap: 1em;
     -webkit-column-gap: 10px;
+    margin-left: 10px;
 }
 
 a.view {
@@ -201,9 +245,6 @@ a.view:hover, a.view:focus {
 .edit input[type=text]:focus, .edit textarea:focus {
   border: 1px solid #d7cebf;
 }
-
-
-
 
 .create fieldset > * {
     margin: 2px 0;

@@ -2,17 +2,21 @@
 
 angular.module('noteriousApp')
     .controller('MainCtrl', function ($scope, $window, UserService) {
-            $scope.logout = function() {
-                UserService.logout();
+        // TODO Turn this into a directive
+        $scope.colors = ['blue', 'green', 'orange', 'red', 'yellow'];
+        $scope.color = $scope.colors[Math.floor(Math.random() * $scope.colors.length)];
 
-                $window.location.href = '/';
-            };
+        $scope.logout = function () {
+            UserService.logout();
 
-            $scope.userExists = function() {
-                return UserService.userExists();
-            };
+            $window.location.href = '/';
+        };
 
-            $scope.loading = function () {
-                return UserService.loading();
-            };
-        });
+        $scope.userExists = function () {
+            return UserService.userExists();
+        };
+
+        $scope.loading = function () {
+            return UserService.loading();
+        };
+    });
