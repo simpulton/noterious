@@ -53,6 +53,26 @@ body {
 }
 
 
+.navbar-clear a:hover.blue {
+    color: #4f92a8;
+}
+
+.navbar-clear a:hover.green {
+    color: #87a961;
+}
+
+.navbar-clear a:hover.orange {
+    color: #f6512d;
+}
+
+.navbar-clear a:hover.red {
+    color: #a93d41;
+}
+
+.navbar-clear a:hover.yellow {
+    color: #f4cb48;
+}
+
 input:focus, textarea { outline: none !important; }
 
 *, *:before, *:after {box-sizing:  border-box !important;}
@@ -74,7 +94,6 @@ input:focus, textarea { outline: none !important; }
 }
 
 .navbar-clear .nav>li>a:hover, .navbar-clear .nav>li>a:focus {
-    color: #4f92a8;
     text-decoration: none;
     background: rgba(245, 234, 217, .6);
 }
@@ -192,7 +211,7 @@ a.view:hover, a.view:focus {
     min-height: 200px;
     max-width: 100%;
     line-height: 1.428571429;
-    background-image: url(/assets/img/note-view.png);
+    background-image: url(../assets/img/note-view.png);
     width: 360px;
     height: 220px;
     padding:  20px;
@@ -208,7 +227,7 @@ a.view:hover, a.view:focus {
     min-height: 200px;
     max-width: 100%;
     line-height: 1.428571429;
-    background-image: url(/assets/img/note.png);
+    background-image: url(../assets/img/note.png);
     width: 360px;
     height: 220px;
     padding:  20px;
@@ -221,7 +240,7 @@ a.view:hover, a.view:focus {
 
 
 #content-container .board.create, #content-container .note.create {
-    background-image: url(/assets/img/note-create.png);
+    background-image: url(../assets/img/note-create.png);
     height: 240px;
 }
 
@@ -255,17 +274,46 @@ a.view:hover, a.view:focus {
 }
 
 .form-signin {
-    max-width: 300px;
-    padding: 19px 29px 29px;
+    min-height: 200px;
+    max-width: 100%;
+    line-height: 1.428571429;
+    background-image: url(../assets/img/note-blank.png);
+    width: 360px;
+    height: 220px;
+    padding:  20px;
     margin: 80px auto 20px;
-    background-color: #fff;
-    border: 1px solid #e5e5e5;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    background-repeat: no-repeat;
+    background-position: top left;
+    position: relative;
+}
+
+.form-signin button {
+    background:none;
+    border:none;
+    box-shadow:none;
+}
+
+.form-signin button:hover {
+    background:none;
+    border:none;
+    box-shadow:none;
+}
+
+.form-signin .large {
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.form-signin input[type=text],
+.form-signin input[type=password],
+.create textarea {
+    color: #a69f95;
+    border: 1px solid #d7cebf;
+    width: 100%;
+    resize: none;
+    background-color: #f5ead9;
+    margin-bottom: 5px;
 }
 
 /*-------------------------------------------------------------------------------
