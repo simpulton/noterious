@@ -1,27 +1,27 @@
 <div ng-show="!loading()" class="show-hide-animation">
     <div ng-show="userExists()" class="show-hide-animation">
         <div id="content-container">
-            <div class="edit thumbnail" ng-repeat="(boardId, board) in boards" class="my-repeat-animation">
+            <div class="edit board my-repeat-animation" ng-repeat="(boardId, board) in boards">
                 <div class="caption">
-                    <button type="button" class="close" ng-click="deleteBoard(boardId)">&times;</button>
-                    <div><input type="text" ng-model="board.title" placeholder="Board Title"></div>
+                    <button type="button" class="top-right-corner" ng-click="deleteBoard(boardId)">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                    <div><input type="text" class="medium" ng-model="board.title" placeholder="Board Title"></div>
                     <div><input type="text" ng-model="board.description" placeholder="Board description."></div>
-                    <div><input type="checkbox" ng-model="board.isPublic"> Board is Public</div>
-                    <a href="#/{{boardId}}" type="button" class="btn btn-default btn-sm pull-right">
-                        <span class="glyphicon glyphicon-share-alt"></span> View
+                    <div class="bottom x-small"><input type="checkbox" ng-model="board.isPublic"> Board is Public</div>
+                    <a href="#/{{boardId}}" type="button" class="view bottom-right-corner">
+                        <span class="glyphicon glyphicon-arrow-right"></span>
                     </a>
                 </div>
             </div>
-            <div class="create thumbnail">
+            <div class="create board">
                 <div class="caption">
                     <form ng-submit="createBoard(newBoard);resetForm()">
                         <fieldset>
-                            <div><input type="text" ng-model="newBoard.title" placeholder="Board Title"></div>
+                            <div><input type="text" class="medium" ng-model="newBoard.title" placeholder="Board Title"></div>
                             <div><input type="text" ng-model="newBoard.description" placeholder="Board description."></div>
-                            <div><input type="checkbox" ng-model="newBoard.isPublic"> Board is Public</div>
-                            <button type="submit" class="btn btn-default btn-sm pull-right">
-                                <span class="glyphicon glyphicon-ok"></span> Create
-                            </button>
+                            <div class="bottom x-small"><input type="checkbox" ng-model="newBoard.isPublic"> Board is Public</div>
+                            <button type="submit" class="bottom-right-corner"><span class="glyphicon glyphicon-plus"></span></button>
                         </fieldset>
                     </form>
                 </div>

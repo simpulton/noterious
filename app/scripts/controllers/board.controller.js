@@ -2,6 +2,18 @@
 
 angular.module('noteriousApp')
     .controller('BoardCtrl', function ($scope, $routeParams, UserService, angularFire) {
+        var getBoardTitle = function () {
+            var boardId, boardUrl, boardRef;
+
+            boardId = $routeParams.boardId;
+            boardUrl = 'https://noterious.firebaseio.com/users/' + UserService.getCurrentUserId() + '/boards/' + boardId + '/title';
+            boardRef = new Firebase(boardUrl);
+
+            boardRef.once('value', function(snapshot) {
+                $scope.boardTitle = snapshot.val();
+            });
+        };
+
         var setupNotes = function () {
             var boardId, notesUrl, notesRef, notesPromise;
 
@@ -36,6 +48,7 @@ angular.module('noteriousApp')
         };
 
         $scope.$on('onLogin', function () {
+            getBoardTitle();
             setupNotes();
         });
 
@@ -53,6 +66,7 @@ angular.module('noteriousApp')
 
         // If a user and content has been loaded
         if ($scope.userExists()) {
+            getBoardTitle();
             setupNotes();
         }
     });

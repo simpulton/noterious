@@ -1,29 +1,39 @@
 html, body {
     height: 100%;
     min-height: 100%;
+}
+
+body {
+    font-family: Verdana, Helvetica, Arial, sans-serif;
     background: url(/assets/img/bg.jpg) no-repeat center center fixed;
+    padding: 10px;
+    border: 10px solid #f5ead9;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
 
-body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
 input:focus, textarea { outline: none !important; }
-
 
 *, *:before, *:after {box-sizing:  border-box !important;}
 
-.navbar-inverse {
-    background-image: -webkit-gradient(linear, left 0, left 100%, from(#104069), to(#0B2C47));
-    background-image: -webkit-linear-gradient(top, #104069, 0%, #0B2C47, 100%);
-    background-image: -moz-linear-gradient(top, #104069 0, #0B2C47 100%);
-    background-image: linear-gradient(to bottom, #104069 0, #0B2C47 100%);
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#104069', endColorstr='#0B2C47', GradientType=0);
+.navbar-clear {
+    background: rgb(255, 255, 255); /* Fall-back for browsers that don't support rgba */
+    background: rgba(255, 255, 255, .0);
+}
+
+.navbar-clear a {
+    color: #f5ead9;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar-clear .nav>li>a:hover, .navbar-clear .nav>li>a:focus {
+    color: #4f92a8;
+    text-decoration: none;
+    background: rgba(245, 234, 217, .6);
 }
 
 /* Start by setting display:none to make this hidden.
@@ -39,7 +49,7 @@ input:focus, textarea { outline: none !important; }
     left:       0;
     height:     100%;
     width:      100%;
-    background: rgba( 255, 255, 255, .5 )
+    background: rgba(245, 234, 217, .6);
                 url('/assets/img/loader.gif')
                 50% 50%
                 no-repeat;
@@ -57,42 +67,143 @@ body.loading .modal {
     display: block;
 }
 
-.edit {
-    padding: 5px;
+#header {
+    margin-left: 10px;
+}
+
+#content-container {
+    -moz-column-width: 350px;
+    -webkit-column-width: 350px;
+    -moz-column-gap: 1em;
+    -webkit-column-gap: 10px;
+}
+
+a.view {
+    color: #333;
+}
+
+a.view:hover, a.view:focus {
+    color: #333;
+}
+
+.x-small {
+    color: #333333;
+    font-size: 11px;
+}
+
+.medium {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.large {
+    color: #f5ead9;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.edit .bottom {
+    position: absolute;
+    bottom: 40px;
+}
+
+.create .bottom {
+    position: absolute;
+    bottom: 56px;
+}
+
+.edit .top-right-corner {
+    cursor: pointer;
+    position: absolute;
+    right: 8px;
+    top: 2px;
+    background:none;
+    border:none;
+    box-shadow:none;
+}
+
+.edit .bottom-right-corner {
+    cursor: pointer;
+    position: absolute;
+    right: 14px;
+    bottom: 22px;
+    background:none;
+    border:none;
+    box-shadow:none;
+}
+
+.create .bottom-right-corner {
+    cursor: pointer;
+    position: absolute;
+    right: 8px;
+    bottom: 38px;
+    background:none;
+    border:none;
+    box-shadow:none;
+}
+
+
+#content-container .board {
+    display: inline-block;
+    min-height: 200px;
+    max-width: 100%;
+    line-height: 1.428571429;
+    background-image: url(/assets/img/note-view.png);
+    width: 360px;
+    height: 220px;
+    padding:  20px;
+    margin: 0px 15px 0px 0px;
+    background-repeat: no-repeat;
+    background-position: top left;
+    position: relative;
+    padding-top: 34px;
+}
+
+#content-container .note {
+    display: inline-block;
+    min-height: 200px;
+    max-width: 100%;
+    line-height: 1.428571429;
+    background-image: url(/assets/img/note.png);
+    width: 360px;
+    height: 220px;
+    padding:  20px;
+    margin: 0px 15px 0px 0px;
+    background-repeat: no-repeat;
+    background-position: top left;
+    position: relative;
+    padding-top: 34px;
+}
+
+
+#content-container .board.create, #content-container .note.create {
+    background-image: url(/assets/img/note-create.png);
+    height: 240px;
 }
 
 .edit input[type=text], .edit textarea {
-    border: 1px solid #FFF;
+    color: #333333;
+    border: 1px solid #f5ead9;
     width: 100%;
-    margin-right: 10px;
     resize: none;
+    background-color: #f5ead9;
 }
 
 .create input[type=text], .create textarea {
+    color: #a69f95;
+    border: 1px solid #d7cebf;
     width: 100%;
-    margin-right: 10px;
     resize: none;
+    background-color: #f5ead9;
 }
 
 .edit input[type=text]:hover, .edit textarea:hover,
 .edit input[type=text]:focus, .edit textarea:focus {
-  border: 1px solid #CCC;
+  border: 1px solid #d7cebf;
 }
 
-#content-container {
-    margin-top: 80px;
-    -moz-column-width: 20em;
-    -webkit-column-width: 20em;
-    -moz-column-gap: 1em;
-    -webkit-column-gap: 1em;
-}
 
-#content-container .thumbnail {
-    display: inline-block;
-    margin:  0.6rem;
-    padding:  1rem;
-    width:  100%;
-}
+
 
 .create fieldset > * {
     margin: 2px 0;
@@ -116,6 +227,10 @@ body.loading .modal {
     box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
 }
 
+/*-------------------------------------------------------------------------------
+ANIMATION STUFF
+-------------------------------------------------------------------------------*/
+
 .animate-in.ng-enter, .animate-in.ng-leave {
     -webkit-transition:0.5s linear all;
     -moz-transition:0.5s linear all;
@@ -132,7 +247,6 @@ body.loading .modal {
 .animate-in.ng-leave {
     opacity: 1;
 }
-
 
 .show-hide-animation.ng-hide-add,
 .show-hide-animation.ng-hide-remove {

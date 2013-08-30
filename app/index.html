@@ -14,9 +14,6 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
-
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -31,8 +28,7 @@
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-    <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
-        <div class="container">
+    <header class="navbar-clear" role="banner">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -45,15 +41,16 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <button ng-if="userExists()" type="button" class="btn btn-default navbar-btn" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</button>
+                    <li><a href="http://angularjs.org/" target="_blank">AngularJS</a></li>
+                    <li><a href="https://github.com/simpulton/noterious" target="_blank">GITHUB</a></li>
+                    <li><a href="#" ng-if="userExists()" ng-click="logout()">LOGOUT</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
-        </div>
     </header>
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view="" class="animate-in"></div>
+    <div ng-view="" class="animate-in"></div>
 
     <div class="modal"></div>
 
