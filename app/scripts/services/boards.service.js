@@ -4,8 +4,6 @@ angular.module('noteriousApp')
     .factory('BoardsService', function ($http, $q, UserService) {
         var baseUrl = 'https://noterious.firebaseio.com/';
 
-        delete $http.defaults.headers.post['Content-Type'];
-
         var find = function () {
             var deferred = $q.defer();
             var url = baseUrl +  'users/' + UserService.getCurrentUserId() + '/boards.json';
