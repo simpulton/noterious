@@ -2,7 +2,17 @@
   "name": "noterious",
   "version": "0.0.0",
   "dependencies": {
-    "grunt-karma": "~0.4.5"
+    "karma-script-launcher": "~0.1.0",
+    "karma-chrome-launcher": "~0.1.0",
+    "karma-firefox-launcher": "~0.1.0",
+    "karma-html2js-preprocessor": "~0.1.0",
+    "karma-jasmine": "~0.1.3",
+    "karma-requirejs": "~0.1.0",
+    "karma-coffee-preprocessor": "~0.1.0",
+    "karma-phantomjs-launcher": "~0.1.0",
+    "karma": "~0.10.2",
+    "grunt-karma": "~0.6.2",
+    "karma-ng-scenario": "~0.1.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -20,7 +30,6 @@
     "grunt-contrib-watch": "~0.4.0",
     "grunt-usemin": "~0.1.11",
     "grunt-rev": "~0.1.0",
-    "grunt-karma": "~0.4.3",
     "grunt-open": "~0.2.0",
     "grunt-concurrent": "~0.3.0",
     "matchdep": "~0.1.2",

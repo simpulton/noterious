@@ -1,51 +1,54 @@
-// Karma E2E configuration
+// Karma configuration
+module.exports = function(config) {
+  config.set({
+    basePath : '',
 
-// base path, that will be used to resolve files and exclude
-basePath = '';
+    // list of files / patterns to load in the browser
+    files : [
+      'test/e2e/*.js',
+      'test/e2e/**/*.js'
+    ],
 
-// list of files / patterns to load in the browser
-files = [
-  ANGULAR_SCENARIO,
-  ANGULAR_SCENARIO_ADAPTER,
-  'test/e2e/**/*.js'
-];
+    // list of files to exclude
+    exclude : [],
 
-// list of files to exclude
-exclude = [];
+    // test results reporter to use
+    // possible values: dots || progress || growl
+    reporters : ['progress'],
+    frameworks : ['ng-scenario'],
 
-// test results reporter to use
-// possible values: dots || progress || growl
-reporters = ['progress'];
+    // web server port
+    port : 8888,
 
-// web server port
-port = 8080;
+    // cli runner port
+    runnerPort : 9100,
 
-// cli runner port
-runnerPort = 9100;
+    // enable / disable colors in the output (reporters and logs)
+    colors : true,
 
-// enable / disable colors in the output (reporters and logs)
-colors = true;
+    // enable / disable watching file and executing tests whenever any file changes
+    autoWatch : false,
 
-// level of logging
-// possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-logLevel = LOG_INFO;
+    // Start these browsers, currently available:
+    // - Chrome
+    // - ChromeCanary
+    // - Firefox
+    // - Opera
+    // - Safari (only Mac)
+    // - PhantomJS
+    // - IE (only Windows)
+    browsers : ['Chrome'],
 
-// enable / disable watching file and executing tests whenever any file changes
-autoWatch = false;
+    // If browser does not capture in given timeout [ms], kill it
+    captureTimeout : 5000,
 
-// Start these browsers, currently available:
-// - Chrome
-// - ChromeCanary
-// - Firefox
-// - Opera
-// - Safari (only Mac)
-// - PhantomJS
-// - IE (only Windows)
-browsers = ['Chrome'];
+    // Continuous Integration mode
+    // if true, it capture browsers, run tests and exit
+    singleRun : false,
 
-// If browser does not capture in given timeout [ms], kill it
-captureTimeout = 5000;
-
-// Continuous Integration mode
-// if true, it capture browsers, run tests and exit
-singleRun = false;
+    urlRoot : '/_karma_',
+    proxies : {
+      '/': 'http://localhost:9000/'
+    }
+  });
+};

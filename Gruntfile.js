@@ -16,6 +16,8 @@ module.exports = function (grunt) {
   // load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+  grunt.loadNpmTasks('grunt-karma');
+
   // configurable paths
   var yeomanConfig = {
     app: 'app',
@@ -251,6 +253,20 @@ module.exports = function (grunt) {
       unit: {
         configFile: 'karma.conf.js',
         singleRun: true
+      },
+      e2e: {
+        configFile: 'karma-e2e.conf.js',
+        singleRun: true
+      },
+      unit_auto: {
+        configFile: 'karma.conf.js',
+        singleRun: false,
+        autotest: true
+      },
+      e2e_auto: {
+        configFile: 'karma-e2e.conf.js',
+        singleRun: false,
+        autotest: true
       }
     },
     cdnify: {
@@ -297,7 +313,28 @@ module.exports = function (grunt) {
     'clean:server',
     'concurrent:test',
     'connect:test',
-    'karma'
+    'karma:unit'
+  ]);
+
+  grunt.registerTask('test:e2e', [
+    'clean:server',
+    'concurrent:test',
+    'connect:test',
+    'karma:e2e'
+  ]);
+
+  grunt.registerTask('autotest', [
+    'clean:server',
+    'concurrent:test',
+    'connect:test',
+    'karma:unit_auto'
+  ]);
+
+  grunt.registerTask('autotest:e2e', [
+    'clean:server',
+    'concurrent:test',
+    'connect:test',
+    'karma:e2e_auto'
   ]);
 
   grunt.registerTask('build', [
