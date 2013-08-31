@@ -306,6 +306,7 @@ a.view:hover, a.view:focus {
 }
 
 .form-signin input[type=text],
+.form-signin input[type=text],
 .form-signin input[type=password],
 .create textarea {
     color: #a69f95;

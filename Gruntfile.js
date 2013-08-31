@@ -220,6 +220,7 @@ module.exports = function (grunt) {
             '.htaccess',
             'assets/**/*',
             'bower_components/**/*',
+            'lib/angularjs-1.2-30a21c8/*',
             'images/{,*/}*.{gif,webp,svg}',
             'styles/fonts/*'
           ]

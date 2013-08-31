@@ -8,8 +8,11 @@ angular.module('noteriousApp')
             register: false
         };
 
-        $scope.login = function (email, password, register) {
+        $scope.submit = function (email, password, register) {
+          if($scope.loginForm.$valid) {
             ((register) ? UserService.register : UserService.login)(email, password);
+            $scope.reset();
+          }
         };
 
         $scope.reset = function () {
