@@ -1,8 +1,7 @@
 <div ng-show="!loading()" class="show-hide-animation">
     <div ng-show="userExists()" class="show-hide-animation">
         <div id="content-container">
-            <input type="search" ng-model="q" />
-            <div class="edit board my-repeat-animation" ng-repeat="(boardId, board) in boards | filter:q">
+            <div class="edit board my-repeat-animation" ng-repeat="(boardId, board) in boards">
                 <div class="caption">
                     <button type="button" class="top-right-corner" ng-click="deleteBoard(boardId)">
                         <span class="glyphicon glyphicon-remove"></span>
