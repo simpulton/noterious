@@ -22,10 +22,21 @@ describe('Controller: MainCtrl', function () {
         MainCtrl = $controller('MainCtrl', {
             $scope: scope, UserService: mockUserService
         });
+
+        spyOn(mockUserService, 'userExists').andCallThrough();
     }));
 
-    it('notes should be defined', function () {
+    it('userExists should be true', function () {
         expect(scope.userExists()).toEqual(true);
+    });
+
+    it('loading should be false', function () {
         expect(scope.loading()).toEqual(false);
+    });
+
+    it('userExists should have been called', function () {
+        scope.userExists();
+        expect(mockUserService.userExists).toHaveBeenCalled();
+        expect(scope.userExists()).toEqual(true);
     });
 });
