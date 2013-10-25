@@ -39,6 +39,10 @@ angular.module('noteriousApp')
             return userExists() ? $scope.user.id : null;
         };
 
+        var getCurrentUserEmail = function () {
+            return userExists() ? $scope.user.email : '';
+        };
+
         var loading = function () {
             return $scope.loading;
         };
@@ -46,22 +50,26 @@ angular.module('noteriousApp')
         $scope.$on("angularFireAuth:login", function(evt, user) {
             $scope.user = user;
             $scope.loading = false;
+            $rootScope.$broadcast('onLogin');
         });
 
         $scope.$on("angularFireAuth:logout", function(evt) {
             $scope.user = null;
             $scope.loading = false;
+            $rootScope.$broadcast('onLogout');
         });
 
         $scope.$on("angularFireAuth:error", function(evt, err) {
             $scope.user = null;
             $scope.loading = false;
+            $rootScope.$broadcast('onLogout');
         });
 
         return {
             loading: loading,
             userExists: userExists,
             getCurrentUserId: getCurrentUserId,
+            getCurrentUserEmail: getCurrentUserEmail,
             login: login,
             logout: logout,
             register: register

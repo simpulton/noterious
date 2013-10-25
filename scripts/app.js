@@ -5,11 +5,11 @@ angular.module('noteriousApp', ['ngRoute', 'ngAnimate', 'firebase'])
         $routeProvider
             .when('/', {
                 templateUrl: 'views/boards.html',
-                controller: 'BoardsRESTCtrl'
+                controller: 'BoardsCtrl'
             })
             .when('/:boardId', {
                 templateUrl: 'views/board.html',
-                controller: 'BoardRESTCtrl'
+                controller: 'BoardCtrl'
             })
             .otherwise({
                 redirectTo: '/'

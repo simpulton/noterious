@@ -11,6 +11,10 @@ angular.module('noteriousApp')
             $window.location.href = '/';
         };
 
+        $scope.getCurrentUserEmail = function () {
+            return UserService.getCurrentUserEmail();
+        };
+
         $scope.userExists = function () {
             return UserService.userExists();
         };

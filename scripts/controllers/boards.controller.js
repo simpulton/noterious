@@ -7,7 +7,7 @@ angular.module('noteriousApp')
 
             boardsUrl = 'https://noterious.firebaseio.com/users/' + UserService.getCurrentUserId() + '/boards';
             boardsRef = new Firebase(boardsUrl);
-            boardsPromise = angularFire(boardsRef, $scope, 'boards', {});
+            boardsPromise = angularFire(boardsRef, $scope, 'boards');
 
             boardsPromise.then(function (disassociate) {
                 $scope.createBoard = function (board) {

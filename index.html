@@ -34,8 +34,9 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a class="blue" href="http://angularjs.org/" target="_blank">AngularJS</a></li>
-                    <li><a class="blue" href="https://github.com/simpulton/noterious" target="_blank">GITHUB</a></li>
-                    <li><a class="blue" href="#" ng-if="userExists()" ng-click="logout()">LOGOUT</a></li>
+                    <li><a class="blue" href="http://firebase.com/" target="_blank">Firebase</a></li>
+                    <li><a class="blue" href="https://github.com/simpulton/noterious" target="_blank">GitHub</a></li>
+                    <li><a class="blue" href="#" ng-if="userExists()" ng-click="logout()">Logout {{getCurrentUserEmail()}}</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -57,18 +58,15 @@
 
     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
     <script src='https://cdn.firebase.com/v0/firebase-simple-login.js'></script>
-    <script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.js"></script>
+
 
     <script src="scripts/app.js"></script>
     <script src="scripts/services/user.service.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/login.controller.js"></script>
-    <!--
     <script src="scripts/controllers/boards.controller.js"></script>
     <script src="scripts/controllers/board.controller.js"></script>
-    -->
-    <script src="scripts/controllers/boards.rest.controller.js"></script>
-    <script src="scripts/controllers/board.rest.controller.js"></script>
     <script src="scripts/services/boards.service.js"></script>
     <script src="scripts/services/board.service.js"></script>
 

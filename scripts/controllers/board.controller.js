@@ -10,7 +10,9 @@ angular.module('noteriousApp')
             boardRef = new Firebase(boardUrl);
 
             boardRef.once('value', function(snapshot) {
-                $scope.boardTitle = snapshot.val();
+                $scope.$apply(function(){
+                    $scope.boardTitle = snapshot.val();
+                });
             });
         };
 
@@ -20,7 +22,8 @@ angular.module('noteriousApp')
             boardId = $routeParams.boardId;
             notesUrl = 'https://noterious.firebaseio.com/users/' + UserService.getCurrentUserId() + '/boards/' + boardId + '/notes';
             notesRef = new Firebase(notesUrl);
-            notesPromise = angularFire(notesRef, $scope, 'notes', {});
+
+            notesPromise = angularFire(notesRef, $scope, 'notes');
 
             notesPromise.then(function (disassociate) {
                 $scope.createNote = function (note) {
