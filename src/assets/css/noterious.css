@@ -82,18 +82,25 @@ input:focus, textarea { outline: none !important; }
     background: rgba(255, 255, 255, 0);
 }
 
-.navbar-clear a {
+.navbar-clear a,
+.navbar-clear button {
     color: #f5ead9;
     font-size: 11px;
     font-weight: bold;
     text-decoration: none;
 }
 
+.navbar-clear button {
+    padding-top: 15px;
+    padding-bottom: 18px;
+}
+
 .navbar-clear .icon-bar {
     background-color: #f5ead9;
 }
 
-.navbar-clear .nav>li>a:hover, .navbar-clear .nav>li>a:focus {
+.navbar-clear .nav>li>a:hover, .navbar-clear .nav>li>a:focus,
+.navbar-clear .nav>li>button:hover, .navbar-clear .nav>li>button:focus {
     text-decoration: none;
     background: rgba(245, 234, 217, .6);
 }
@@ -133,7 +140,7 @@ body.loading .modal {
     margin-left: 10px;
 }
 
-#content-container {
+.content {
     -moz-column-width: 350px;
     -webkit-column-width: 350px;
     -moz-column-gap: 1em;
@@ -206,7 +213,7 @@ a.view:hover, a.view:focus {
 }
 
 
-#content-container .board {
+.content .board {
     display: inline-block;
     min-height: 200px;
     max-width: 100%;
@@ -222,7 +229,7 @@ a.view:hover, a.view:focus {
     padding-top: 34px;
 }
 
-#content-container .note {
+.content .note {
     display: inline-block;
     min-height: 200px;
     max-width: 100%;
@@ -239,9 +246,13 @@ a.view:hover, a.view:focus {
 }
 
 
-#content-container .board.create, #content-container .note.create {
+.content .board.create, .content .note.create {
     background-image: url(../../assets/images/note-create.png);
     height: 240px;
+}
+
+.content .board fieldset, .content .note fieldset {
+    border: none;
 }
 
 .edit input[type=text], .edit textarea {

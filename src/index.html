@@ -26,12 +26,12 @@
           <li><a class="blue" href="http://angularjs.org/" target="_blank">AngularJS</a></li>
           <li><a class="blue" href="http://firebase.com/" target="_blank">Firebase</a></li>
           <li><a class="blue" href="https://github.com/simpulton/noterious" target="_blank">GitHub</a></li>
-          <li><a class="blue" href="#" ng-if="userExists()" ng-click="logout()">Logout {{getCurrentUserEmail()}}</a></li>
+          <li><button class="btn btn-link blue" ng-click="logout()">Logout</button></li>
         </ul>
       </div>
     </header>
 
-    <div ng-view=""></div>
+    <div ng-view="" class="content"></div>
 
     <div class="modal"></div>
 
@@ -51,7 +51,7 @@
     <script src="app/common/services/auth-service.js"></script>
     <script src="app/boards/boards-controller.js"></script>
     <script src="app/login/login-controller.js"></script>
-    <script src="app/main/main.controller.js"></script>
+    <script src="app/main/main-controller.js"></script>
     <script src="app/notes/notes-controller.js"></script>
   </body>
 </html>

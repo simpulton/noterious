@@ -1,4 +1,4 @@
-<div id="content-container">
+<div>
   <div class="edit board my-repeat-animation" ng-repeat="(boardId, board) in boards">
     <div class="caption">
       <button type="button" class="top-right-corner" ng-click="deleteBoard(boardId)">
@@ -17,7 +17,7 @@
       <form ng-submit="createBoard(newBoard);resetForm()">
         <fieldset>
           <div><input type="text" class="medium" ng-model="newBoard.title" placeholder="Board Title" required></div>
-          <div><input type="text" ng-model="newBoard.description" placeholder="Board description." required></div>
+          <div><input type="text" ng-model="newBoard.description" placeholder="Board description" required></div>
           <div class="bottom x-small"><input type="checkbox" ng-model="newBoard.isPublic"> Board is Public</div>
           <button type="submit" class="bottom-right-corner"><span class="glyphicon glyphicon-plus"></span></button>
         </fieldset>
