@@ -1,0 +1,57 @@
+<!doctype html>
+<html ng-app="noterious">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Noterious</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/noterious.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+  </head>
+  <body ng-controller="MainCtrl as main" ng-class="{loading:loadingView}" class="bg-blue">
+    <header class="navbar-clear" role="banner">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="#" class="navbar-brand"><img src="assets/images/logo.png" alt="noterio.us"/></a>
+      </div>
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a class="blue" href="http://angularjs.org/" target="_blank">AngularJS</a></li>
+          <li><a class="blue" href="http://firebase.com/" target="_blank">Firebase</a></li>
+          <li><a class="blue" href="https://github.com/simpulton/noterious" target="_blank">GitHub</a></li>
+          <li><a class="blue" href="#" ng-if="userExists()" ng-click="logout()">Logout {{getCurrentUserEmail()}}</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <div ng-view=""></div>
+
+    <div class="modal"></div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
+
+    <script src="app/noterious.js"></script>
+    <script src="app/common/common.js"></script>
+    <script src="app/common/models/boards-model.js"></script>
+    <script src="app/common/models/notes-model.js"></script>
+    <script src="app/common/models/user-model.js"></script>
+    <script src="app/common/services/auth-service.js"></script>
+    <script src="app/boards/boards-controller.js"></script>
+    <script src="app/login/login-controller.js"></script>
+    <script src="app/main/main.controller.js"></script>
+    <script src="app/notes/notes-controller.js"></script>
+  </body>
+</html>

@@ -1,9 +1,5 @@
 node_modules
-dist
-.tmp
-.sass-cache
-app/bower_components
-
+bin
+build
 .DS_Store
 .idea
-/libpeerconnection.log
