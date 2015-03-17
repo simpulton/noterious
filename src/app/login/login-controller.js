@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noterious')
-  .controller('LoginCtrl', function (UserService) {
+  .controller('LoginCtrl', function (UserModel) {
     var login = this;
 
     login.user = {
@@ -12,7 +12,7 @@ angular.module('noterious')
 
     login.submit = function () {
       if (login.loginForm.$valid) {
-        ((login.user.register) ? UserService.register : UserService.login)(login.user.email, login.user.password);
+        ((login.user.register) ? UserModel.register : UserModel.login)(login.user.email, login.user.password);
         login.reset();
       }
     };

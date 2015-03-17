@@ -42,6 +42,7 @@ angular.module('noterious.common')
     };
     
     service.logout = function () {
-      auth.$unauth();
+      console.log('LOGOUT FIRED!');
+      Auth.$unauth();
     };
   });

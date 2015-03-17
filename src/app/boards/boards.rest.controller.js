@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noterious')
-    .controller('BoardsRESTCtrl', function ($scope, UserService, BoardsService) {
+    .controller('BoardsRESTCtrl', function ($scope, UserModel, BoardsService) {
         $scope.newBoard = {
             title:'',
             description:'',
@@ -57,11 +57,11 @@ angular.module('noterious')
         });
 
         $scope.loading = function () {
-            return UserService.loading();
+            return UserModel.loading();
         };
 
         $scope.userExists = function () {
-            return UserService.userExists();
+            return UserModel.userExists();
         };
 
         // If a user and content has been loaded

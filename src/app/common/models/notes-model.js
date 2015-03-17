@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noterious.common')
-  .factory('NotesModel', function ($http, $q, UserService, ENDPOINT_URI) {
+  .factory('NotesModel', function ($http, $q, UserModel, ENDPOINT_URI) {
     var service = this,
       notes;
 
@@ -15,11 +15,11 @@ angular.module('noterious.common')
     }
 
     function getUrl(boardId) {
-      return ENDPOINT_URI + 'users/' + UserService.getCurrentUserId() + '/boards/' + boardId + '/notes.json';
+      return ENDPOINT_URI + 'users/' + UserModel.getCurrentUserId() + '/boards/' + boardId + '/notes.json';
     }
 
     function getUrlForId(boardId, noteId) {
-      return ENDPOINT_URI + 'users/' + UserService.getCurrentUserId() + '/boards/' + boardId + '/notes/' + noteId + '.json'
+      return ENDPOINT_URI + 'users/' + UserModel.getCurrentUserId() + '/boards/' + boardId + '/notes/' + noteId + '.json'
     }
 
     service.all = function (boardId) {

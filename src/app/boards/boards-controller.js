@@ -11,7 +11,7 @@ angular.module('noterious')
     var setupBoards = function () {
       var boardsUrl, boardsRef, boardsPromise;
 
-      boardsUrl = 'https://noterious.firebaseio.com/users/' + UserService.getCurrentUserId() + '/boards';
+      boardsUrl = 'https://noterious.firebaseio.com/users/' + UserModel.getCurrentUserId() + '/boards';
       boardsRef = new Firebase(boardsUrl);
       boardsPromise = $firebaseArray(boardsRef, $scope, 'boards');
 
@@ -20,7 +20,7 @@ angular.module('noterious')
           var boardId = boardsRef.push().name();
 
           $scope.boards[boardId] = {
-            userId: UserService.getCurrentUserId(), title: board.title, description: board.description, isPublic: board.isPublic
+            userId: UserModel.getCurrentUserId(), title: board.title, description: board.description, isPublic: board.isPublic
           };
         };
         $scope.deleteBoard = function (boardId) {
@@ -54,11 +54,11 @@ angular.module('noterious')
     });
 
     $scope.loading = function () {
-      return UserService.loading();
+      return UserModel.loading();
     };
 
     $scope.userExists = function () {
-      return UserService.userExists();
+      return UserModel.userExists();
     };
 
     // If a user and content has been loaded

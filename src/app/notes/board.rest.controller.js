@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noterious')
-    .controller('BoardRESTCtrl', function ($scope, $routeParams, UserService, BoardService) {
+    .controller('BoardRESTCtrl', function ($scope, $routeParams, UserModel, BoardService) {
         var boardId = $routeParams.boardId;
 
         $scope.newNote = {
@@ -57,11 +57,11 @@ angular.module('noterious')
         });
 
         $scope.loading = function () {
-            return UserService.loading();
+            return UserModel.loading();
         };
 
         $scope.userExists = function () {
-            return UserService.userExists();
+            return UserModel.userExists();
         };
 
         // If a user and content has been loaded

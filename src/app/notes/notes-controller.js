@@ -12,7 +12,7 @@ angular.module('noterious')
       var boardId, boardUrl, boardRef;
 
       boardId = $routeParams.boardId;
-      boardUrl = 'https://noterious.firebaseio.com/users/' + UserService.getCurrentUserId() + '/boards/' + boardId + '/title';
+      boardUrl = 'https://noterious.firebaseio.com/users/' + UserModel.getCurrentUserId() + '/boards/' + boardId + '/title';
       boardRef = new Firebase(boardUrl);
 
       boardRef.once('value', function (snapshot) {
@@ -26,7 +26,7 @@ angular.module('noterious')
       var boardId, notesUrl, notesRef, notesPromise;
 
       boardId = $routeParams.boardId;
-      notesUrl = 'https://noterious.firebaseio.com/users/' + UserService.getCurrentUserId() + '/boards/' + boardId + '/notes';
+      notesUrl = 'https://noterious.firebaseio.com/users/' + UserModel.getCurrentUserId() + '/boards/' + boardId + '/notes';
       notesRef = new Firebase(notesUrl);
 
       notesPromise = $firebaseArray(notesRef, $scope, 'notes');
@@ -66,11 +66,11 @@ angular.module('noterious')
     });
 
     $scope.loading = function () {
-      return UserService.loading();
+      return UserModel.loading();
     };
 
     $scope.userExists = function () {
-      return UserService.userExists();
+      return UserModel.userExists();
     };
 
     // If a user and content has been loaded
