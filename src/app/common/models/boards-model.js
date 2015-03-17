@@ -1,55 +1,38 @@
 'use strict';
 
 angular.module('noterious.common')
-  .factory('BoardsModel', function ($http, $q, UserModel, ENDPOINT_URI) {
-    var service = this,
-      MODEL = 'boards',
-      boards;
+  .service('BoardsModel', function ($http, UserModel, ENDPOINT_URI) {
+    var service = this;
 
     function extract(result) {
       return result.data;
     }
 
-    function cacheBoards(result) {
-      boards = extract(result);
-      return boards;
-    }
-
     function getUrl() {
-      return ENDPOINT_URI + + 'users/' + UserModel.getCurrentUserId() + '/' + MODEL + '.json';
+      return ENDPOINT_URI + 'users/' + UserModel.getCurrentUser() + '/boards.json';
     }
 
     function getUrlForId(boardId) {
-      return ENDPOINT_URI + + 'users/' + UserModel.getCurrentUserId() + '/' + MODEL + '/' + boardId + '.json';
+      return ENDPOINT_URI + 'users/' + UserModel.getCurrentUser() + '/boards/' + boardId + '.json';
     }
 
     service.all = function () {
-      var deferred = $q.defer();
-
-      if (boards) {
-        deferred.resolve(boards)
-      } else {
-        $http.get(getUrl()).then(function (boards) {
-          deferred.resolve(cacheBoards(boards));
-        });
-      }
-
-      return deferred.promise;
+      return $http.get(getUrl()).then(extract);
     };
 
     service.fetch = function (boardId) {
-      return $http.get(getUrlForId(boardId));
+      return $http.get(getUrlForId(boardId)).then(extract);
     };
 
     service.create = function (board) {
-      return $http.post(getUrl(), board);
+      return $http.post(getUrl(), board).then(extract);
     };
 
     service.update = function (boardId, board) {
-      return $http.put(getUrlForId(boardId), board);
+      return $http.put(getUrlForId(boardId), board).then(extract);
     };
 
     service.destroy = function (boardId) {
-      return $http.delete(getUrlForId(boardId));
+      return $http.delete(getUrlForId(boardId)).then(extract);
     };
   });

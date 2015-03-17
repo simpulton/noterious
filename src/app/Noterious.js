@@ -14,22 +14,22 @@ angular.module('noterious', [
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
-      .when('/', {
-        templateUrl: 'app/boards/boards.tmpl.html',
-        controller: 'BoardsCtrl',
-        controllerAs: 'boards',
+      .when('/boards/:boardId', {
+        templateUrl: 'app/notes/notes.tmpl.html',
+        controller: 'NotesCtrl',
+        controllerAs: 'ctrl',
         resolve: {
-          'currentAuth': ['Auth', function (Auth) {
+          'currentUser': ['Auth', function (Auth) {
             return Auth.$requireAuth();
           }]
         }
       })
-      .when('/:boardId', {
-        templateUrl: 'app/notes/notes.tmpl.html',
-        controller: 'NotesCtrl',
-        controllerAs: 'notes',
+      .when('/', {
+        templateUrl: 'app/boards/boards.tmpl.html',
+        controller: 'BoardsCtrl',
+        controllerAs: 'ctrl',
         resolve: {
-          'currentAuth': ['Auth', function (Auth) {
+          'currentUser': ['Auth', function (Auth) {
             return Auth.$requireAuth();
           }]
         }

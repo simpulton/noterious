@@ -136,7 +136,7 @@ body.loading .modal {
     display: block;
 }
 
-#header {
+.note-header {
     margin-left: 10px;
 }
 

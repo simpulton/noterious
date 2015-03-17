@@ -1,82 +1,71 @@
 'use strict';
 
 angular.module('noterious')
-  .controller('NotesCtrl', function (currentAuth) {
-    var notes = this;
-
-    console.log('currentAuth', currentAuth);
-
-
-    /*
-    var getBoardTitle = function () {
-      var boardId, boardUrl, boardRef;
-
+  .controller('NotesCtrl', function (currentUser, BoardsModel, NotesModel, UserModel, $routeParams) {
+    var ctrl = this,
       boardId = $routeParams.boardId;
-      boardUrl = 'https://noterious.firebaseio.com/users/' + UserModel.getCurrentUserId() + '/boards/' + boardId + '/title';
-      boardRef = new Firebase(boardUrl);
 
-      boardRef.once('value', function (snapshot) {
-        $scope.$apply(function () {
-          $scope.boardTitle = snapshot.val();
-        });
-      });
-    };
+    UserModel.setCurrentUser(currentUser.uid);
 
-    var setupNotes = function () {
-      var boardId, notesUrl, notesRef, notesPromise;
-
-      boardId = $routeParams.boardId;
-      notesUrl = 'https://noterious.firebaseio.com/users/' + UserModel.getCurrentUserId() + '/boards/' + boardId + '/notes';
-      notesRef = new Firebase(notesUrl);
-
-      notesPromise = $firebaseArray(notesRef, $scope, 'notes');
-
-      notesPromise.then(function (disassociate) {
-        $scope.createNote = function (note) {
-          $scope.notes[notesRef.push().name()] = {title: note.title, content: note.content};
-        };
-
-        $scope.deleteNote = function (noteId) {
-          delete $scope.notes[noteId];
-        };
-
-        $scope.disassociateModel = disassociate;
-      });
-    };
-
-    $scope.newNote = {
+    ctrl.newNote = {
       title: '',
       content: ''
     };
 
-    $scope.resetForm = function () {
-      $scope.newNote = {
+    ctrl.resetForm = function () {
+      ctrl.newNote = {
         title: '',
         content: ''
       };
     };
 
-    $scope.$on('onLogin', function () {
-      getBoardTitle();
-      setupNotes();
-    });
-
-    $scope.$on('onLogout', function () {
-      // $scope.disassociateModel();
-    });
-
-    $scope.loading = function () {
-      return UserModel.loading();
+    ctrl.getBoard = function () {
+      BoardsModel.fetch(boardId)
+        .then(function (board) {
+          ctrl.board = board;
+          console.log('ctrl.board', ctrl.board);
+        }, function (reason) {
+          //
+        });
     };
 
-    $scope.userExists = function () {
-      return UserModel.userExists();
+    ctrl.getNotes = function () {
+      NotesModel.all(boardId)
+        .then(function (notes) {
+          ctrl.notes = (notes !== 'null') ? notes : {};
+        }, function (reason) {
+          //
+        });
     };
 
-    // If a user and content has been loaded
-    if ($scope.userExists()) {
-      getBoardTitle();
-      setupNotes();
-    }
-    */
+    ctrl.createNote = function (note) {
+      NotesModel.create(boardId, note)
+        .then(function (result) {
+          ctrl.getNotes();
+          ctrl.resetForm();
+        }, function (reason) {
+          //
+        });
+    };
+
+    ctrl.updateNote = function (noteId, note) {
+      NotesModel.update(boardId, noteId, note)
+        .then(function (result) {
+          ctrl.getNotes();
+        }, function (reason) {
+          //
+        });
+    };
+
+    ctrl.deleteNote = function (noteId) {
+      NotesModel.destroy(boardId, noteId)
+        .then(function (result) {
+          ctrl.getNotes();
+        }, function (reason) {
+          //
+        });
+    };
+
+    ctrl.getBoard();
+    ctrl.getNotes();
   });

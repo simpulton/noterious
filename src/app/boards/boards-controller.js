@@ -1,69 +1,61 @@
 'use strict';
 
 angular.module('noterious')
-  .controller('BoardsCtrl', function (currentAuth) {
-    var boards = this;
+  .controller('BoardsCtrl', function (currentUser, BoardsModel, UserModel) {
+    var ctrl = this;
 
-    console.log('currentAuth', currentAuth);
+    UserModel.setCurrentUser(currentUser.uid);
 
-
-    /*
-    var setupBoards = function () {
-      var boardsUrl, boardsRef, boardsPromise;
-
-      boardsUrl = 'https://noterious.firebaseio.com/users/' + UserModel.getCurrentUserId() + '/boards';
-      boardsRef = new Firebase(boardsUrl);
-      boardsPromise = $firebaseArray(boardsRef, $scope, 'boards');
-
-      boardsPromise.then(function (disassociate) {
-        $scope.createBoard = function (board) {
-          var boardId = boardsRef.push().name();
-
-          $scope.boards[boardId] = {
-            userId: UserModel.getCurrentUserId(), title: board.title, description: board.description, isPublic: board.isPublic
-          };
-        };
-        $scope.deleteBoard = function (boardId) {
-          delete $scope.boards[boardId];
-        };
-
-        $scope.disassociateModel = disassociate;
-      });
-    };
-
-    $scope.newBoard = {
+    ctrl.newBoard = {
       title: '',
       description: '',
       isPublic: false
     };
 
-    $scope.resetForm = function () {
-      $scope.newBoard = {
+    ctrl.resetForm = function () {
+      ctrl.newBoard = {
         title: '',
         description: '',
         isPublic: false
       };
     };
 
-    $scope.$on('onLogin', function () {
-      setupBoards();
-    });
-
-    $scope.$on('onLogout', function () {
-      // $scope.disassociateModel();
-    });
-
-    $scope.loading = function () {
-      return UserModel.loading();
+    ctrl.getBoards = function () {
+      BoardsModel.all()
+        .then(function (result) {
+          ctrl.boards = (result !== 'null') ? result : {};
+        }, function (reason) {
+          //
+        });
     };
 
-    $scope.userExists = function () {
-      return UserModel.userExists();
+    ctrl.createBoard = function (board) {
+      BoardsModel.create(board)
+        .then(function (result) {
+          ctrl.resetForm();
+          ctrl.getBoards();
+        }, function (reason) {
+          //
+        });
     };
 
-    // If a user and content has been loaded
-    if ($scope.userExists()) {
-      setupBoards();
-    }
-    */
+    ctrl.updateBoard = function (boardId, board) {
+      BoardsModel.update(boardId, board)
+        .then(function (result) {
+          ctrl.getBoards();
+        }, function (reason) {
+          //
+        });
+    };
+
+    ctrl.deleteBoard = function (boardId) {
+      BoardsModel.destroy(boardId)
+        .then(function (result) {
+          ctrl.getBoards();
+        }, function (reason) {
+          //
+        });
+    };
+
+    ctrl.getBoards();
   });
