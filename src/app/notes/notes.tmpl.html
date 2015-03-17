@@ -7,7 +7,7 @@
       <button type="button" class="top-right-corner" ng-click="ctrl.deleteNote(noteId)">
         <span class="glyphicon glyphicon-remove"></span>
       </button>
-      <div><input type="text" class="medium" ng-model="note.title" ng-blur="ctrl.updateNote(notedId, note)" placeholder="Note Title"></div>
+      <div><input type="text" class="medium" ng-model="note.title" ng-blur="ctrl.updateNote(noteId, note)" placeholder="Note Title"></div>
       <div><textarea ng-model="note.content" ng-blur="ctrl.updateNote(notedId, note)" placeholder="Note content"></textarea></div>
     </div>
   </div>
