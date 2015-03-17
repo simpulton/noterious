@@ -141,10 +141,6 @@ body.loading .modal {
 }
 
 .content {
-    -moz-column-width: 350px;
-    -webkit-column-width: 350px;
-    -moz-column-gap: 1em;
-    -webkit-column-gap: 10px;
     margin-left: 10px;
 }
 
@@ -212,6 +208,9 @@ a.view:hover, a.view:focus {
     box-shadow:none;
 }
 
+.content fieldset {
+    border: none;
+}
 
 .content .board {
     display: inline-block;
