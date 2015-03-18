@@ -51,6 +51,7 @@ angular.module('noterious')
       NotesModel.update(boardId, noteId, note)
         .then(function (result) {
           ctrl.getNotes();
+          ctrl.cancelEditing();
         }, function (reason) {
           //
         });
@@ -60,11 +61,28 @@ angular.module('noterious')
       NotesModel.destroy(boardId, noteId)
         .then(function (result) {
           ctrl.getNotes();
+          ctrl.cancelEditing();
         }, function (reason) {
           //
         });
     };
 
+    ctrl.setEditedNote = function(noteId, note) {
+      ctrl.editedNoteId = noteId;
+      ctrl.editedNote = angular.copy(note);
+      ctrl.isEditing = true;
+    };
+
+    ctrl.isCurrentNote = function(noteId) {
+      return ctrl.editedNote !== null && ctrl.editedNoteId === noteId;
+    };
+
+    ctrl.cancelEditing = function() {
+      ctrl.editedNoteId = null;
+      ctrl.editedNote = null;
+      ctrl.isEditing = false;
+    };
+    
     ctrl.getBoard();
     ctrl.getNotes();
   });

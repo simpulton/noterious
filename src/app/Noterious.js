@@ -19,7 +19,7 @@ angular.module('noterious', [
       })
       .state('boards', {
         url:'/boards',
-        templateUrl: 'app/boards/boards.tmpl.html',
+        templateUrl: 'app/boards/boards-mdv.tmpl.html',
         controller: 'BoardsCtrl',
         controllerAs: 'ctrl',
         resolve: {
@@ -30,7 +30,7 @@ angular.module('noterious', [
       })
       .state('notes', {
         url:'/boards/:boardId',
-        templateUrl: 'app/notes/notes.tmpl.html',
+        templateUrl: 'app/notes/notes-mdv.tmpl.html',
         controller: 'NotesCtrl',
         controllerAs: 'ctrl',
         resolve: {

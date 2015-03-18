@@ -327,3 +327,41 @@ a.view:hover, a.view:focus {
     margin-bottom: 5px;
 }
 
+.boards,
+.notes {
+    margin-top: 20px;
+    padding: 0;
+    background: #f5ead9;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
+}
+
+.board-details,
+.note-details {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f5ead9;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
+}
+
+.simple-board,
+.simple-note {
+    cursor: pointer;
+    border-bottom: 1px #CCC solid;
+    border-left: 1px #CCC solid;
+    border-right: 1px #CCC solid;
+    margin: 0px;
+    padding: 10px;
+}
+
+.simple-board:last-child,
+.simple-note:last-child {
+    border-bottom: 1px #CCC solid;
+}
+
+.active {
+    background: #f5ead9;
+}
+
+.faded {
+    opacity: 0.3;
+}

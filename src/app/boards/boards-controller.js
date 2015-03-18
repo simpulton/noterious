@@ -42,6 +42,7 @@ angular.module('noterious')
     ctrl.updateBoard = function (boardId, board) {
       BoardsModel.update(boardId, board)
         .then(function (result) {
+          ctrl.cancelEditing();
           ctrl.getBoards();
         }, function (reason) {
           //
@@ -51,10 +52,27 @@ angular.module('noterious')
     ctrl.deleteBoard = function (boardId) {
       BoardsModel.destroy(boardId)
         .then(function (result) {
+          ctrl.cancelEditing();
           ctrl.getBoards();
         }, function (reason) {
           //
         });
+    };
+
+    ctrl.setEditedBoard = function(boardId, board) {
+      ctrl.editedBoardId = boardId;
+      ctrl.editedBoard = angular.copy(board);
+      ctrl.isEditing = true;
+    };
+
+    ctrl.isCurrentBoard = function(boardId) {
+      return ctrl.editedBoard !== null && ctrl.editedBoardId === boardId;
+    };
+
+    ctrl.cancelEditing = function() {
+      ctrl.editedBoardId = null;
+      ctrl.editedBoard = null;
+      ctrl.isEditing = false;
     };
 
     ctrl.getBoards();
