@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noterious')
-  .controller('MainCtrl', function (UserModel, Auth, $location) {
+  .controller('MainCtrl', function (UserModel, Auth, $state) {
     var main = this;
     main.auth = Auth;
 
@@ -14,9 +14,9 @@ angular.module('noterious')
 
     main.auth.$onAuth(function (authData) {
       if (authData) {
-        $location.path('/');
+        $state.go('boards');
       } else {
-        $location.path('/login');
+        $state.go('login');
       }
     });
   });

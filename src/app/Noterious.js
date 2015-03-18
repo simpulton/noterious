@@ -1,30 +1,24 @@
 'use strict';
 
 angular.module('noterious', [
-  'ngRoute',
+  'ui.router',
   'ngAnimate',
   'firebase',
   'noterious.common'
 ])
   .constant('ENDPOINT_URI', 'https://noterious.firebaseio.com/')
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/login', {
+  .config(function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/login');
+
+    $stateProvider
+      .state('login', {
+        url:'/login',
         templateUrl: 'app/login/login.tmpl.html',
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
-      .when('/boards/:boardId', {
-        templateUrl: 'app/notes/notes.tmpl.html',
-        controller: 'NotesCtrl',
-        controllerAs: 'ctrl',
-        resolve: {
-          'currentUser': ['Auth', function (Auth) {
-            return Auth.$requireAuth();
-          }]
-        }
-      })
-      .when('/', {
+      .state('boards', {
+        url:'/boards',
         templateUrl: 'app/boards/boards.tmpl.html',
         controller: 'BoardsCtrl',
         controllerAs: 'ctrl',
@@ -34,13 +28,21 @@ angular.module('noterious', [
           }]
         }
       })
-      .otherwise({
-        redirectTo: '/login'
+      .state('notes', {
+        url:'/boards/:boardId',
+        templateUrl: 'app/notes/notes.tmpl.html',
+        controller: 'NotesCtrl',
+        controllerAs: 'ctrl',
+        resolve: {
+          'currentUser': ['Auth', function (Auth) {
+            return Auth.$requireAuth();
+          }]
+        }
       })
     ;
   })
   .run(function ($rootScope, $location) {
-    $rootScope.$on('$routeChangeError', function (event, next, previous, error) {
+    $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
       if (error === 'AUTH_REQUIRED') {
         $location.path('/login');
       }
