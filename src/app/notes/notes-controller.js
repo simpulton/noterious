@@ -5,8 +5,6 @@ angular.module('noterious')
     var ctrl = this,
       boardId = $stateParams.boardId;
 
-    console.log('$stateParams', $stateParams);
-
     UserModel.setCurrentUser(currentUser.uid);
 
     ctrl.newNote = {
@@ -25,7 +23,6 @@ angular.module('noterious')
       BoardsModel.fetch(boardId)
         .then(function (board) {
           ctrl.board = board;
-          console.log('ctrl.board', ctrl.board);
         }, function (reason) {
           //
         });
