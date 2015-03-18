@@ -4,8 +4,6 @@ angular.module('noterious')
   .controller('BoardsCtrl', function (currentUser, BoardsModel, UserModel) {
     var ctrl = this;
 
-    UserModel.setCurrentUser(currentUser.uid);
-
     ctrl.newBoard = {
       title: '',
       description: '',

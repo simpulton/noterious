@@ -5,8 +5,6 @@ angular.module('noterious')
     var ctrl = this,
       boardId = $stateParams.boardId;
 
-    UserModel.setCurrentUser(currentUser.uid);
-
     ctrl.newNote = {
       title: '',
       content: ''
