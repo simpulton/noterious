@@ -29,7 +29,7 @@ angular.module('noterious', [
         }
       })
       .state('notes', {
-        url:'/boards/:boardId',
+        url:'/boards/:boardId/notes',
         templateUrl: 'app/notes/notes-mdv.tmpl.html',
         controller: 'NotesCtrl',
         controllerAs: 'ctrl',

@@ -1,13 +1,18 @@
 'use strict';
 
 angular.module('noterious')
-  .controller('NotesCtrl', function (currentUser, BoardsModel, NotesModel, UserModel, $stateParams) {
+  .controller('NotesCtrl', function (currentUser, BoardsModel, NotesModel, UserModel, $stateParams, $state) {
     var ctrl = this,
       boardId = $stateParams.boardId;
+
 
     ctrl.newNote = {
       title: '',
       content: ''
+    };
+
+    ctrl.goBack = function() {
+      $state.go('boards');
     };
 
     ctrl.resetForm = function () {
@@ -80,7 +85,7 @@ angular.module('noterious')
       ctrl.editedNote = null;
       ctrl.isEditing = false;
     };
-    
+
     ctrl.getBoard();
     ctrl.getNotes();
   });

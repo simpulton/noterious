@@ -4,6 +4,8 @@ angular.module('noterious')
   .controller('BoardsCtrl', function (currentUser, BoardsModel, UserModel) {
     var ctrl = this;
 
+    ctrl.loading = false;
+
     ctrl.newBoard = {
       title: '',
       description: '',
@@ -11,6 +13,7 @@ angular.module('noterious')
     };
 
     ctrl.resetForm = function () {
+      ctrl.loading = false;
       ctrl.newBoard = {
         title: '',
         description: '',
@@ -27,33 +30,49 @@ angular.module('noterious')
         });
     };
 
-    ctrl.createBoard = function (board) {
-      BoardsModel.create(board)
-        .then(function (result) {
-          ctrl.resetForm();
-          ctrl.getBoards();
-        }, function (reason) {
-          //
-        });
+    ctrl.createBoard = function (board, isValid) {
+      if (isValid) {
+        ctrl.loading = true;
+
+        BoardsModel.create(board)
+          .then(function (result) {
+            ctrl.getBoards();
+          })
+          .catch(function (reason) {
+            //
+          })
+          .finally(function() {
+            ctrl.resetForm();
+          });
+      }
     };
 
-    ctrl.updateBoard = function (boardId, board) {
-      BoardsModel.update(boardId, board)
-        .then(function (result) {
-          ctrl.cancelEditing();
-          ctrl.getBoards();
-        }, function (reason) {
-          //
-        });
+    ctrl.updateBoard = function (boardId, board, isValid) {
+      if (isValid) {
+        ctrl.loading = true;
+        BoardsModel.update(boardId, board)
+          .then(function (result) {
+            ctrl.getBoards();
+          })
+          .catch(function (reason) {
+            //
+          })
+          .finally(function() {
+            ctrl.cancelEditing();
+          });
+      }
     };
 
     ctrl.deleteBoard = function (boardId) {
       BoardsModel.destroy(boardId)
         .then(function (result) {
-          ctrl.cancelEditing();
           ctrl.getBoards();
-        }, function (reason) {
+        })
+        .catch(function (reason) {
           //
+        })
+        .finally(function() {
+          ctrl.cancelEditing();
         });
     };
 
@@ -68,6 +87,7 @@ angular.module('noterious')
     };
 
     ctrl.cancelEditing = function() {
+      ctrl.loading = false;
       ctrl.editedBoardId = null;
       ctrl.editedBoard = null;
       ctrl.isEditing = false;
