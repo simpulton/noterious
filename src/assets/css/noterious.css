@@ -52,7 +52,9 @@ body {
     background-size: cover;
 }
 
-
+.nav-wrap {
+    height:65px;
+}
 .navbar-clear a:hover.blue {
     color: #4f92a8;
 }
@@ -141,7 +143,14 @@ body.loading .modal {
 }
 
 .content {
-    margin-left: 10px;
+    display: table;
+    width: 100%;
+    height: calc(100% - 65px);
+}
+.login-wrap {
+   display: table-cell;
+   text-align: center;
+   vertical-align: middle;
 }
 
 a.view {
@@ -230,7 +239,7 @@ a.view:hover, a.view:focus {
     max-width: 100%;
     width: 360px;
     height: 220px;
-    margin: 0px 15px 0px 0px;
+    margin: 0 auto;
     position: relative;
     padding: 20px;
     padding-top: 34px;

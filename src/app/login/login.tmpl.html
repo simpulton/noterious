@@ -1,48 +1,50 @@
-<form
-  class="form-signin"
-  role="form"
-  name="login.loginForm"
-  ng-submit="login.submit(login.user, login.loginForm.$valid, login.user.register)"
-  novalidate
->
-  <p class="large">Please Sign In</p>
+<div class="login-wrap">
+  <form
+    class="form-signin"
+    role="form"
+    name="login.loginForm"
+    ng-submit="login.submit(login.user, login.loginForm.$valid, login.user.register)"
+    novalidate
+  >
+    <p class="large">Please Sign In</p>
 
-  <fieldset>
+    <fieldset>
 
-    <div>
-      <input
-        type="email"
-        ng-model="login.user.email"
-        placeholder="Enter Email"
-        required
-      >
-    </div>
-
-    <div>
-      <input
-        type="password"
-        ng-model="login.user.password"
-        placeholder="Enter Password"
-        required
-      >
-    </div>
-
-    <div class="bottom x-small">
-      <label>
+      <div>
         <input
-          type="checkbox"
-          ng-model="login.user.register"
+          type="email"
+          ng-model="login.user.email"
+          placeholder="Enter Email"
+          required
         >
-        New User?
-      </label>
-    </div>
+      </div>
 
-    <button type="submit" class="btn btn-default btn-sm pull-right"
-      ng-disabled="login.loading"
-    >
-      <span class="glyphicon glyphicon-ok"></span>
-      Sign In
-      <span ng-show="login.loading" class="glyphicon glyphicon-refresh"></span>
-    </button>
-  </fieldset>
-</form>
+      <div>
+        <input
+          type="password"
+          ng-model="login.user.password"
+          placeholder="Enter Password"
+          required
+        >
+      </div>
+
+      <div class="bottom x-small">
+        <label>
+          <input
+            type="checkbox"
+            ng-model="login.user.register"
+          >
+          New User?
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-default btn-sm pull-right"
+        ng-disabled="login.loading"
+      >
+        <span class="glyphicon glyphicon-ok"></span>
+        Sign In
+        <span ng-show="login.loading" class="glyphicon glyphicon-refresh"></span>
+      </button>
+    </fieldset>
+  </form>
+</div>
