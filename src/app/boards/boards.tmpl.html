@@ -1,8 +1,11 @@
 <div>
   <div class="edit board" ng-repeat="(boardId, board) in ctrl.boards">
     <div class="caption">
-      <button type="button" class="top-right-corner" ng-click="ctrl.deleteBoard(boardId)">
-        <span class="glyphicon glyphicon-remove"></span>
+      <button
+          type="button"
+          class="close"
+          ng-click="ctrl.deleteBoard(noteId)">
+        &times;
       </button>
       <div><input type="text" class="medium" ng-model="board.title" ng-blur="ctrl.updateBoard(boardId, board)" placeholder="Board Title"></div>
       <div><input type="text" ng-model="board.description" ng-blur="ctrl.updateBoard(boardId, board)" placeholder="Board description."></div>

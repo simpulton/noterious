@@ -168,46 +168,6 @@ a.view:hover, a.view:focus {
     font-weight: bold;
 }
 
-.edit .bottom {
-    position: absolute;
-    bottom: 40px;
-}
-
-.create .bottom {
-    position: absolute;
-    bottom: 56px;
-}
-
-.edit .top-right-corner {
-    cursor: pointer;
-    position: absolute;
-    right: 8px;
-    top: 2px;
-    background:none;
-    border:none;
-    box-shadow:none;
-}
-
-.edit .bottom-right-corner {
-    cursor: pointer;
-    position: absolute;
-    right: 14px;
-    bottom: 22px;
-    background:none;
-    border:none;
-    box-shadow:none;
-}
-
-.create .bottom-right-corner {
-    cursor: pointer;
-    position: absolute;
-    right: 8px;
-    bottom: 38px;
-    background:none;
-    border:none;
-    box-shadow:none;
-}
-
 .content fieldset {
     border: none;
 }
@@ -216,38 +176,20 @@ a.view:hover, a.view:focus {
     display: inline-block;
     min-height: 200px;
     max-width: 100%;
-    line-height: 1.428571429;
-    background-image: url(../../assets/images/note-view.png);
-    width: 360px;
-    height: 220px;
-    padding:  20px;
-    margin: 0px 15px 0px 0px;
-    background-repeat: no-repeat;
-    background-position: top left;
-    position: relative;
-    padding-top: 34px;
+    margin-top: 20px;
+    padding: 20px;
+    background: #f5ead9;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
 }
 
 .content .note {
     display: inline-block;
     min-height: 200px;
     max-width: 100%;
-    line-height: 1.428571429;
-    background-image: url(../../assets/images/note.png);
-    width: 360px;
-    height: 220px;
-    padding:  20px;
-    margin: 0px 15px 0px 0px;
-    background-repeat: no-repeat;
-    background-position: top left;
-    position: relative;
-    padding-top: 34px;
-}
-
-
-.content .board.create, .content .note.create {
-    background-image: url(../../assets/images/note-create.png);
-    height: 240px;
+    margin-top: 20px;
+    padding: 20px;
+    background: #f5ead9;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
 }
 
 .content .board fieldset, .content .note fieldset {
@@ -286,15 +228,14 @@ a.view:hover, a.view:focus {
 .form-signin {
     min-height: 200px;
     max-width: 100%;
-    line-height: 1.428571429;
-    background-image: url(../../assets/images/note-blank.png);
     width: 360px;
     height: 220px;
-    padding:  20px;
-    margin: 80px auto 20px;
-    background-repeat: no-repeat;
-    background-position: top left;
+    margin: 0px 15px 0px 0px;
     position: relative;
+    padding: 20px;
+    padding-top: 34px;
+    background: #f5ead9;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
 }
 
 .form-signin button {
