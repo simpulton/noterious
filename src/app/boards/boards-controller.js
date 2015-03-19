@@ -64,6 +64,7 @@ angular.module('noterious')
     };
 
     ctrl.deleteBoard = function (boardId) {
+      console.log('deleteBoard clicked! ', boardId);
       BoardsModel.destroy(boardId)
         .then(function (result) {
           ctrl.getBoards();
