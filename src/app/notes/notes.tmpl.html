@@ -2,28 +2,68 @@
   <p class="large">{{ctrl.board.title}}</p>
 </div>
 <div class="board-content">
-  <div class="edit note" ng-repeat="(noteId, note) in ctrl.notes">
-    <div class="caption">
-      <button
-          type="button"
-          class="close"
-          ng-click="ctrl.deleteNote(noteId)">
-        &times;
-      </button>
-      <div><input type="text" class="medium" ng-model="note.title" ng-blur="ctrl.updateNote(noteId, note)" placeholder="Note Title"></div>
-      <div><textarea ng-model="note.content" ng-blur="ctrl.updateNote(notedId, note)" placeholder="Note content"></textarea></div>
-    </div>
-  </div>
+  <!-- NEW NOTE -->
   <div class="create note">
     <div class="caption">
-      <form ng-submit="ctrl.createNote(ctrl.newNote)">
+      <form
+          name="ctrl.createForm"
+          class="create-form"
+          role="form"
+          ng-submit="ctrl.createNote(ctrl.newNote, ctrl.createForm.$valid)"
+          novalidate>
         <fieldset>
-          <div><input type="text" class="medium" ng-model="ctrl.newNote.title" placeholder="Note Title" /></div>
-          <div><textarea autosize ng-model="ctrl.newNote.content" placeholder="Note content"></textarea></div>
-          <button type="submit" class="bottom-right-corner"><span class="glyphicon glyphicon-plus"></span></button>
+          <div>
+            <input
+              type="text"
+              class="medium"
+              ng-model="ctrl.newNote.title"
+              placeholder="Note Title"
+              required/>
+          </div>
+          <div>
+            <textarea
+              ng-model="ctrl.newNote.content"
+              placeholder="Note content"
+              required>
+            </textarea>
+          </div>
+          <button
+            type="submit"
+            class="bottom-right-corner">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
         </fieldset>
       </form>
     </div>
   </div>
+  <!-- EXISTING NOTES -->
+  <div
+      class="edit note"
+      ng-repeat="(noteId, note) in ctrl.notes">
+    <div class="caption">
+      <button
+        type="button"
+        class="close"
+        ng-click="ctrl.deleteNote(noteId)">
+        &times;
+      </button>
+      <div>
+        <input
+          type="text"
+          class="medium"
+          ng-model="note.title"
+          ng-blur="ctrl.updateNote(noteId, note)"
+          placeholder="Note Title">
+      </div>
+      <div>
+        <textarea
+          ng-model="note.content"
+          ng-blur="ctrl.updateNote(notedId, note)"
+          placeholder="Note content">
+        </textarea>
+      </div>
+    </div>
+  </div>
+
 </div>
 

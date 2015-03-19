@@ -1,4 +1,45 @@
 <div>
+  <!-- NEW BOARD -->
+  <div class="create board">
+    <div class="caption">
+      <form
+          name="ctrl.createForm"
+          class="create-form"
+          role="form"
+          ng-submit="ctrl.createBoard(ctrl.newBoard, ctrl.createForm.$valid)"
+          novalidate>
+        <fieldset>
+          <div>
+            <input
+                type="text"
+                class="medium"
+                ng-model="ctrl.newBoard.title"
+                placeholder="Board Title"
+                required>
+          </div>
+          <div>
+            <input
+                type="text"
+                ng-model="ctrl.newBoard.description"
+                placeholder="Board description"
+                required>
+          </div>
+          <div class="bottom x-small">
+            <input
+                type="checkbox"
+                ng-model="ctrl.newBoard.isPublic">
+            Board is Public
+          </div>
+          <button
+              type="submit"
+              class="bottom-right-corner">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <!-- EXISTING BOARDS -->
   <div
     class="edit board"
     ng-repeat="(boardId, board) in ctrl.boards">
@@ -36,40 +77,6 @@
         class="view bottom-right-corner">
         <span class="glyphicon glyphicon-arrow-right"></span>
       </a>
-    </div>
-  </div>
-  <div class="create board">
-    <div class="caption">
-      <form ng-submit="ctrl.createBoard(ctrl.newBoard)">
-        <fieldset>
-          <div>
-            <input
-              type="text"
-              class="medium"
-              ng-model="ctrl.newBoard.title"
-              placeholder="Board Title"
-              required>
-          </div>
-          <div>
-            <input
-              type="text"
-              ng-model="ctrl.newBoard.description"
-              placeholder="Board description"
-              required>
-          </div>
-          <div class="bottom x-small">
-            <input
-              type="checkbox"
-              ng-model="ctrl.newBoard.isPublic">
-            Board is Public
-          </div>
-          <button
-            type="submit"
-            class="bottom-right-corner">
-            <span class="glyphicon glyphicon-plus"></span>
-          </button>
-        </fieldset>
-      </form>
     </div>
   </div>
 </div>
