@@ -25,8 +25,8 @@ angular.module('noterious')
       BoardsModel.all()
         .then(function (result) {
           ctrl.boards = (result !== 'null') ? result : {};
-        }, function (reason) {
-          //
+        }, function () {
+          ctrl.resetForm();
         });
     };
 
@@ -41,7 +41,7 @@ angular.module('noterious')
           .catch(function (reason) {
             //
           })
-          .finally(function() {
+          .finally(function () {
             ctrl.resetForm();
           });
       }
@@ -57,7 +57,7 @@ angular.module('noterious')
           .catch(function (reason) {
             //
           })
-          .finally(function() {
+          .finally(function () {
             ctrl.cancelEditing();
           });
       }
@@ -71,22 +71,22 @@ angular.module('noterious')
         .catch(function (reason) {
           //
         })
-        .finally(function() {
+        .finally(function () {
           ctrl.cancelEditing();
         });
     };
 
-    ctrl.setEditedBoard = function(boardId, board) {
+    ctrl.setEditedBoard = function (boardId, board) {
       ctrl.editedBoardId = boardId;
       ctrl.editedBoard = angular.copy(board);
       ctrl.isEditing = true;
     };
 
-    ctrl.isCurrentBoard = function(boardId) {
+    ctrl.isCurrentBoard = function (boardId) {
       return ctrl.editedBoard !== null && ctrl.editedBoardId === boardId;
     };
 
-    ctrl.cancelEditing = function() {
+    ctrl.cancelEditing = function () {
       ctrl.loading = false;
       ctrl.editedBoardId = null;
       ctrl.editedBoard = null;

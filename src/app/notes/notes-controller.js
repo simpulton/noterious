@@ -5,6 +5,7 @@ angular.module('noterious')
     var ctrl = this,
       boardId = $stateParams.boardId;
 
+    ctrl.loading = false;
 
     ctrl.newNote = {
       title: '',
@@ -16,6 +17,7 @@ angular.module('noterious')
     };
 
     ctrl.resetForm = function () {
+      ctrl.loading = false;
       ctrl.newNote = {
         title: '',
         content: ''
@@ -40,33 +42,50 @@ angular.module('noterious')
         });
     };
 
-    ctrl.createNote = function (note) {
-      NotesModel.create(boardId, note)
-        .then(function (result) {
-          ctrl.getNotes();
-          ctrl.resetForm();
-        }, function (reason) {
-          //
-        });
+    ctrl.createNote = function (note, isValid) {
+      if (isValid) {
+        ctrl.loading = true;
+
+        NotesModel.create(boardId, note)
+          .then(function (result) {
+            ctrl.getNotes();
+          })
+          .catch(function (reason) {
+            //
+          })
+          .finally(function() {
+            ctrl.resetForm();
+          });
+      }
     };
 
-    ctrl.updateNote = function (noteId, note) {
-      NotesModel.update(boardId, noteId, note)
-        .then(function (result) {
-          ctrl.getNotes();
-          ctrl.cancelEditing();
-        }, function (reason) {
-          //
-        });
+    ctrl.updateNote = function (noteId, note, isValid) {
+      if (isValid) {
+        ctrl.loading = true;
+
+        NotesModel.update(boardId, noteId, note)
+          .then(function (result) {
+            ctrl.getNotes();
+          })
+          .catch(function (reason) {
+            //
+          })
+          .finally(function() {
+            ctrl.resetForm();
+          });
+      }
     };
 
     ctrl.deleteNote = function (noteId) {
       NotesModel.destroy(boardId, noteId)
         .then(function (result) {
           ctrl.getNotes();
-          ctrl.cancelEditing();
-        }, function (reason) {
+        })
+        .catch(function (reason) {
           //
+        })
+        .finally(function() {
+          ctrl.cancelEditing();
         });
     };
 
@@ -81,6 +100,7 @@ angular.module('noterious')
     };
 
     ctrl.cancelEditing = function() {
+      ctrl.loading = false;
       ctrl.editedNoteId = null;
       ctrl.editedNote = null;
       ctrl.isEditing = false;
