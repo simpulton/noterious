@@ -298,7 +298,7 @@ a.view:hover, a.view:focus {
 
 .board-header span {
     cursor: pointer;
-    padding-left: 16px;
+    padding-left: 15px;
 }
 
 .board-details,
