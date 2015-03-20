@@ -1,69 +1,72 @@
 <div class="board-header">
   <p class="large">{{ctrl.board.title}}</p>
 </div>
-<div class="board-content">
-  <!-- NEW NOTE -->
-  <div class="create note">
-    <div class="caption">
-      <form
-          name="ctrl.createForm"
-          class="create-form"
-          role="form"
-          ng-submit="ctrl.createNote(ctrl.newNote, ctrl.createForm.$valid)"
-          novalidate>
-        <fieldset>
-          <div>
-            <input
-              type="text"
-              class="medium"
-              ng-model="ctrl.newNote.title"
-              placeholder="Note Title"
-              required/>
+<div class="container">
+  <div class="row">
+      <div class="board-content">
+        <!-- NEW NOTE -->
+        <div class="col-sm-4">
+          <div class="create note">
+            <div class="caption">
+              <form
+                  name="ctrl.createForm"
+                  class="create-form"
+                  role="form"
+                  ng-submit="ctrl.createNote(ctrl.newNote, ctrl.createForm.$valid)"
+                  novalidate>
+                <fieldset>
+                  <div>
+                    <input
+                      type="text"
+                      class="medium"
+                      ng-model="ctrl.newNote.title"
+                      placeholder="Note Title"
+                      required/>
+                  </div>
+                  <div>
+                    <textarea
+                      ng-model="ctrl.newNote.content"
+                      placeholder="Note content"
+                      required>
+                    </textarea>
+                  </div>
+                  <button
+                    type="submit"
+                    class="bottom-right-corner-note btn btn-default">
+                    <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+                </fieldset>
+              </form>
+            </div>
           </div>
-          <div>
-            <textarea
-              ng-model="ctrl.newNote.content"
-              placeholder="Note content"
-              required>
-            </textarea>
+        </div>
+        <!-- EXISTING NOTES -->
+        <div class="col-sm-4" ng-repeat="(noteId, note) in ctrl.notes">
+          <div class="edit note">
+            <div class="caption">
+              <button
+                type="button"
+                class="close"
+                ng-click="ctrl.deleteNote(noteId)">
+                &times;
+              </button>
+              <div>
+                <input
+                  type="text"
+                  class="medium"
+                  ng-model="note.title"
+                  ng-blur="ctrl.updateNote(noteId, note)"
+                  placeholder="Note Title">
+              </div>
+              <div>
+                <textarea
+                  ng-model="note.content"
+                  ng-blur="ctrl.updateNote(notedId, note)"
+                  placeholder="Note content">
+                </textarea>
+              </div>
+            </div>
           </div>
-          <button
-            type="submit"
-            class="bottom-right-corner">
-            <span class="glyphicon glyphicon-plus"></span>
-          </button>
-        </fieldset>
-      </form>
-    </div>
-  </div>
-  <!-- EXISTING NOTES -->
-  <div
-      class="edit note"
-      ng-repeat="(noteId, note) in ctrl.notes">
-    <div class="caption">
-      <button
-        type="button"
-        class="close"
-        ng-click="ctrl.deleteNote(noteId)">
-        &times;
-      </button>
-      <div>
-        <input
-          type="text"
-          class="medium"
-          ng-model="note.title"
-          ng-blur="ctrl.updateNote(noteId, note)"
-          placeholder="Note Title">
+        </div>
       </div>
-      <div>
-        <textarea
-          ng-model="note.content"
-          ng-blur="ctrl.updateNote(notedId, note)"
-          placeholder="Note content">
-        </textarea>
-      </div>
-    </div>
-  </div>
-
-</div>
 

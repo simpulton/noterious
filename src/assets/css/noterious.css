@@ -202,13 +202,14 @@ a.view:hover, a.view:focus {
 }
 
 .content .note {
-    display: inline-block;
     min-height: 200px;
-    max-width: 100%;
-    margin-top: 20px;
+    max-width: 290px;
+    width: 100%;
+    margin: 20px auto;
     padding: 20px;
     background: #f5ead9;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
+    position: relative;
 }
 
 .content .board fieldset, .content .note fieldset {
@@ -317,6 +318,11 @@ a.view:hover, a.view:focus {
     position: absolute;
     bottom: -85px;
     right: -10px;
+}
+.bottom-right-corner-note {
+  position: absolute;
+  bottom: -70px;
+  right: -10px;
 }
 .arrow-bottom-right {
     position: absolute;
