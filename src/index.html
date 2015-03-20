@@ -11,31 +11,33 @@
     <link rel="stylesheet" href="assets/css/animations.css">
   </head>
   <body ng-controller="MainCtrl as main" ng-class="{loading:loadingView}" class="bg-blue">
-    <header class="navbar-clear nav-wrap" role="banner">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a ui-sref="boards" class="navbar-brand"><img src="assets/images/logo.png" alt="noterio.us"/></a>
-      </div>
-      <div class="collapse navbar-collapse navbar-ex1-collapse bg-blue">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a class="blue" href="http://angularjs.org/" target="_blank">AngularJS</a></li>
-          <li><a class="blue" href="http://firebase.com/" target="_blank">Firebase</a></li>
-          <li><a class="blue" href="https://github.com/simpulton/noterious" target="_blank">GitHub</a></li>
-          <li>
-            <button class="btn btn-link blue" ng-if="main.currentUser" ng-click="main.logout()">Logout</button>
-          </li>
-        </ul>
-      </div>
-    </header>
+    <div class="app-wrap">
+      <header class="navbar-clear nav-wrap" role="banner">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a ui-sref="boards" class="navbar-brand"><img src="assets/images/logo.png" alt="noterio.us"/></a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse bg-blue">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a class="blue" href="http://angularjs.org/" target="_blank">AngularJS</a></li>
+            <li><a class="blue" href="http://firebase.com/" target="_blank">Firebase</a></li>
+            <li><a class="blue" href="https://github.com/simpulton/noterious" target="_blank">GitHub</a></li>
+            <li>
+              <button class="btn btn-link blue" ng-if="main.currentUser" ng-click="main.logout()">Logout</button>
+            </li>
+          </ul>
+        </div>
+      </header>
 
-    <div ui-view class="content"></div>
+      <div ui-view class="content"></div>
 
-    <div class="modal"></div>
+      <div class="modal"></div>
+    </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>

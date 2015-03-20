@@ -4,11 +4,9 @@ html, body {
 
 body {
     font-family: Verdana, Helvetica, Arial, sans-serif;
-    padding: 10px;
-    border: 10px solid #f5ead9;
-    height: 100%;
     min-height: 100%;
 }
+
 
 .bg-blue {
     background: url(../../assets/images/bg-blue.jpg) no-repeat center center fixed;
@@ -52,7 +50,11 @@ body {
     -o-background-size: cover;
     background-size: cover;
 }
-
+.app-wrap {
+    border: 10px solid #f5ead9;
+    min-height: 100%;
+    padding: 10px;
+}
 .nav-wrap {
     height:65px;
 }
