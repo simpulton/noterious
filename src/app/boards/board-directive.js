@@ -20,7 +20,7 @@ angular.module('noterious')
       };
 
       ctrl.deleteBoard = function (boardId) {
-        $scope.delete({boardId:boardId});
+        $scope.remove({boardId:boardId});
       };
     };
 
@@ -28,7 +28,7 @@ angular.module('noterious')
       scope: {
         boardId:'@',
         board:'=',
-        delete:'&'
+        remove:'&'
       },
       templateUrl: 'app/boards/board.tmpl.html',
       controller: controller,

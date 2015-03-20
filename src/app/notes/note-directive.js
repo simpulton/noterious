@@ -22,7 +22,7 @@ angular.module('noterious')
       };
 
       ctrl.deleteNote = function (noteId) {
-        $scope.delete({noteId:noteId});
+        $scope.remove({noteId:noteId});
       };
     };
 
@@ -30,7 +30,7 @@ angular.module('noterious')
       scope: {
         noteId: '@',
         note:'=',
-        delete:'&'
+        remove:'&'
       },
       templateUrl: 'app/notes/note.tmpl.html',
       controller: controller,
