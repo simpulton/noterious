@@ -5,6 +5,7 @@ angular.module('noterious')
     var main = this;
     main.auth = Auth;
     main.currentUser = null;
+    main.currentColor = 'blue';
 
     main.colors = [
       'blue',
@@ -14,11 +15,9 @@ angular.module('noterious')
       'yellow'
     ];
 
-    function random(num) {
-      return Math.floor(Math.random() * num);
-    }
-
-    main.color = main.colors[random(main.colors.length)];
+    main.setCurrentColor = function(color) {
+      main.currentColor = color;
+    };
 
     main.logout = function () {
       UserModel.logout();
@@ -28,7 +27,6 @@ angular.module('noterious')
       if (authData) {
         UserModel.setCurrentUser(authData.uid);
         main.currentUser = authData.uid;
-        // $state.go('boards');
       } else {
         main.currentUser = null;
         $state.go('login');
