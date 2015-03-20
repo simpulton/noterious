@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noterious')
-  .controller('NotesCtrl', function (currentUser, BoardsModel, NotesModel, UserModel, $stateParams, $state) {
+  .controller('NotesCtrl', function (currentUser, BoardsModel, NotesModel, $stateParams, $state) {
     var ctrl = this,
       boardId = $stateParams.boardId;
 

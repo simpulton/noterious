@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noterious')
-  .controller('BoardsCtrl', function (currentUser, BoardsModel, UserModel) {
+  .controller('BoardsCtrl', function (currentUser, BoardsModel) {
     var ctrl = this;
 
     ctrl.loading = false;
@@ -64,7 +64,6 @@ angular.module('noterious')
     };
 
     ctrl.deleteBoard = function (boardId) {
-      console.log('deleteBoard clicked! ', boardId);
       BoardsModel.destroy(boardId)
         .then(function (result) {
           ctrl.getBoards();

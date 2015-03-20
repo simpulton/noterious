@@ -1,0 +1,38 @@
+<div class="edit board">
+  <div class="caption">
+    <button
+        type="button"
+        class="close"
+        ng-click="ctrl.deleteBoard(boardId)">
+      &times;
+    </button>
+    <div>
+      <input
+        type="text"
+        class="medium"
+        ng-model="board.title"
+        ng-blur="ctrl.updateBoard(boardId, board)"
+        placeholder="Board Title">
+    </div>
+    <div>
+      <input type="text"
+         ng-model="board.description"
+         ng-blur="ctrl.updateBoard(boardId, board)"
+         placeholder="Board description.">
+    </div>
+    <div class="bottom x-small">
+      <input
+        type="checkbox"
+        ng-model="board.isPublic"
+        ng-blur="ctrl.updateBoard(boardId, board)">
+      Board is Public
+    </div>
+    <a
+      type="button"
+      ui-sref="notes({boardId: boardId})"
+      class="view arrow-bottom-right btn btn-default">
+      <span class="glyphicon glyphicon-arrow-right"></span>
+    </a>
+    <span ng-show="ctrl.loading" class="glyphicon glyphicon-refresh"></span>
+  </div>
+</div>

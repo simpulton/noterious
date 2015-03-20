@@ -1,0 +1,26 @@
+<div class="edit note">
+  <div class="caption">
+    <button
+        type="button"
+        class="close"
+        ng-click="ctrl.deleteNote(noteId)">
+      &times;
+    </button>
+    <div>
+      <input
+          type="text"
+          class="medium"
+          ng-model="note.title"
+          ng-blur="ctrl.updateNote(noteId, note)"
+          placeholder="Note Title">
+    </div>
+    <div>
+      <textarea
+          ng-model="note.content"
+          ng-blur="ctrl.updateNote(notedId, note)"
+          placeholder="Note content">
+      </textarea>
+    </div>
+    <span ng-show="ctrl.loading" class="glyphicon glyphicon-refresh"></span>
+  </div>
+</div>
