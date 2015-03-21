@@ -1,0 +1,22 @@
+{
+  "name": "noterious",
+  "version": "0.0.0",
+  "description": "AngularJS note board built using Firebase.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/simpulton/noterious.git"
+  },
+  "author": {
+    "name": "Lukas Ruebbelke",
+    "email": "lukas@onehungrymind.com",
+    "url": "http://onehungrymind.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/simpulton/noterious/issues"
+  },
+  "homepage": "https://github.com/simpulton/noterious"
+}
