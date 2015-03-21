@@ -19,7 +19,9 @@ angular.module('noterious')
     }
 
     function onError(reason) {
-      login.error = reason.message;
+      login.alerts.push({
+        message : reason.message
+      });
     }
 
     function onCompletion() {
@@ -47,6 +49,10 @@ angular.module('noterious')
           .then(onSuccess, onError)
           .finally(onCompletion);
         }
+      } else {
+        login.alerts.push({
+          message : 'Please Enter Valid Login Credentials'
+        });
       }
     };
 

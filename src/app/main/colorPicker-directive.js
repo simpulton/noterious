@@ -5,7 +5,7 @@ angular.module('noterious')
       restrict : 'E',
       scope: true,
       replace: true,
-      templateUrl: 'app/main/colorpicker.html',
+      templateUrl: 'app/main/colorpicker.tmpl.html',
       link : function (scope, element, attrs) {
         scope.collapsed = true;
       }
