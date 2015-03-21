@@ -60,7 +60,7 @@ body {
 }
 
 .color-picker {
-    position: absolute;
+    position: fixed;
     right: 20px;
     bottom: 10px;
     display: inline;
@@ -69,7 +69,7 @@ body {
 
 ul.color-picker li {
   float: left;
-  margin: 0 10px;
+  margin: 0 5px;
 }
 
 .square {
@@ -122,6 +122,9 @@ ul.color-picker li {
 .navbar-clear button:hover.yellow,
 .navbar-clear a:hover.yellow {
     color: #f4cb48;
+}
+ul.nav li a.btn {
+    text-align: left;
 }
 
 input:focus, textarea { outline: none !important; }
@@ -293,8 +296,8 @@ a.view:hover, a.view:focus {
 
 .form-signin {
     min-height: 200px;
-    max-width: 100%;
-    width: 360px;
+    width: 100%;
+    max-width: 360px;
     height: 220px;
     margin: 0 auto;
     position: relative;
