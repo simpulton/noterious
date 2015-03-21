@@ -7,7 +7,7 @@ body {
     min-height: 100%;
 }
 
-
+/*
 .bg-blue {
     background: url(../../assets/images/bg-blue.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -49,7 +49,7 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
+}*/
 .app-wrap {
     border: 10px solid #f5ead9;
     min-height: 100%;
@@ -97,6 +97,49 @@ ul.color-picker li {
 
 .yellow {
     background-color: #f4cb48;
+}
+
+.bg-blue {
+    background-color: #4f92a8;
+    -webkit-transition: background-color 500ms ease-out 1s;
+    -moz-transition: background-color 500ms ease-out 1s;
+    -o-transition: background-color 500ms ease-out 1s;
+    transition: background-color 0.5s ease;
+}
+
+.bg-green {
+    background-color: #87a961;
+    -webkit-transition: background-color 500ms ease-out 1s;
+    -moz-transition: background-color 500ms ease-out 1s;
+    -o-transition: background-color 500ms ease-out 1s;
+    transition: background-color 0.5s ease;
+}
+
+
+.bg-orange {
+    background-color: #f6512d;
+    -webkit-transition: background-color 500ms ease-out 1s;
+    -moz-transition: background-color 500ms ease-out 1s;
+    -o-transition: background-color 500ms ease-out 1s;
+    transition: background-color 0.5s ease;
+}
+
+
+.bg-red {
+    background-color: #a93d41;
+    -webkit-transition: background-color 500ms ease-out 1s;
+    -moz-transition: background-color 500ms ease-out 1s;
+    -o-transition: background-color 500ms ease-out 1s;
+    transition: background-color 0.5s ease;
+}
+
+
+.bg-yellow {
+    background-color: #f4cb48;
+    -webkit-transition: background-color 500ms ease-out 1s;
+    -moz-transition: background-color 500ms ease-out 1s;
+    -o-transition: background-color 500ms ease-out 1s;
+    transition: background-color 0.5s ease;
 }
 
 .navbar-clear button:hover.blue,

@@ -27,6 +27,7 @@ angular.module('noterious')
       if (authData) {
         UserModel.setCurrentUser(authData.uid);
         main.currentUser = authData.uid;
+        $state.go('boards');
       } else {
         main.currentUser = null;
         $state.go('login');
