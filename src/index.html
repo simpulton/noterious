@@ -38,13 +38,7 @@
 
       <div class="modal"></div>
 
-      <ul class="color-picker">
-        <li><div class="square blue" ng-click="main.setCurrentColor('blue')"></div></li>
-        <li><div class="square green" ng-click="main.setCurrentColor('green')"></div></li>
-        <li><div class="square orange" ng-click="main.setCurrentColor('orange')"></div></li>
-        <li><div class="square red" ng-click="main.setCurrentColor('red')"></div></li>
-        <li><div class="square yellow" ng-click="main.setCurrentColor('yellow')"></div></li>
-      </ul>
+      <color-picker></color-picker>
     </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -69,6 +63,7 @@
     <script src="app/main/main-controller.js"></script>
     <script src="app/notes/notes-controller.js"></script>
     <script src="app/notes/note-directive.js"></script>
+    <script src="app/main/colorPicker-directive.js"></script>
     <script>
       var navMain = angular.element(".navbar-collapse");
       navMain.on("click", "a", null, function () {

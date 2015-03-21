@@ -59,12 +59,38 @@ body {
     height:65px;
 }
 
-.color-picker {
+.color-picker-wrap {
     position: fixed;
     right: 20px;
-    bottom: 10px;
+    background: #f5ead9;
+    width: 270px;
+    padding: 10px;
+    height: 70px;
+}
+.color-picker-wrap.expanded {
+    bottom: 0;
+}
+.color-picker-wrap.collapsed {
+    bottom: -60px;
+}
+.color-picker-toggle {
+    position: absolute;
+    background: #f5ead9;
+    height: 50px;
+    top: -50px;
+    width: 50px;
+    right: 0px;
+    font-size: 25px;
+    padding: 10px;
+    cursor: pointer;
+}
+.color-picker {
+/*    position: fixed;
+    right: 20px;
+    bottom: 10px;*/
     display: inline;
     list-style-type: none;
+    padding:0;
 }
 
 ul.color-picker li {

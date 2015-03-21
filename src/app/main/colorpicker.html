@@ -1,0 +1,13 @@
+<div class="color-picker-wrap" ng-class="{'collapsed' : collapsed, 'expanded' : !collapsed}">
+	<div class="color-picker-toggle">
+		<span class="glyphicon glyphicon-pencil" ng-click="collapsed = !collapsed" ng-show="collapsed"></span>
+		<span class="glyphicon glyphicon-remove" ng-click="collapsed = !collapsed" ng-hide="collapsed"></span>
+	</div>
+	<ul class="color-picker">
+		<li><div class="square blue" ng-click="main.setCurrentColor('blue')"></div></li>
+		<li><div class="square green" ng-click="main.setCurrentColor('green')"></div></li>
+		<li><div class="square orange" ng-click="main.setCurrentColor('orange')"></div></li>
+		<li><div class="square red" ng-click="main.setCurrentColor('red')"></div></li>
+		<li><div class="square yellow" ng-click="main.setCurrentColor('yellow')"></div></li>
+	</ul>
+</div>
