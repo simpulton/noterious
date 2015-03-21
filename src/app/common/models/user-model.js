@@ -13,7 +13,6 @@ angular.module('noterious.common')
       currentUser = user;
     };
 
-
     service.login = function (user) {
       return Auth.$authWithPassword({
         email: user.email,

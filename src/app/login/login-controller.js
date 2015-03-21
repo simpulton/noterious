@@ -18,7 +18,6 @@ angular.module('noterious')
 
     function onError(reason) {
       login.error = reason.message;
-      console.log('login.error', login.error);
     }
 
     function onCompletion() {
