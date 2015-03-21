@@ -9,7 +9,7 @@ angular.module('noterious.common')
       return currentUser;
     };
 
-    service.setCurrentUser = function(user){
+    service.setCurrentUser = function (user) {
       currentUser = user;
     };
 
@@ -18,29 +18,30 @@ angular.module('noterious.common')
         email: user.email,
         password: user.password
       })
-      .then(function(authData) {
+      .then(function (authData) {
         currentUser = authData.uid;
         console.log('Logged in as:', authData.uid);
         return currentUser;
       })
-      .catch(function(error) {
+      .catch(function (error) {
         currentUser = null;
         console.error('Authentication failed:', error);
+        return error;
       });
     };
 
-    service.register = function(user) {
+    service.register = function (user) {
       return Auth.$createUser({
         email: user.email,
         password: user.password
       })
-      .then(function(userData) {
+      .then(function (userData) {
         console.log('User ' + userData.uid + ' created successfully!');
-
         return service.login(user.email, user.password);
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.error('Error: ', error);
+        return error;
       });
     };
 

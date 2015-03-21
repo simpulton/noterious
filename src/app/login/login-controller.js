@@ -20,6 +20,7 @@ angular.module('noterious')
 
     function onError(reason) {
       login.error = reason.message;
+      console.log('login.error', login.error);
     }
 
     function onCompletion() {
@@ -27,7 +28,6 @@ angular.module('noterious')
     }
 
     login.submit = function (user, isValid, isRegistering) {
-      login.alerts.length = 0;
       if (isValid) {
         login.loading = true;
 
@@ -36,7 +36,8 @@ angular.module('noterious')
             email: login.user.email,
             password: login.user.password
           })
-          .then(onSuccess, onError)
+          .then(onSuccess)
+          .catch(onError)
           .finally(onCompletion);
 
         } else {
@@ -44,7 +45,8 @@ angular.module('noterious')
             email: login.user.email,
             password: login.user.password
           })
-          .then(onSuccess, onError)
+          .then(onSuccess)
+          .catch(onError)
           .finally(onCompletion);
         }
       }
