@@ -74,42 +74,47 @@ body {
     cursor: pointer;
 }
 
-.square.blue {
+.blue {
     background-color: #4f92a8;
 }
 
-.square.green {
+.green {
     background-color: #87a961;
 }
 
-.square.orange {
+.orange {
     background-color: #f6512d;
 }
 
-.square.red {
+.red {
     background-color: #a93d41;
 }
 
-.square.yellow {
+.yellow {
     background-color: #f4cb48;
 }
 
+.navbar-clear button:hover.blue,
 .navbar-clear a:hover.blue {
     color: #4f92a8;
 }
 
+.navbar-clear button:hover.green,
 .navbar-clear a:hover.green {
     color: #87a961;
 }
 
+.navbar-clear button:hover.orange,
 .navbar-clear a:hover.orange {
     color: #f6512d;
 }
 
+.navbar-clear button:hover.red,
 .navbar-clear a:hover.red {
     color: #a93d41;
 }
 
+.navbar-clear button:hover.yellow,
 .navbar-clear a:hover.yellow {
     color: #f4cb48;
 }
