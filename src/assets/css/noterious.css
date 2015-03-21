@@ -67,6 +67,11 @@ body {
     list-style-type: none;
 }
 
+ul.color-picker li {
+  float: left;
+  margin: 0 10px;
+}
+
 .square {
     width: 40px;
     height: 40px;
