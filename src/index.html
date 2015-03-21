@@ -24,11 +24,11 @@
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse bg-{{main.currentColor}}">
           <ul class="nav navbar-nav navbar-right">
-            <li><a class="blue" href="http://angularjs.org/" target="_blank">AngularJS</a></li>
-            <li><a class="blue" href="http://firebase.com/" target="_blank">Firebase</a></li>
-            <li><a class="blue" href="https://github.com/simpulton/noterious" target="_blank">GitHub</a></li>
+            <li><a class="{{main.currentColor}}" href="http://angularjs.org/" target="_blank">AngularJS</a></li>
+            <li><a class="{{main.currentColor}}" href="http://firebase.com/" target="_blank">Firebase</a></li>
+            <li><a class="{{main.currentColor}}" href="https://github.com/simpulton/noterious" target="_blank">GitHub</a></li>
             <li>
-              <button class="btn btn-link blue" ng-if="main.currentUser" ng-click="main.logout()">Logout</button>
+              <button class="btn btn-link {{main.currentColor}}" ng-if="main.currentUser" ng-click="main.logout()">Logout</button>
             </li>
           </ul>
         </div>
