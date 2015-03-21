@@ -12,6 +12,18 @@ angular.module('noterious')
       register: false
     };
 
+    function onSuccess(result) {
+      $state.go('boards');
+    }
+
+    function onError(reason) {
+      login.error = reason.message;
+    }
+
+    function onCompletion() {
+      login.reset();
+    }
+
     login.submit = function (user, isValid, isRegistering) {
       if (isValid) {
         login.loading = true;
@@ -22,12 +34,8 @@ angular.module('noterious')
             email: login.user.email,
             password: login.user.password
           })
-          .then(function() {
-            $state.go('boards');
-          })
-          .finally(function() {
-            login.reset();
-          });
+          .then(onSuccess, onError)
+          .finally(onCompletion);
 
         } else {
 
@@ -35,15 +43,9 @@ angular.module('noterious')
             email: login.user.email,
             password: login.user.password
           })
-          .then(function() {
-            $state.go('boards');
-          })
-          .finally(function() {
-            login.reset();
-          });
-
+          .then(onSuccess, onError)
+          .finally(onCompletion);
         }
-
       }
     };
 
