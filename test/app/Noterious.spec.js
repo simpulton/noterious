@@ -16,5 +16,9 @@ describe('Noterious: configuration', function () {
       expect(endpointUri).toBeDefined();
     });
 
+    it('should be secure', function () {
+      expect(endpointUri).toContain("https://");
+    });
+
   });
 });
