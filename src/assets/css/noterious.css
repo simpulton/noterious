@@ -85,9 +85,6 @@ body {
     cursor: pointer;
 }
 .color-picker {
-/*    position: fixed;
-    right: 20px;
-    bottom: 10px;*/
     display: inline;
     list-style-type: none;
     padding:0;
@@ -367,7 +364,7 @@ a.view:hover, a.view:focus {
     min-height: 200px;
     width: 100%;
     max-width: 360px;
-    height: 220px;
+    min-height: 220px;
     margin: 0 auto;
     position: relative;
     padding: 20px;

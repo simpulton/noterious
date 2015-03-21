@@ -8,12 +8,17 @@
   >
     <p class="large">Please Sign In</p>
 
+    <div class="alert alert-danger" ng-if="login.alerts.length > 0" role="alert">
+      <p ng-repeat="alert in login.alerts">{{alert.message}}</p>
+    </div>
+
     <fieldset>
 
       <div>
         <input
           type="email"
           ng-model="login.user.email"
+          name="email"
           placeholder="Enter Email"
           required
         >

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noterious.common')
-  .service('UserModel', function (Auth) {
+  .service('UserModel', function (Auth, $q) {
     var service = this,
       currentUser = null;
 
