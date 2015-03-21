@@ -20,7 +20,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a ui-sref="boards" class="navbar-brand"><img src="assets/images/logo.png" alt="noterio.us"/></a>
+          <a ui-sref="boars" class="navbar-brand"><img src="assets/images/logo.png" alt="noterio.us"/></a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse bg-{{main.currentColor}}">
           <ul class="nav navbar-nav navbar-right">
@@ -69,5 +69,11 @@
     <script src="app/main/main-controller.js"></script>
     <script src="app/notes/notes-controller.js"></script>
     <script src="app/notes/note-directive.js"></script>
+    <script>
+      var navMain = angular.element(".navbar-collapse");
+      navMain.on("click", "a", null, function () {
+         navMain.collapse('hide');
+      });
+    </script>
   </body>
 </html>
