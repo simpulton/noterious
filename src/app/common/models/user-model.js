@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noterious.common')
-  .service('UserModel', function (Auth, $q) {
+  .service('UserModel', function (Auth) {
     var service = this,
       currentUser = null;
 
@@ -13,20 +13,19 @@ angular.module('noterious.common')
       currentUser = user;
     };
 
+
     service.login = function (user) {
       return Auth.$authWithPassword({
         email: user.email,
         password: user.password
-      })
-      .then(function (authData) {
-        currentUser = authData.uid;
-        console.log('Logged in as:', authData.uid);
-        return currentUser;
-      })
-      .catch(function (error) {
-        currentUser = null;
-        console.error('Authentication failed:', error);
-        return error;
+      }, function(error, authData) {
+        if (error) {
+          currentUser = null;
+          console.error('Authentication failed:', error);
+        } else {
+          currentUser = authData.uid;
+          console.log('Logged in as:', authData.uid);
+        }
       });
     };
 

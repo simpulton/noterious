@@ -6,8 +6,6 @@ angular.module('noterious')
 
     login.loading = false;
 
-    login.alerts = [];
-
     login.user = {
       email: '',
       password: '',
