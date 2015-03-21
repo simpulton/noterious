@@ -17,7 +17,8 @@ module.exports = function(config) {
     files: [
       'node_modules/angular/angular.js',
       'node_modules/angular-animate/angular-animate.js',
-      'src/vendor/**/*.js',
+      'src/vendor/angular-ui-router.min.js',
+      'src/vendor/angularfire.js',
       'src/app/**/*.js',
    		'node_modules/angular-mocks/angular-mocks.js',
       'test/**/*.spec.js'
