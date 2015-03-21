@@ -29,7 +29,6 @@ angular.module('noterious')
         login.loading = true;
 
         if (isRegistering) {
-
           UserModel.register({
             email: login.user.email,
             password: login.user.password
@@ -38,7 +37,6 @@ angular.module('noterious')
           .finally(onCompletion);
 
         } else {
-
           UserModel.login({
             email: login.user.email,
             password: login.user.password
