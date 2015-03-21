@@ -32,14 +32,14 @@ angular.module('noterious.common')
       return Auth.$createUser({
         email: user.email,
         password: user.password
-      })
-      .then(function (userData) {
-        console.log('User ' + userData.uid + ' created successfully!');
-        return service.login(user.email, user.password);
-      })
-      .catch(function (error) {
-        console.error('Error: ', error);
-        return error;
+      }, function(error, authData) {
+        if(error){
+          console.error('Error: ', error);
+          return error;
+        } else {
+          console.log('User ' + userData.uid + ' created successfully!');
+          return service.login(user.email, user.password);
+        }
       });
     };
 
