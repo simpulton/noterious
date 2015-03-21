@@ -14,46 +14,39 @@ angular.module('noterious')
       register: false
     };
 
+    function onSuccess(result) {
+      $state.go('boards');
+    }
+
+    function onError(reason) {
+      login.error = reason.message;
+    }
+
+    function onCompletion() {
+      login.reset();
+    }
+
     login.submit = function (user, isValid, isRegistering) {
       login.alerts.length = 0;
       if (isValid) {
         login.loading = true;
 
         if (isRegistering) {
-
           UserModel.register({
             email: login.user.email,
             password: login.user.password
           })
-          .then(function() {
-            $state.go('boards');
-          })
-          .finally(function() {
-            login.reset();
-          });
+          .then(onSuccess, onError)
+          .finally(onCompletion);
 
         } else {
-
           UserModel.login({
             email: login.user.email,
             password: login.user.password
           })
-          .then(function() {
-            $state.go('boards');
-          }, function(data){
-            console.error('data from error callback: ', data);
-          })
-          .finally(function(){
-            login.reset();
-          });
-
+          .then(onSuccess, onError)
+          .finally(onCompletion);
         }
-
-      } else {
-        console.error('invalid login!');
-        login.alerts.push({
-          message : 'Please enter valid log in credentials'
-        });
       }
     };
 
