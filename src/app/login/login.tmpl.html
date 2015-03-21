@@ -4,8 +4,7 @@
     role="form"
     name="login.loginForm"
     ng-submit="login.submit(login.user, login.loginForm.$valid, login.user.register)"
-    novalidate
-  >
+    novalidate>
     <p class="large">Please Sign In</p>
 
     <div class="alert alert-danger" ng-if="login.error" role="alert">
@@ -20,8 +19,7 @@
           ng-model="login.user.email"
           name="email"
           placeholder="Enter Email"
-          required
-        >
+          required>
       </div>
 
       <div>
@@ -29,23 +27,20 @@
           type="password"
           ng-model="login.user.password"
           placeholder="Enter Password"
-          required
-        >
+          required>
       </div>
 
       <div class="bottom x-small">
         <label>
           <input
             type="checkbox"
-            ng-model="login.user.register"
-          >
+            ng-model="login.user.register">
           New User?
         </label>
       </div>
 
       <button type="submit" class="btn btn-default btn-sm pull-right"
-        ng-disabled="login.loading"
-      >
+        ng-disabled="login.loading">
         <span class="glyphicon glyphicon-ok"></span>
         Sign In
         <span ng-show="login.loading" class="glyphicon glyphicon-refresh"></span>
