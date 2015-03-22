@@ -5,7 +5,7 @@ describe('Controller: LoginCtrl', function () {
   beforeEach(module('noterious'));
 
   var loginCtrl;
-  var UserModel;
+  var mockUserModel;
   var state;
   var scope;
   var $httpBackend;
@@ -34,7 +34,7 @@ describe('Controller: LoginCtrl', function () {
   };
 
   beforeEach(inject(function ($controller, $state, $q, $rootScope, _$httpBackend_) {
-    UserModel = {
+    mockUserModel = {
       login: function () {
         var deferred = $q.defer();
         deferred.resolve("data for successful login");
@@ -47,15 +47,15 @@ describe('Controller: LoginCtrl', function () {
       }
     };
 
-    spyOn(UserModel, 'register').and.callThrough();
-    spyOn(UserModel, 'login').and.callThrough();
+    spyOn(mockUserModel, 'register').and.callThrough();
+    spyOn(mockUserModel, 'login').and.callThrough();
 
     state = $state;
     scope = $rootScope.$new();
     $httpBackend = _$httpBackend_;
 
     loginCtrl = $controller('LoginCtrl', {
-      UserModel: UserModel,
+      UserModel: mockUserModel,
       $state: state
     });
 
@@ -84,7 +84,7 @@ describe('Controller: LoginCtrl', function () {
 
       loginCtrl.submit({ /* ignored */ }, true, true);
 
-      expect(UserModel.register).toHaveBeenCalledWith({
+      expect(mockUserModel.register).toHaveBeenCalledWith({
         email: expectedEmail,
         password: expectedPassword
       });
@@ -96,7 +96,7 @@ describe('Controller: LoginCtrl', function () {
       expect(loginCtrl.user).toEqual(createDefaultUserState());
       expect(loginCtrl.loading).toBeFalsy();
 
-      expect(UserModel.login).not.toHaveBeenCalled();
+      expect(mockUserModel.login).not.toHaveBeenCalled();
     });
 
     it('should login user when valid and not registering', function () {
@@ -112,7 +112,7 @@ describe('Controller: LoginCtrl', function () {
 
       loginCtrl.submit({ /* ignored */ }, true, false);
 
-      expect(UserModel.login).toHaveBeenCalledWith({
+      expect(mockUserModel.login).toHaveBeenCalledWith({
         email: expectedEmail,
         password: expectedPassword
       });
@@ -124,7 +124,7 @@ describe('Controller: LoginCtrl', function () {
       expect(loginCtrl.user).toEqual(createDefaultUserState());
       expect(loginCtrl.loading).toBeFalsy();
 
-      expect(UserModel.register).not.toHaveBeenCalled();
+      expect(mockUserModel.register).not.toHaveBeenCalled();
     });
 
     it('should not register nor login user when invalid', function () {
@@ -134,11 +134,11 @@ describe('Controller: LoginCtrl', function () {
 
       loginCtrl.submit({}, false, true);
 
-      expect(UserModel.register).not.toHaveBeenCalled();
+      expect(mockUserModel.register).not.toHaveBeenCalled();
 
       expect(state.go).not.toHaveBeenCalled();
       expect(loginCtrl.reset).not.toHaveBeenCalled();
-      expect(UserModel.login).not.toHaveBeenCalled();
+      expect(mockUserModel.login).not.toHaveBeenCalled();
 
       expect(loginCtrl.loading).toBeFalsy();
     });
