@@ -23,21 +23,6 @@ describe('Controller: LoginCtrl', function () {
     scope.$apply();
   };
 
-  var expectRequestForViewTemplate = function(templateQueryPath) {
-    $httpBackend.whenGET(templateQueryPath).respond('{}');
-
-    $httpBackend.flush();
-
-    afterEach(function () {
-      $httpBackend.verifyNoOutstandingExpectation();
-      $httpBackend.verifyNoOutstandingRequest();
-    });
-  };
-
-  var expectRequestForLoginViewTemplate =  function(){
-    expectRequestForViewTemplate("app/login/login.tmpl.html");
-  };
-
   beforeEach(inject(function ($controller, $state, $q, $rootScope, _$httpBackend_) {
     mockUserModel = {
       login: function () {
@@ -79,7 +64,6 @@ describe('Controller: LoginCtrl', function () {
     it('should register user when valid and registering', function () {
       spyOn(state, 'go');
       spyOn(loginCtrl, 'reset').and.callThrough();
-      expectRequestForLoginViewTemplate();
 
       var expectedEmail = 'test.user@onehungrymind.com';
       var expectedPassword = 'super secret!';
@@ -107,7 +91,6 @@ describe('Controller: LoginCtrl', function () {
     it('should login user when valid and not registering', function () {
       spyOn(state, 'go');
       spyOn(loginCtrl, 'reset').and.callThrough();
-      expectRequestForLoginViewTemplate();
 
       var expectedEmail = 'test.user@onehungrymind.com';
       var expectedPassword = 'super secret!';
@@ -135,7 +118,6 @@ describe('Controller: LoginCtrl', function () {
     it('should not register nor login user when invalid', function () {
       spyOn(state, 'go');
       spyOn(loginCtrl, 'reset');
-      expectRequestForLoginViewTemplate();
 
       loginCtrl.submit({}, false, true);
 
