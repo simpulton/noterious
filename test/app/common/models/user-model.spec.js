@@ -6,6 +6,8 @@ describe('Service: UserModel', function () {
   var mockAuth;
   var scope;
 
+  var expectedUid = 'uid-42';
+
   var createUser = function () {
     return {
       email: 'test.user@onehungrymind.com',
@@ -13,18 +15,34 @@ describe('Service: UserModel', function () {
     };
   };
 
+  var randInt = function(){
+    return Math.floor((Math.random() * 1000) + 1)
+  };
+
+  var resolvePromises = function (){
+    // promises are resolved/dispatched only on next $digest cycle
+    scope.$apply();
+  };
+
   beforeEach(function () {
       mockAuth = {};
+      expectedUid = 'uid-' + randInt();
+
       module('noterious');
       module(function ($provide) {
         $provide.value('Auth', mockAuth);
       });
 
-      //create a simple mock Auth object that returns promises that can be spied-upon
+      //create a 'simple' mock Auth object that returns promises that can be spied-upon
       inject(function ($q) {
-        mockAuth.$authWithPassword = function () {
+        mockAuth.$authWithPassword = function (user) {
           var deferred = $q.defer();
-          deferred.resolve("data for successful login");
+          deferred.resolve({
+              uid: expectedUid,
+              email: user.email,
+              password: user.password
+            }
+          );
           return deferred.promise;
         };
 
@@ -32,7 +50,7 @@ describe('Service: UserModel', function () {
           var deferred = $q.defer();
           deferred.resolve(
             {
-              uid: 'uid-42',
+              uid: expectedUid,
               email: user.email,
               password: user.password
             }
@@ -56,6 +74,10 @@ describe('Service: UserModel', function () {
     expect(UserModel).toBeDefined();
   });
 
+  it('currentUser should default to a logged-out state', function () {
+    expect(UserModel.getCurrentUser()).toBeNull();
+  });
+
   describe('register', function () {
 
     it('should be defined', function () {
@@ -63,21 +85,41 @@ describe('Service: UserModel', function () {
     });
 
     it('should register the provided user and log them in', function () {
+      spyOn(UserModel, 'login').and.callThrough();
 
       var expectedUser = createUser();
 
-      spyOn(UserModel, 'login');
-
       UserModel.register(expectedUser);
 
-      scope.$apply(); // promises are resolved/dispatched only on next $digest cycle
+      resolvePromises();
 
       expect(mockAuth.$createUser).toHaveBeenCalledWith({
         email: expectedUser.email,
         password: expectedUser.password
       });
 
+      expect(UserModel.getCurrentUser()).toEqual(expectedUid);
+
       expect(UserModel.login).toHaveBeenCalledWith(expectedUser.email, expectedUser.password);
+    });
+
+    it('should login the provided user', function () {
+      spyOn(UserModel, 'register');
+
+      var expectedUser = createUser();
+
+      UserModel.login(expectedUser);
+
+      resolvePromises();
+
+      expect(mockAuth.$authWithPassword).toHaveBeenCalledWith({
+        email: expectedUser.email,
+        password: expectedUser.password
+      });
+
+      expect(UserModel.getCurrentUser()).toEqual(expectedUid);
+
+      expect(UserModel.register).not.toHaveBeenCalled();
     });
 
   });
