@@ -8,7 +8,7 @@ angular.module('noterious', [
 ])
   .constant('ENDPOINT_URI', 'https://noterious.firebaseio.com/')
   .config(function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/boards');
 
     $stateProvider
       .state('login', {
@@ -41,10 +41,10 @@ angular.module('noterious', [
       })
     ;
   })
-  .run(function ($rootScope, $location) {
+  .run(function ($rootScope, $state) {
     $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
       if (error === 'AUTH_REQUIRED') {
-        $location.path('/login');
+        $state.go('login');
       }
     });
   })
