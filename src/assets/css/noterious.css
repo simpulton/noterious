@@ -7,49 +7,6 @@ body {
     min-height: 100%;
 }
 
-/*
-.bg-blue {
-    background: url(../../assets/images/bg-blue.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-.bg-green {
-    background: url(../../assets/images/bg-green.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-
-.bg-orange {
-    background: url(../../assets/images/bg-orange.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-
-.bg-red {
-    background: url(../../assets/images/bg-red.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-
-.bg-yellow {
-    background: url(../../assets/images/bg-yellow.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}*/
 .app-wrap {
     border: 10px solid #f5ead9;
     min-height: 100%;
@@ -102,23 +59,23 @@ ul.color-picker li {
     cursor: pointer;
 }
 
-.blue {
+.square.blue {
     background-color: #4f92a8;
 }
 
-.green {
+.square.green {
     background-color: #87a961;
 }
 
-.orange {
+.square.orange {
     background-color: #f6512d;
 }
 
-.red {
+.square.red {
     background-color: #a93d41;
 }
 
-.yellow {
+.square.yellow {
     background-color: #f4cb48;
 }
 
