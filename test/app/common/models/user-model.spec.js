@@ -57,10 +57,17 @@ describe('Service: UserModel', function () {
           );
           return deferred.promise;
         };
+
+        mockAuth.$unauth = function () {
+          var deferred = $q.defer();
+          deferred.resolve();
+          return deferred.promise;
+        };
       });
 
       spyOn(mockAuth, '$authWithPassword').and.callThrough();
       spyOn(mockAuth, '$createUser').and.callThrough();
+      spyOn(mockAuth, '$unauth').and.callThrough();
 
     }
   );
@@ -118,6 +125,24 @@ describe('Service: UserModel', function () {
       });
 
       expect(UserModel.getCurrentUser()).toEqual(expectedUid);
+
+      expect(UserModel.register).not.toHaveBeenCalled();
+    });
+
+    it('should logout the user', function () {
+      spyOn(UserModel, 'register');
+
+      var expectedUser = createUser();
+      UserModel.login(expectedUser);
+      resolvePromises();
+
+      UserModel.logout();
+
+      resolvePromises();
+
+      expect(mockAuth.$unauth).toHaveBeenCalled();
+
+      expect(UserModel.getCurrentUser()).toBeNull();
 
       expect(UserModel.register).not.toHaveBeenCalled();
     });
