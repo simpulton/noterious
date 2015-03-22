@@ -34,30 +34,27 @@ describe('Service: UserModel', function () {
       });
 
       //create a 'simple' mock Auth object that returns promises that can be spied-upon
+      mockAuth.shouldAuthWithPasswordHaveError = false;
+      mockAuth.$authWithPassword = function (user, callbackFn) {
+        var authData = {
+          uid: expectedUid,
+          email: user.email,
+          password: user.password
+        };
+        return callbackFn(mockAuth.shouldAuthWithPasswordHaveError, authData);
+      };
+
+      mockAuth.shouldCreateUserHaveError = false;
+      mockAuth.$createUser = function (user, callbackFn) {
+        var authData = {
+          uid: expectedUid,
+          email: user.email,
+          password: user.password
+        };
+        return callbackFn(mockAuth.shouldCreateUserHaveError, authData);
+      };
+
       inject(function ($q) {
-        mockAuth.$authWithPassword = function (user) {
-          var deferred = $q.defer();
-          deferred.resolve({
-              uid: expectedUid,
-              email: user.email,
-              password: user.password
-            }
-          );
-          return deferred.promise;
-        };
-
-        mockAuth.$createUser = function (user) {
-          var deferred = $q.defer();
-          deferred.resolve(
-            {
-              uid: expectedUid,
-              email: user.email,
-              password: user.password
-            }
-          );
-          return deferred.promise;
-        };
-
         mockAuth.$unauth = function () {
           var deferred = $q.defer();
           deferred.resolve();
@@ -103,7 +100,7 @@ describe('Service: UserModel', function () {
       expect(mockAuth.$createUser).toHaveBeenCalledWith({
         email: expectedUser.email,
         password: expectedUser.password
-      });
+      }, jasmine.any(Function));
 
       expect(UserModel.getCurrentUser()).toEqual(expectedUid);
 
@@ -122,7 +119,7 @@ describe('Service: UserModel', function () {
       expect(mockAuth.$authWithPassword).toHaveBeenCalledWith({
         email: expectedUser.email,
         password: expectedUser.password
-      });
+      }, jasmine.any(Function));
 
       expect(UserModel.getCurrentUser()).toEqual(expectedUid);
 

@@ -37,7 +37,7 @@ angular.module('noterious.common')
           console.error('Error: ', error);
           return error;
         } else {
-          console.log('User ' + userData.uid + ' created successfully!');
+          console.log('User ' + authData.uid + ' created successfully!');
           return service.login(user.email, user.password);
         }
       });
