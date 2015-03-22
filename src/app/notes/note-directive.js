@@ -4,11 +4,13 @@ angular.module('noterious')
       var ctrl = this,
         boardId = $stateParams.boardId;
 
+      console.log('ctrl', ctrl);
+      
       ctrl.loading = false;
 
       ctrl.updateNote = function (noteId, note) {
         ctrl.loading = true;
-
+        
         NotesModel.update(boardId, noteId, note)
           .then(function (result) {
             //
