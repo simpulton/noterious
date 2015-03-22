@@ -1,0 +1,35 @@
+{
+  "name": "noterious",
+  "version": "0.0.0",
+  "description": "AngularJS note board built using Firebase.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./node_modules/gulp/bin/gulp.js test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/simpulton/noterious.git"
+  },
+  "author": {
+    "name": "Lukas Ruebbelke",
+    "email": "lukas@onehungrymind.com",
+    "url": "http://onehungrymind.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/simpulton/noterious/issues"
+  },
+  "homepage": "https://github.com/simpulton/noterious",
+  "dependencies": {
+    "angular": "1.3.14",
+    "angular-animate": "1.3.14",
+    "firebase": "2.2.2"
+  },
+  "devDependencies": {
+    "gulp": "3.8.11",
+    "angular-mocks": "1.3.14",
+    "karma": "0.12.31",
+    "karma-jasmine": "0.2.2",
+    "karma-chrome-launcher": "0.1.3",
+    "karma-phantomjs-launcher": "0.1.4"
+  }
+}
