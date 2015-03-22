@@ -3,33 +3,33 @@
     <button
         type="button"
         class="close"
-        ng-click="ctrl.deleteBoard(boardId)">
+        ng-click="ctrl.deleteBoard(ctrl.boardId)">
       &times;
     </button>
     <div>
       <input
         type="text"
         class="medium"
-        ng-model="board.title"
-        ng-blur="ctrl.updateBoard(boardId, board)"
+        ng-model="ctrl.board.title"
+        ng-blur="ctrl.updateBoard(ctrl.boardId, ctrl.board)"
         placeholder="Board Title">
     </div>
     <div>
       <input type="text"
-         ng-model="board.description"
-         ng-blur="ctrl.updateBoard(boardId, board)"
+         ng-model="ctrl.board.description"
+         ng-blur="ctrl.updateBoard(ctrl.boardId, ctrl.board)"
          placeholder="Board description.">
     </div>
     <div class="bottom x-small">
       <input
         type="checkbox"
-        ng-model="board.isPublic"
-        ng-blur="ctrl.updateBoard(boardId, board)">
+        ng-model="ctrl.board.isPublic"
+        ng-blur="ctrl.updateBoard(ctrl.boardId, ctrl.board)">
       Board is Public
     </div>
     <a
       type="button"
-      ui-sref="notes({boardId: boardId})"
+      ui-sref="notes({boardId: ctrl.boardId})"
       class="view arrow-bottom-right btn btn-default">
       <span class="glyphicon glyphicon-arrow-right"></span>
     </a>

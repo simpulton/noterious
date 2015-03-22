@@ -1,6 +1,6 @@
 angular.module('noterious')
   .directive('board', function(BoardsModel){
-    var controller = function($scope) {
+    var controller = function() {
       var ctrl = this;
 
       ctrl.loading = false;
@@ -20,7 +20,7 @@ angular.module('noterious')
       };
 
       ctrl.deleteBoard = function (boardId) {
-        $scope.remove({boardId:boardId});
+        ctrl.remove({boardId:boardId});
       };
     };
 
@@ -32,7 +32,8 @@ angular.module('noterious')
       },
       templateUrl: 'app/boards/board.tmpl.html',
       controller: controller,
-      controllerAs: 'ctrl'
+      controllerAs: 'ctrl',
+      bindToController: true
     }
   })
 ;
