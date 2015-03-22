@@ -18,6 +18,11 @@ describe('Controller: LoginCtrl', function () {
     };
   };
 
+  var resolvePromises = function (){
+    // promises are resolved/dispatched only on next $digest cycle
+    scope.$apply();
+  };
+
   var expectRequestForViewTemplate = function(templateQueryPath) {
     $httpBackend.whenGET(templateQueryPath).respond('{}');
 
@@ -89,7 +94,7 @@ describe('Controller: LoginCtrl', function () {
         password: expectedPassword
       });
 
-      scope.$apply(); // promises are resolved/dispatched only on next $digest cycle
+      resolvePromises();
 
       expect(state.go).toHaveBeenCalledWith('boards');
       expect(loginCtrl.reset).toHaveBeenCalled();
@@ -117,7 +122,7 @@ describe('Controller: LoginCtrl', function () {
         password: expectedPassword
       });
 
-      scope.$apply(); // promises are resolved/dispatched only on next $digest cycle
+      resolvePromises();
 
       expect(state.go).toHaveBeenCalledWith('boards');
       expect(loginCtrl.reset).toHaveBeenCalled();
