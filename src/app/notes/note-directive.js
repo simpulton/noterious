@@ -1,15 +1,14 @@
 angular.module('noterious')
-  .directive('note', function(NotesModel, $stateParams){
+  .directive('note', function(NotesModel){
     var controller = function($scope) {
-      var ctrl = this,
-        boardId = $stateParams.boardId;
+      var ctrl = this
 
       ctrl.loading = false;
 
       ctrl.updateNote = function (noteId, note) {
         ctrl.loading = true;
 
-        NotesModel.update(boardId, noteId, note)
+        NotesModel.update(noteId, note)
           .then(function (result) {
             //
           })

@@ -1,10 +1,8 @@
 'use strict';
 
 angular.module('noterious')
-  .controller('MainCtrl', function (UserModel, Auth, $state) {
+  .controller('MainCtrl', function (UserModel, $window) {
     var main = this;
-    main.auth = Auth;
-    main.currentUser = null;
     main.currentColor = 'blue';
 
     main.colors = [
@@ -21,15 +19,6 @@ angular.module('noterious')
 
     main.logout = function () {
       UserModel.logout();
+      $window.location.reload();
     };
-
-    main.auth.$onAuth(function (authData) {
-      if (authData) {
-        UserModel.setCurrentUser(authData.uid);
-        main.currentUser = authData.uid;
-      } else {
-        main.currentUser = null;
-        $state.go('login');
-      }
-    });
   });

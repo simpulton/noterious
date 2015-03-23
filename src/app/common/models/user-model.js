@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noterious.common')
-  .service('UserModel', function (Auth) {
+  .service('UserModel', function (Backand) {
     var service = this,
       currentUser = null;
 
@@ -14,38 +14,36 @@ angular.module('noterious.common')
     };
 
     service.login = function (user) {
-      return Auth.$authWithPassword({
-        email: user.email,
-        password: user.password
-      })
-      .then(function(authData) {
-        currentUser = authData.uid;
-        console.log('Logged in as:', authData.uid);
-        return currentUser;
-      })
-      .catch(function(error) {
-        currentUser = null;
-        console.error('Authentication failed:', error);
-      });
+      return Backand.signin(user.email, user.password, user.appName)
+        .then(
+        function (token) {
+          service.error = '';
+          return token;
+        },
+        function (data) {
+          service.error = data && data.error_description || 'Unknown error from server';
+          console.log(service.error);
+
+        }
+      );
     };
 
     service.register = function(user) {
-      return Auth.$createUser({
-        email: user.email,
-        password: user.password
-      })
-      .then(function(userData) {
-        console.log('User ' + userData.uid + ' created successfully!');
-
-        return service.login(user.email, user.password);
-      })
-      .catch(function(error) {
-        console.error('Error: ', error);
-      });
+      return Backand.signup(user.email, 'last', user.email, user.password, '743b8bb5-af18-4275-a5e4-50f5b7b7ba4d')
+        .then(
+        function(userData) {
+          service.error= '';
+          console.log('User ' + userData.username + ' created successfully!');
+          return userData.username;
+        },
+        function (data) {
+          service.error = data.error_description || 'Unknown error from server';
+          console.log(service.error);
+        }
+      );
     };
 
     service.logout = function () {
-      console.log('LOGOUT FIRED!');
-      Auth.$unauth();
+      Backand.signout();
     };
   });

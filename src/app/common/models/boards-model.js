@@ -1,19 +1,22 @@
 'use strict';
 
 angular.module('noterious.common')
-  .service('BoardsModel', function ($http, UserModel, ENDPOINT_URI) {
+  .service('BoardsModel', function ($http, UserModel, Backand) {
     var service = this;
 
     function extract(result) {
+    if(angular.isDefined(result.data.data))
+      return result.data.data;
+    else
       return result.data;
     }
 
     function getUrl() {
-      return ENDPOINT_URI + 'users/' + UserModel.getCurrentUser() + '/boards.json';
+      return Backand.configuration.apiUrl + '/1/table/data/boards';
     }
 
     function getUrlForId(boardId) {
-      return ENDPOINT_URI + 'users/' + UserModel.getCurrentUser() + '/boards/' + boardId + '.json';
+      return Backand.configuration.apiUrl + '/1/table/data/boards/' + boardId;
     }
 
     service.all = function () {
@@ -21,7 +24,7 @@ angular.module('noterious.common')
     };
 
     service.fetch = function (boardId) {
-      return $http.get(getUrlForId(boardId)).then(extract);
+      return $http.get(getUrlForId(boardId)+'?deep=true').then(extract);
     };
 
     service.create = function (board) {

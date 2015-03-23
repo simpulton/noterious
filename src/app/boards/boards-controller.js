@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noterious')
-  .controller('BoardsCtrl', function (currentUser, BoardsModel) {
+  .controller('BoardsCtrl', function (BoardsModel) {
     var ctrl = this;
 
     ctrl.loading = false;
@@ -43,22 +43,6 @@ angular.module('noterious')
           })
           .finally(function () {
             ctrl.resetForm();
-          });
-      }
-    };
-
-    ctrl.updateBoard = function (boardId, board, isValid) {
-      if (isValid) {
-        ctrl.loading = true;
-        BoardsModel.update(boardId, board)
-          .then(function (result) {
-            ctrl.getBoards();
-          })
-          .catch(function (reason) {
-            //
-          })
-          .finally(function () {
-            ctrl.cancelEditing();
           });
       }
     };

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noterious')
-  .controller('NotesCtrl', function (currentUser, BoardsModel, NotesModel, $stateParams, $state) {
+  .controller('NotesCtrl', function (BoardsModel, NotesModel, $stateParams, $state, $scope) {
     var ctrl = this,
       boardId = $stateParams.boardId;
 
@@ -28,15 +28,7 @@ angular.module('noterious')
       BoardsModel.fetch(boardId)
         .then(function (board) {
           ctrl.board = board;
-        }, function (reason) {
-          //
-        });
-    };
-
-    ctrl.getNotes = function () {
-      NotesModel.all(boardId)
-        .then(function (notes) {
-          ctrl.notes = (notes !== 'null') ? notes : {};
+          ctrl.notes = board.notes;
         }, function (reason) {
           //
         });
@@ -46,9 +38,10 @@ angular.module('noterious')
       if (isValid) {
         ctrl.loading = true;
 
-        NotesModel.create(boardId, note)
+        note.board = boardId;
+        NotesModel.create(note)
           .then(function (result) {
-            ctrl.getNotes();
+            ctrl.getBoard();
           })
           .catch(function (reason) {
             //
@@ -63,9 +56,9 @@ angular.module('noterious')
       if (isValid) {
         ctrl.loading = true;
 
-        NotesModel.update(boardId, noteId, note)
+        NotesModel.update(noteId, note)
           .then(function (result) {
-            ctrl.getNotes();
+            ctrl.getBoard();
           })
           .catch(function (reason) {
             //
@@ -77,9 +70,9 @@ angular.module('noterious')
     };
 
     ctrl.deleteNote = function (noteId) {
-      NotesModel.destroy(boardId, noteId)
+      NotesModel.destroy(noteId)
         .then(function (result) {
-          ctrl.getNotes();
+          ctrl.getBoard();
         })
         .catch(function (reason) {
           //
@@ -107,5 +100,4 @@ angular.module('noterious')
     };
 
     ctrl.getBoard();
-    ctrl.getNotes();
   });

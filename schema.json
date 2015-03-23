@@ -1,0 +1,37 @@
+[
+    {
+        "name": "boards",
+        "fields": [
+            {
+                "name": "title",
+                "type": "ShortText"
+            },
+            {
+                "name": "description",
+                "type": "LongText"
+            },
+            {
+                "name": "isPublic",
+                "type": "Boolean"
+            }
+        ]
+    },
+    {
+        "name": "notes",
+        "fields": [
+            {
+                "name": "title",
+                "type": "ShortText"
+            },
+            {
+                "name": "content",
+                "type": "LongText"
+            },
+            {
+                "name": "board",
+                "type": "SingleSelect",
+                "relatedTable": "boards"
+            }
+        ]
+    }
+]

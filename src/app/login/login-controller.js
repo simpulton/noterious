@@ -4,11 +4,13 @@ angular.module('noterious')
   .controller('LoginCtrl', function (UserModel, $state) {
     var login = this;
 
+    login.verify = false;
     login.loading = false;
 
     login.user = {
-      email: '',
-      password: '',
+      email: 'guest@backand.com',
+      password: 'guest1234',
+      appName: 'noterious',
       register: false
     };
 
@@ -20,12 +22,14 @@ angular.module('noterious')
 
           UserModel.register({
             email: login.user.email,
-            password: login.user.password
+            password: login.user.password,
+            appName: login.user.appName
           })
           .then(function() {
-            $state.go('boards');
+            login.verify = true;
           })
           .finally(function() {
+            login.error = UserModel.error;
             login.reset();
           });
 
@@ -33,12 +37,19 @@ angular.module('noterious')
 
           UserModel.login({
             email: login.user.email,
-            password: login.user.password
+            password: login.user.password,
+            appName: login.user.appName
           })
           .then(function() {
-            $state.go('boards');
-          })
-          .finally(function() {
+            if(!UserModel.error)
+              $state.go('boards');
+            else
+              login.error = UserModel.error;
+          },function(ee){
+                login.error = UserModel.error;
+              })
+          .finally(function(reason) {
+
             login.reset();
           });
 
@@ -52,6 +63,7 @@ angular.module('noterious')
       login.user = {
         email: '',
         password: '',
+        appName: 'noterious',
         register: false
       };
     };

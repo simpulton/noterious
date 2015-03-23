@@ -1,38 +1,41 @@
 'use strict';
 
 angular.module('noterious.common')
-  .service('NotesModel', function ($http, $q, UserModel, ENDPOINT_URI) {
+  .service('NotesModel', function ($http, $q, UserModel, Backand) {
     var service = this;
 
     function extract(result) {
-      return result.data;
+      if(angular.isDefined(result.data.data))
+        return result.data.data;
+      else
+        return result.data;
     }
 
-    function getUrl(boardId) {
-      return ENDPOINT_URI + 'users/' + UserModel.getCurrentUser() + '/boards/' + boardId + '/notes.json';
+    function getUrl() {
+      return Backand.configuration.apiUrl + '/1/table/data/notes';
     }
 
-    function getUrlForId(boardId, noteId) {
-      return ENDPOINT_URI + 'users/' + UserModel.getCurrentUser() + '/boards/' + boardId + '/notes/' + noteId + '.json'
+    function getUrlForId(noteId) {
+      return Backand.configuration.apiUrl + '/1/table/data/notes/' + noteId;
     }
 
-    service.all = function (boardId) {
-      return $http.get(getUrl(boardId)).then(extract);
+    service.all = function () {
+      return $http.get(getUrl()).then(extract);
     };
 
-    service.fetch = function (boardId, noteId) {
-      return $http.get(getUrlForId(boardId, noteId)).then(extract);
+    service.fetch = function (noteId) {
+      return $http.get(getUrlForId(noteId)).then(extract);
     };
 
-    service.create = function (boardId, note) {
-      return $http.post(getUrl(boardId), note).then(extract);
+    service.create = function (note) {
+      return $http.post(getUrl(), note).then(extract);
     };
 
-    service.update = function (boardId, noteId, note) {
-      return $http.put(getUrlForId(boardId, noteId), note).then(extract);
+    service.update = function (noteId, note) {
+      return $http.put(getUrlForId(noteId), note).then(extract);
     };
 
-    service.destroy = function (boardId, noteId) {
-      return $http.delete(getUrlForId(boardId, noteId)).then(extract);
+    service.destroy = function (noteId) {
+      return $http.delete(getUrlForId(noteId)).then(extract);
     };
   });

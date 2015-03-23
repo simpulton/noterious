@@ -7,7 +7,7 @@ angular.module('noterious')
 
       ctrl.updateBoard = function (boardId, board) {
         ctrl.loading = true;
-        BoardsModel.update(boardId, board)
+        BoardsModel.update(boardId, board, false)
           .then(function (result) {
             console.log('result', result);
           })

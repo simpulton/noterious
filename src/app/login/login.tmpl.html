@@ -1,10 +1,12 @@
 <div class="login-wrap">
+  <div ng-if="login.verify">A verification email sent to you, please follow email instruction in order to login</div>
   <form
     class="form-signin"
     role="form"
     name="login.loginForm"
     ng-submit="login.submit(login.user, login.loginForm.$valid, login.user.register)"
     novalidate
+    ng-if="!login.verify"
   >
     <p class="large">Please Sign In</p>
 
@@ -15,10 +17,10 @@
           type="email"
           ng-model="login.user.email"
           placeholder="Enter Email"
+          name="email"
           required
         >
       </div>
-
       <div>
         <input
           type="password"
@@ -28,7 +30,16 @@
         >
       </div>
 
-      <div class="bottom x-small">
+      <div>
+        <input
+          type="text"
+          ng-model="login.user.appName"
+          placeholder="Enter Backand app name"
+          required
+        >
+      </div>
+
+      <div class="bottom x-small" ng-show="false">
         <label>
           <input
             type="checkbox"
@@ -46,5 +57,6 @@
         <span ng-show="login.loading" class="glyphicon glyphicon-refresh"></span>
       </button>
     </fieldset>
+    <div ng-show="login.error" class="alert-danger">{{login.error}}</div>
   </form>
 </div>

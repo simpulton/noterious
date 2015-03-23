@@ -46,9 +46,9 @@
     <!-- EXISTING BOARDS -->
     <div
         class="col-sm-4"
-        ng-repeat="(boardId, board) in ctrl.boards"
+        ng-repeat="(Id, board) in ctrl.boards"
         board="board"
-        board-id="{{boardId}}"
+        board-id="{{board.Id}}"
         remove="ctrl.deleteBoard(boardId)">
     </div>
   </div>
