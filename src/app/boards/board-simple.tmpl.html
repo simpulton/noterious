@@ -1,0 +1,18 @@
+<div>
+  <button
+    type="button"
+    class="close"
+    ng-click="ctrl.deleteBoard(boardId)">
+    &times;
+  </button>
+
+  <h3>{{ board.title }}</h3>
+
+  <p>
+    <strong>{{ board.description }}</strong>
+  </p>
+  <a class="btn btn-info btn-small"
+     ui-sref="notes({ boardId: boardId })">
+    Notes
+  </a>
+</div>

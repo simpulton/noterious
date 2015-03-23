@@ -1,31 +1,12 @@
 <div class="col-sm-4">
   <div class="boards">
-    <div
+    <simple-board
       class="simple-board"
       ng-repeat="(boardId, board) in ctrl.boards"
       ng-click="ctrl.setEditedBoard(boardId, board)"
       ng-class="{
         'active': ctrl.isCurrentBoard(boardId)
-      }">
-
-      <button
-        type="button"
-        class="close"
-        ng-click="ctrl.deleteBoard(boardId)">
-        &times;
-      </button>
-
-      <h3>{{ board.title }}</h3>
-
-      <p>
-        <strong>{{ board.description }}</strong>
-      </p>
-      <a class="btn btn-info btn-small"
-        ui-sref="notes({ boardId: boardId })">
-        Notes
-      </a>
-
-    </div>
+      }"></simple-board>
   </div>
 </div>
 <div class="col-sm-8">

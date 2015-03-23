@@ -1,4 +1,11 @@
 angular.module('noterious')
+  .directive('simpleBoard', function(){
+    return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: 'app/boards/board-simple.tmpl.html'
+    }
+  })
   .directive('board', function(BoardsModel){
     var controller = function() {
       var ctrl = this;
