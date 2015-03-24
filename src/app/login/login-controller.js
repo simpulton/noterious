@@ -12,6 +12,26 @@ angular.module('noterious')
       register: false
     };
 
+    function register() {
+      UserModel.register({
+          email: login.user.email,
+          password: login.user.password
+      })
+      .then(onLogin)
+      .catch(onError)
+      .finally(onCompletion);
+    }
+
+    function onLogin() {
+      UserModel.login({
+          email: login.user.email,
+          password: login.user.password
+      })
+      .then(onSuccess)
+      .catch(onError)
+      .finally(onCompletion);
+    }
+
     function onSuccess(result) {
       $state.go('boards');
     }
@@ -29,22 +49,9 @@ angular.module('noterious')
         login.loading = true;
 
         if (isRegistering) {
-          UserModel.register({
-            email: login.user.email,
-            password: login.user.password
-          })
-          .then(onSuccess)
-          .catch(onError)
-          .finally(onCompletion);
-
+          register();
         } else {
-          UserModel.login({
-            email: login.user.email,
-            password: login.user.password
-          })
-          .then(onSuccess)
-          .catch(onError)
-          .finally(onCompletion);
+          onLogin();
         }
       }
     };
