@@ -61,7 +61,7 @@ describe('Controller: LoginCtrl', function () {
       expect(loginCtrl.submit).toBeDefined();
     });
 
-    it('should register user when valid and registering', function () {
+    it('should register and login user when valid and registering', function () {
       spyOn(state, 'go');
       spyOn(loginCtrl, 'reset').and.callThrough();
 
@@ -85,7 +85,7 @@ describe('Controller: LoginCtrl', function () {
       expect(loginCtrl.user).toEqual(createDefaultUserState());
       expect(loginCtrl.loading).toBeFalsy();
 
-      expect(mockUserModel.login).not.toHaveBeenCalled();
+      expect(mockUserModel.login).toHaveBeenCalled();
     });
 
     it('should login user when valid and not registering', function () {
