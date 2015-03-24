@@ -21,6 +21,7 @@ angular.module('noterious')
 
     main.logout = function () {
       UserModel.logout();
+      $state.go('login');
     };
 
     main.auth.$onAuth(function (authData) {

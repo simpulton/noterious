@@ -181,11 +181,6 @@ input:focus, textarea { outline: none !important; }
     text-decoration: none;
     background: rgba(245, 234, 217, .6);
 }
-.collapsing, .collapse.in {
-    z-index: 2;
-    position: relative;
-    border: 10px solid #f5ead9;
-}
 
 /* Start by setting display:none to make this hidden.
    Then we position it in relation to the viewport window
@@ -418,4 +413,12 @@ a.view:hover, a.view:focus {
 
 .faded {
     opacity: 0.3;
+}
+
+@media (max-width: 767px) {
+  .collapsing, .collapse.in {
+    z-index: 2;
+    position: relative;
+    border: 10px solid #f5ead9;
+  }
 }
