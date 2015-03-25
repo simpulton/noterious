@@ -1,3 +1,5 @@
+![Noterious](https://cloud.githubusercontent.com/assets/590361/6837796/feb3b6ca-d30d-11e4-8647-780ded6524a8.png)
+
 Noterious 
 =========
 
