@@ -17,7 +17,7 @@ To start off, you will need to set up an account with Firebase:
 * Click on your new app's URL
 * Navigate to the `Login & Auth` section of your dashboard and check the `Enable Email & Password Authentication` checkbox.
 * Navigate to the data tab and then copy the URL from your address bar. It should have the form of `https://<your-app-name>.firebaseio.com`.
-* Open the `src/app/noterious.js` file and replace the `ENDPOINT_URI` with the URL you copied. MAKE SURE there is a trailing slash at the end of the URL.
+* Open the `src/app/noterious.js` file and replace the `ENDPOINT_URI` constant with the URL you copied. MAKE SURE there is a trailing slash at the end of the URL.
 
 Get the Code
 -------------------
@@ -45,15 +45,12 @@ Navigate to `http://localhost:3000` and view the gloriousness that is Noterious!
 Testing
 -----------
 Noterious uses [Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md) for running tests.
+You can start a [TDD](http://en.wikipedia.org/wiki/Test-driven_development) workflow with `gulp tdd`.
 
-Start a [TDD](http://en.wikipedia.org/wiki/Test-driven_development) workflow with
+> Note: you must have `Gulp CLI` installed in order to run the tests with `gulp`. If you do not have it installed globally, run `npm install -g gulp-cli` or use the method below.
 
-`gulp tdd`
-
-If you prefer to use the local installation of gulp managed by npm, the TDD workflow may be started with
+If you prefer to use the local installation of gulp managed by npm, you can start the TDD workflow with
 
 `node ./node_modules/gulp/bin/gulp.js tdd`
 
-For continuous integration, tests may be executed by either of
-
-`gulp test` or `npm test`
+For continuous integration, you can execute tests with `gulp test` or `npm test`.
