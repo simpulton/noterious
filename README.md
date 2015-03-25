@@ -29,11 +29,11 @@ cd noterious
 
 Run the App
 -------------------
-Now we need to install all of our dependencies.
+Next, you need to install all of your dependencies.
 
 `npm install`
 
-And install and run `serve` so we can view it.
+And install and run `serve` so you can view it.
 
 ```
 npm install -g serve
