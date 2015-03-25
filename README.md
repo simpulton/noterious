@@ -33,7 +33,7 @@ Next, you need to install all of your dependencies.
 
 `npm install`
 
-And install and run `serve` so you can view it.
+And install and run the `serve` package so you can build the app.
 
 ```
 npm install -g serve
