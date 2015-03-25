@@ -2,6 +2,7 @@
 
 describe('Controller: NotesCtrl', function () {
   beforeEach(module('noterious'));
+  beforeEach(module('noteriousTmpl'));
 
   var notesCtrl,
     scope,

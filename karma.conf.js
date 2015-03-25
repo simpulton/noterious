@@ -15,12 +15,14 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'http://cdn.firebase.com/js/client/2.2.2/firebase.js',
       'node_modules/angular/angular.js',
       'node_modules/angular-animate/angular-animate.js',
       'src/vendor/angular-ui-router.min.js',
       'src/vendor/angularfire.js',
       'src/app/noterious.js',
       'src/app/**/*.js',
+      'src/app/**/*.html',
    		'node_modules/angular-mocks/angular-mocks.js',
       'test/**/*.spec.js'
     ],
@@ -34,8 +36,17 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      '**/*.html': ['ng-html2js']
     },
 
+    ngHtml2JsPreprocessor: {
+      // strip this from the file path
+      stripPrefix: 'src/',
+
+      // setting this option will create only a single module that contains templates
+      // from all the files, so you can load them all with module('foo')
+      moduleName: 'noteriousTmpl'
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'

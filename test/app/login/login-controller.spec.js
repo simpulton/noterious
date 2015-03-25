@@ -3,6 +3,7 @@
 describe('Controller: LoginCtrl', function () {
 
   beforeEach(module('noterious'));
+  beforeEach(module('noteriousTmpl'));
 
   var loginCtrl;
   var mockUserModel;
