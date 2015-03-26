@@ -1,24 +1,7 @@
 <div class="col-sm-4">
   <div class="boards">
     <div
-      class="simple-board"
-      ng-repeat="(boardId, board) in ctrl.boards"
-      ng-click="ctrl.setEditedBoard(boardId, board)"
-      ng-class="{
-        'active': ctrl.isCurrentBoard(boardId)
-      }">
-      <button
-        type="button"
-        class="close"
-        ng-click="ctrl.deleteBoard(boardId)">
-        &times;
-      </button>
-
-      <h3>{{ board.title }}</h3>
-
-      <p>
-        <strong>{{ board.description }}</strong>
-      </p>
+      class="simple-board">
     </div>
 
   </div>
@@ -32,35 +15,7 @@
       name="ctrl.createForm"
       class="create-form"
       role="form"
-      ng-submit="ctrl.createBoard(ctrl.newBoard, ctrl.createForm.$valid)"
       novalidate>
-      <div class="form-group">
-        <label>Board Title</label>
-        <input
-          type="text"
-          class="form-control"
-          ng-model="ctrl.newBoard.title"
-          placeholder="Board Title"
-          required>
-      </div>
-
-      <div class="form-group">
-        <label>Board Description</label>
-        <input
-          type="text"
-          class="form-control"
-          ng-model="ctrl.newBoard.description"
-          placeholder="Board Description"
-          required>
-      </div>
-
-      <button
-        type="submit"
-        class="btn btn-info btn-lg"
-        ng-disabled="ctrl.loading">
-        Create
-        <span ng-show="ctrl.loading" class="glyphicon glyphicon-refresh"></span>
-      </button>
     </form>
   </div>
   <!-- EDITING -->
@@ -71,42 +26,7 @@
       name="ctrl.updateForm"
       class="edit-form"
       role="form"
-      ng-submit="ctrl.updateBoard(ctrl.editedBoardId, ctrl.editedBoard, ctrl.updateForm.$valid)"
       novalidate>
-      <div class="form-group">
-
-        <label>Board Title</label>
-        <input
-          type="text"
-          class="form-control"
-          ng-model="ctrl.editedBoard.title"
-          placeholder="Board Title"
-          required>
-      </div>
-
-      <div class="form-group">
-
-        <label>Board Description</label>
-        <input
-          type="text"
-          class="form-control"
-          ng-model="ctrl.editedBoard.description"
-          placeholder="Board Description"
-          required>
-      </div>
-      <button
-        type="submit"
-        class="btn btn-info btn-lg"
-        ng-disabled="ctrl.loading">
-        Save
-        <span ng-show="ctrl.loading" class="glyphicon glyphicon-refresh"></span>
-      </button>
-      <button
-        type="button"
-        class="btn btn-default btn-lg pull-right"
-        ng-click="ctrl.cancelEditing()">
-        Cancel
-      </button>
     </form>
   </div>
 </div>

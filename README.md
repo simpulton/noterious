@@ -8,10 +8,10 @@ Welcome to the Noterious app. It is built using AngularJS with Firebase as the b
 
 Challenges
 ----------
-* Locate the`BoardsModel` service and promote the boards collection to your new service.
-* Create a promise using `$q` and resolve the boards collection in the `BoardsCtrl`.
-* Retrieve a remote boards collection using `$http`.
-* Write a unit test for the `BoardsModel` service.
+* Using `ngRepeat`, display the `boards` collection in the boards template.
+* Create a form to add a new `board` to the `boards` collection.
+* Create a form to update an existing `board`.
+* Write a unit test for the `BoardsCtrl` controller.
 
 Prerequisites
 ----------
