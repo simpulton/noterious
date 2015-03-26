@@ -8,10 +8,10 @@ Welcome to the Noterious app. It is built using AngularJS with Firebase as the b
 
 Challenges
 ----------
-* Create a `board` directive and instantiate it by declaring it in the DOM.
-* Replace the board list HTML into a new template and then reference it in the directive.
-* Define a link function and attach an event to the element.
-* Define a controller function and call it from the link function.
+* Locate the`BoardsModel` service and promote the boards collection to your new service.
+* Create a promise using `$q` and resolve the boards collection in the `BoardsCtrl`.
+* Retrieve a remote boards collection using `$http`.
+* Write a unit test for the `BoardsModel` service.
 
 Prerequisites
 ----------

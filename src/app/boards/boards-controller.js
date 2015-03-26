@@ -22,58 +22,45 @@ angular.module('noterious')
     };
 
     ctrl.getBoards = function () {
-      BoardsModel.all()
-        .then(function (result) {
-          ctrl.boards = (result !== 'null') ? result : {};
-        }, function () {
-          ctrl.resetForm();
-        });
+      ctrl.boards = {
+        1: {
+          description: "Anything and everything!",
+          isPublic: true,
+          title: "Random Ideas"
+        },
+        2: {
+          description: "BizDev Ideas",
+          isPublic: false,
+          title: "Hustle"
+        },
+        3: {
+          description: "this is a test",
+          isPublic: false,
+          title: "testing"
+        }
+      };
     };
 
     ctrl.createBoard = function (board, isValid) {
       if (isValid) {
         ctrl.loading = true;
-
-        BoardsModel.create(board)
-          .then(function (result) {
-            ctrl.getBoards();
-          })
-          .catch(function (reason) {
-            //
-          })
-          .finally(function () {
-            ctrl.resetForm();
-          });
+        // CREATE BOARD
+        ctrl.resetForm();
       }
     };
 
     ctrl.updateBoard = function (boardId, board, isValid) {
       if (isValid) {
         ctrl.loading = true;
-        BoardsModel.update(boardId, board)
-          .then(function (result) {
-            ctrl.getBoards();
-          })
-          .catch(function (reason) {
-            //
-          })
-          .finally(function () {
-            ctrl.cancelEditing();
-          });
+        // UPDATE BOARD
+        ctrl.cancelEditing();
       }
     };
 
     ctrl.deleteBoard = function (boardId) {
-      BoardsModel.destroy(boardId)
-        .then(function (result) {
-          ctrl.getBoards();
-        })
-        .catch(function (reason) {
-          //
-        })
-        .finally(function () {
-          ctrl.cancelEditing();
-        });
+      ctrl.loading = true;
+      // DELETE BOARD
+      ctrl.cancelEditing();
     };
 
     ctrl.setEditedBoard = function (boardId, board) {
