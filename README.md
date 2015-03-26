@@ -5,6 +5,13 @@ Noterious
 
 Welcome to the Noterious app. It is built using AngularJS with Firebase as the backend. If you would like to see it in action, visit http://noterio.us; if you want to run it locally, read on!
 
+
+Challenges
+----------
+* Create a new route to show the details of the selected board and called it `notes`.
+* Use `$state.go` and `ui-sref` to navigate between states.
+* Use `$stateParams` to get the id for the selected board.
+
 Prerequisites
 ----------
 Before you start, you will need:

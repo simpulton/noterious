@@ -27,12 +27,6 @@
         ng-blur="ctrl.updateBoard(ctrl.boardId, ctrl.board)">
       Board is Public
     </div>
-    <a
-      type="button"
-      ui-sref="notes({boardId: ctrl.boardId})"
-      class="view arrow-bottom-right btn btn-default">
-      <span class="glyphicon glyphicon-arrow-right"></span>
-    </a>
     <span ng-show="ctrl.loading" class="glyphicon glyphicon-refresh"></span>
   </div>
 </div>
