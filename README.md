@@ -8,10 +8,19 @@ Welcome to the Noterious app. It is built using AngularJS with Firebase as the b
 
 Challenges
 ----------
-* Using `ngRepeat`, display the `boards` collection in the boards template.
-* Create a form to add a new `board` to the `boards` collection.
-* Create a form to update an existing `board`.
-* Write a unit test for the `BoardsCtrl` controller.
+* Create the file structure for the `boards` feature.
+* Create a `boards` route.
+* Write a unit test for the `boards` route.
+
+## HINT ##
+Add this to your `boards` route to force authentication.
+`
+resolve: {
+  'currentUser': ['Auth', function (Auth) {
+    return Auth.$requireAuth();
+  }]
+}
+`
 
 Prerequisites
 ----------

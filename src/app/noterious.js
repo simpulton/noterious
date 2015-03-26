@@ -8,7 +8,7 @@ angular.module('noterious', [
 ])
   .constant('ENDPOINT_URI', 'https://noterious.firebaseio.com/')
   .config(function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/boards');
+    $urlRouterProvider.otherwise('/login');
 
     $stateProvider
       .state('login', {
@@ -16,17 +16,6 @@ angular.module('noterious', [
         templateUrl: 'app/login/login.tmpl.html',
         controller: 'LoginCtrl',
         controllerAs: 'login'
-      })
-      .state('boards', {
-        url:'/boards',
-        templateUrl: 'app/boards/boards-mdv.tmpl.html',
-        controller: 'BoardsCtrl',
-        controllerAs: 'ctrl',
-        resolve: {
-          'currentUser': ['Auth', function (Auth) {
-            return Auth.$requireAuth();
-          }]
-        }
       })
     ;
   })
