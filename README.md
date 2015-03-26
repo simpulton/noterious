@@ -8,9 +8,10 @@ Welcome to the Noterious app. It is built using AngularJS with Firebase as the b
 
 Challenges
 ----------
-* Create a new route to show the details of the selected board and called it `notes`.
-* Use `$state.go` and `ui-sref` to navigate between states.
-* Use `$stateParams` to get the id for the selected board.
+* Create a `board` directive and instantiate it by declaring it in the DOM.
+* Replace the board list HTML into a new template and then reference it in the directive.
+* Define a link function and attach an event to the element.
+* Define a controller function and call it from the link function.
 
 Prerequisites
 ----------

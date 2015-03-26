@@ -45,11 +45,42 @@
 
     <!-- EXISTING BOARDS -->
     <div
-        class="col-sm-4"
-        ng-repeat="(boardId, board) in ctrl.boards"
-        board="board"
-        board-id="{{boardId}}"
-        remove="ctrl.deleteBoard(boardId)">
+      class="col-sm-4"
+      ng-repeat="(boardId, board) in ctrl.boards"
+      remove="ctrl.deleteBoard(boardId)">
+      <div class="edit board">
+        <div class="caption">
+          <button
+            type="button"
+            class="close"
+            ng-click="ctrl.deleteBoard(boardId)">
+            &times;
+          </button>
+          <div>
+            <input
+              type="text"
+              class="medium"
+              ng-model="board.title"
+              ng-blur="ctrl.updateBoard(boardId, board)"
+              placeholder="Board Title">
+          </div>
+          <div>
+            <input type="text"
+                   ng-model="board.description"
+                   ng-blur="ctrl.updateBoard(boardId, board)"
+                   placeholder="Board description.">
+          </div>
+          <div class="bottom x-small">
+            <input
+              type="checkbox"
+              ng-model="board.isPublic"
+              ng-blur="ctrl.updateBoard(boardId, board)">
+            Board is Public
+          </div>
+          <span ng-show="ctrl.loading" class="glyphicon glyphicon-refresh"></span>
+        </div>
+      </div>
     </div>
+
   </div>
 </div>
