@@ -29,6 +29,7 @@ describe('Service: UserModel', function () {
       expectedUid = 'uid-' + randInt();
 
       module('noterious');
+      module('noteriousTmpl');
       module(function ($provide) {
         $provide.value('Auth', mockAuth);
       });
