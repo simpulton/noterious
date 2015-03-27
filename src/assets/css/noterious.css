@@ -384,8 +384,13 @@ a.view:hover, a.view:focus {
     border-right: 1px #CCC solid;
     margin: 0px;
     padding: 10px;
+    height: 100%;
 }
-
+.simple-board h3, .simple-note h3, .simple-board p, .simple-note p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .bottom-right-corner {
     position: absolute;
     bottom: -85px;
@@ -415,6 +420,11 @@ a.view:hover, a.view:focus {
     opacity: 0.3;
 }
 
+/* Styling for Gridster Mobile */
+.gridster-mobile .gridster-item p {
+  word-wrap: break-word;
+  white-space: normal;
+}
 @media (max-width: 767px) {
   .collapsing, .collapse.in {
     z-index: 2;

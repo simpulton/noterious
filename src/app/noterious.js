@@ -4,7 +4,8 @@ angular.module('noterious', [
   'ui.router',
   'ngAnimate',
   'firebase',
-  'noterious.common'
+  'noterious.common',
+  'gridster'
 ])
   .constant('ENDPOINT_URI', 'https://noterious.firebaseio.com/')
   .config(function ($stateProvider, $urlRouterProvider) {
@@ -20,6 +21,17 @@ angular.module('noterious', [
       .state('boards', {
         url:'/boards',
         templateUrl: 'app/boards/boards-mdv.tmpl.html',
+        controller: 'BoardsCtrl',
+        controllerAs: 'ctrl',
+        resolve: {
+          'currentUser': ['Auth', function (Auth) {
+            return Auth.$requireAuth();
+          }]
+        }
+      })
+      .state('sortBoards', {
+        url:'/boardsGrid',
+        templateUrl: 'app/boards/boards-grid-mdv.tmpl.html',
         controller: 'BoardsCtrl',
         controllerAs: 'ctrl',
         resolve: {
