@@ -1,7 +1,7 @@
 
 <div>
     <ul  gridster="ctrl.gridsterOpts" >
-        <li class="boards" gridster-item="board" ng-repeat="board in ctrl.boards">
+        <li class="boards" gridster-item="board" ng-repeat="(boardId, board) in ctrl.boards">
             <simple-board
                     class="simple-board"
             ></simple-board>
