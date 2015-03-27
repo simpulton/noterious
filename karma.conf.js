@@ -18,6 +18,7 @@ module.exports = function(config) {
       'http://cdn.firebase.com/js/client/2.2.2/firebase.js',
       'node_modules/angular/angular.js',
       'node_modules/angular-animate/angular-animate.js',
+      'src/vendor/angular-gridster.min.js',
       'src/vendor/angular-ui-router.min.js',
       'src/vendor/angularfire.js',
       'src/app/noterious.js',
