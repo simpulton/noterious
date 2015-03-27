@@ -20,7 +20,7 @@ angular.module('noterious', [
       })
       .state('boards', {
         url:'/boards',
-        templateUrl: 'app/boards/boards-grid.tmpl.html',
+        templateUrl: 'app/boards/boards-mdv.tmpl.html',
         controller: 'BoardsCtrl',
         controllerAs: 'ctrl',
         resolve: {
