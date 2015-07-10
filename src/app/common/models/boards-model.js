@@ -5,18 +5,18 @@ angular.module('noterious.common')
     var service = this;
 
     function extract(result) {
-    if(angular.isDefined(result.data.data))
-      return result.data.data;
-    else
-      return result.data;
+      if(angular.isDefined(result.data.data))
+        return result.data.data;
+      else
+        return result.data;
     }
 
     function getUrl() {
-      return Backand.configuration.apiUrl + '/1/table/data/boards';
+      return Backand.getApiUrl() + '/1/objects/boards';
     }
 
     function getUrlForId(boardId) {
-      return Backand.configuration.apiUrl + '/1/table/data/boards/' + boardId;
+      return Backand.getApiUrl() + '/1/objects/boards/' + boardId;
     }
 
     service.all = function () {

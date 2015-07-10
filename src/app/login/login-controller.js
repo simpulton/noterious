@@ -1,15 +1,16 @@
 'use strict';
 
 angular.module('noterious')
-  .controller('LoginCtrl', function (UserModel, $state) {
+  .controller('LoginCtrl', function (UserModel, $state, $location) {
     var login = this;
 
     login.verify = false;
     login.loading = false;
+    var x = $location.search;
 
     login.user = {
-      email: 'guest@backand.com',
-      password: 'guest1234',
+      email: 'itay@backand.com',
+      password: 'itay1234',
       appName: 'noterious',
       register: false
     };

@@ -3,7 +3,7 @@
 angular.module('noterious')
   .controller('NotesCtrl', function (BoardsModel, NotesModel, $stateParams, $state, $scope) {
     var ctrl = this,
-      boardId = $stateParams.boardId;
+        boardId = $stateParams.boardId;
 
     ctrl.loading = false;
 

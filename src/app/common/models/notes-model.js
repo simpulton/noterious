@@ -12,11 +12,11 @@ angular.module('noterious.common')
     }
 
     function getUrl() {
-      return Backand.configuration.apiUrl + '/1/table/data/notes';
+      return Backand.getApiUrl() + '/1/objects/notes';
     }
 
     function getUrlForId(noteId) {
-      return Backand.configuration.apiUrl + '/1/table/data/notes/' + noteId;
+      return Backand.getApiUrl() + '/1/objects/notes/' + noteId;
     }
 
     service.all = function () {

@@ -16,9 +16,9 @@ angular.module('noterious.common')
     service.login = function (user) {
       return Backand.signin(user.email, user.password, user.appName)
         .then(
-        function (token) {
+        function () {
           service.error = '';
-          return token;
+          return;
         },
         function (data) {
           service.error = data && data.error_description || 'Unknown error from server';

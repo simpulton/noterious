@@ -7,7 +7,12 @@ angular.module('noterious', [
   'ngCookies',
   'noterious.common'
 ])
-.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $httpProvider, BackandProvider) {
+  BackandProvider.manageDefaultHeaders();
+  //BackandProvider.setAnonymousToken('Your Anonymous Token');
+  //BackandProvider.setSignUpToken('Your SignUp Token');
+  BackandProvider.setApiUrl('http://api.backand.co:8099');
+
   $httpProvider.interceptors.push('httpInterceptor');
   $urlRouterProvider.otherwise('/login');
 
