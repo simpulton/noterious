@@ -19,6 +19,5 @@ angular.module('noterious')
 
     main.logout = function () {
       UserModel.logout();
-      $window.location.reload();
     };
   });

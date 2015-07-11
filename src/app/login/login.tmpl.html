@@ -1,12 +1,10 @@
 <div class="login-wrap">
-  <div ng-if="login.verify">A verification email sent to you, please follow email instruction in order to login</div>
   <form
     class="form-signin"
     role="form"
     name="login.loginForm"
     ng-submit="login.submit(login.user, login.loginForm.$valid, login.user.register)"
     novalidate
-    ng-if="!login.verify"
   >
     <p class="large">Please Sign In</p>
 

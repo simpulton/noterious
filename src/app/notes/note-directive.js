@@ -1,5 +1,5 @@
 angular.module('noterious')
-  .directive('note', function(NotesModel){
+  .directive('note', function(){
     var controller = function($scope) {
       var ctrl = this
 
@@ -8,16 +8,8 @@ angular.module('noterious')
       ctrl.updateNote = function (noteId, note) {
         ctrl.loading = true;
 
-        NotesModel.update(noteId, note)
-          .then(function (result) {
-            //
-          })
-          .catch(function (reason) {
-            //
-          })
-          .finally(function() {
-            ctrl.loading = false;
-          });
+        $scope.update({noteId: noteId, note: note, isValid: true});
+
       };
 
       ctrl.deleteNote = function (noteId) {
@@ -29,7 +21,8 @@ angular.module('noterious')
       scope: {
         noteId: '@',
         note:'=',
-        remove:'&'
+        remove:'&',
+        update: '&'
       },
       templateUrl: 'app/notes/note.tmpl.html',
       controller: controller,

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noterious.common')
-  .service('NotesModel', function ($http, $q, UserModel, Backand) {
+  .service('NotesModel', function ($http, $q, Backand) {
     var service = this;
 
     function extract(result) {

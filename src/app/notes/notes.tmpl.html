@@ -47,9 +47,10 @@
       <!-- EXISTING NOTES -->
       <div
           class="col-sm-4"
-          ng-repeat="(Id, note) in ctrl.notes"
+          ng-repeat="(id, note) in ctrl.notes"
           note="note"
-          note-id="{{note.Id}}"
+          note-id="{{note.id}}"
+          update="ctrl.updateNote(noteId, note, isValid)"
           remove="ctrl.deleteNote(noteId)">
       </div>
     </div>

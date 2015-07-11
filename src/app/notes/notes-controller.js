@@ -56,8 +56,11 @@ angular.module('noterious')
       if (isValid) {
         ctrl.loading = true;
 
+        //note.users.push({id:3});
+        delete note.users; //todo: temp until the issue with the users will be fixed
+
         NotesModel.update(noteId, note)
-          .then(function (result) {
+          .then(function () {
             ctrl.getBoard();
           })
           .catch(function (reason) {

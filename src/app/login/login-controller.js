@@ -4,7 +4,6 @@ angular.module('noterious')
   .controller('LoginCtrl', function (UserModel, $state, $location) {
     var login = this;
 
-    login.verify = false;
     login.loading = false;
     var x = $location.search;
 
@@ -27,7 +26,7 @@ angular.module('noterious')
             appName: login.user.appName
           })
           .then(function() {
-            login.verify = true;
+              $state.go('boards');
           })
           .finally(function() {
             login.error = UserModel.error;

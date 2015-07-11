@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noterious.common')
-  .service('UserModel', function (Backand) {
+  .service('UserModel', function (Backand, $state) {
     var service = this,
       currentUser = null;
 
@@ -29,7 +29,7 @@ angular.module('noterious.common')
     };
 
     service.register = function(user) {
-      return Backand.signup(user.email, 'last', user.email, user.password, '743b8bb5-af18-4275-a5e4-50f5b7b7ba4d')
+      return Backand.signup(user.email, 'last', user.email, user.password, user.password)
         .then(
         function(userData) {
           service.error= '';
@@ -45,5 +45,6 @@ angular.module('noterious.common')
 
     service.logout = function () {
       Backand.signout();
+      $state.go('login');
     };
   });
