@@ -35,7 +35,7 @@ describe('Service: UserModel', function () {
 
       //create a 'simple' mock Auth object that returns promises that can be spied-upon
       mockAuth.shouldAuthWithPasswordHaveError = false;
-      mockAuth.$authWithPassword = function (user, callbackFn) {
+      mockAuth.$signInWithEmailAndPassword = function (user, callbackFn) {
         var authData = {
           uid: expectedUid,
           email: user.email,
@@ -45,7 +45,7 @@ describe('Service: UserModel', function () {
       };
 
       mockAuth.shouldCreateUserHaveError = false;
-      mockAuth.$createUser = function (user, callbackFn) {
+      mockAuth.$createUserWithEmailAndPassword = function (user, callbackFn) {
         var authData = {
           uid: expectedUid,
           email: user.email,
@@ -55,16 +55,16 @@ describe('Service: UserModel', function () {
       };
 
       inject(function ($q) {
-        mockAuth.$unauth = function () {
+        mockAuth.$signOut = function () {
           var deferred = $q.defer();
           deferred.resolve();
           return deferred.promise;
         };
       });
 
-      spyOn(mockAuth, '$authWithPassword').and.callThrough();
-      spyOn(mockAuth, '$createUser').and.callThrough();
-      spyOn(mockAuth, '$unauth').and.callThrough();
+      spyOn(mockAuth, '$signInWithEmailAndPassword').and.callThrough();
+      spyOn(mockAuth, '$createUserWithEmailAndPassword').and.callThrough();
+      spyOn(mockAuth, '$signOut').and.callThrough();
 
     }
   );
@@ -97,7 +97,7 @@ describe('Service: UserModel', function () {
 
       resolvePromises();
 
-      expect(mockAuth.$createUser).toHaveBeenCalledWith({
+      expect(mockAuth.$createUserWithEmailAndPassword).toHaveBeenCalledWith({
         email: expectedUser.email,
         password: expectedUser.password
       }, jasmine.any(Function));
@@ -116,7 +116,7 @@ describe('Service: UserModel', function () {
 
       resolvePromises();
 
-      expect(mockAuth.$authWithPassword).toHaveBeenCalledWith({
+      expect(mockAuth.$signInWithEmailAndPassword).toHaveBeenCalledWith({
         email: expectedUser.email,
         password: expectedUser.password
       }, jasmine.any(Function));
@@ -137,7 +137,7 @@ describe('Service: UserModel', function () {
 
       resolvePromises();
 
-      expect(mockAuth.$unauth).toHaveBeenCalled();
+      expect(mockAuth.$signOut).toHaveBeenCalled();
 
       expect(UserModel.getCurrentUser()).toBeNull();
 

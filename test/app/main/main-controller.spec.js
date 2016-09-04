@@ -10,7 +10,7 @@ describe('Controller: MainCtrl', function() {
     UserModel = {};
 
     var Auth = {
-      $onAuth: function() {
+      $onAuthStateChanged: function() {
         return {};
       }
     };

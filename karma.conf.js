@@ -15,7 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'http://cdn.firebase.com/js/client/2.2.2/firebase.js',
+      'src/vendor/firebase.js',
       'node_modules/angular/angular.js',
       'node_modules/angular-animate/angular-animate.js',
       'src/vendor/angular-gridster.min.js',
@@ -24,7 +24,7 @@ module.exports = function(config) {
       'src/app/noterious.js',
       'src/app/**/*.js',
       'src/app/**/*.html',
-   		'node_modules/angular-mocks/angular-mocks.js',
+   	  'node_modules/angular-mocks/angular-mocks.js',
       'test/**/*.spec.js'
     ],
 

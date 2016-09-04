@@ -1,12 +1,18 @@
 'use strict';
 
 angular.module('noterious.common')
-  .service('UserModel', function (Auth) {
+  .service('UserModel', function (Auth, $q) {
     var service = this,
-      currentUser = null;
+        currentUser = null,
+        token = null;
 
     service.getCurrentUser = function () {
       return currentUser;
+    };
+
+    service.getToken = function ()
+    {
+      return token;
     };
 
     service.setCurrentUser = function (user) {
@@ -14,38 +20,47 @@ angular.module('noterious.common')
     };
 
     service.login = function (user) {
-      return Auth.$authWithPassword({
-        email: user.email,
-        password: user.password
-      }, function(error, authData) {
-        if (error) {
-          currentUser = null;
-          console.error('Authentication failed:', error);
-        } else {
-          currentUser = authData.uid;
-          console.log('Logged in as:', authData.uid);
-        }
-      });
+        var deferred = $q.defer();
+        Auth.$signInWithEmailAndPassword(user.email, user.password)
+            .then(function (firebaseUser) {
+                currentUser = firebaseUser.uid;
+                firebaseUser.getToken()
+                    .then( function (data) {
+                        token = data;
+                        deferred.resolve(currentUser);
+                    })
+                    .catch( function (error) {
+                        token = null;
+                        console.error('Obtaining auth token failed:', error);
+                        deferred.reject(error)
+                        }
+                    );
+            })
+            .catch(function (error) {
+                currentUser = null;
+                console.error("Authentication failed:", error);
+                deferred.reject(error)
+            });
+        return deferred.promise;
     };
 
     service.register = function (user) {
-      return Auth.$createUser({
-        email: user.email,
-        password: user.password
-      }, function(error, authData) {
-        if(error){
-          console.error('Error: ', error);
-          return error;
-        } else {
-          console.log('User ' + authData.uid + ' created successfully!');
-          return service.login(user.email, user.password);
-        }
-      });
+        var deferred = $q.defer();
+        Auth.$createUserWithEmailAndPassword(user.email, user.password)
+            .then(function (firebaseUser) {
+                console.log('User ' + firebaseUser.uid + ' created successfully!');
+                deferred.resolve(service.login(user));
+            })
+            .catch(function (error) {
+                console.error('Error: ', error);
+                deferred.reject(error)
+            })
+        return deferred.promise;
     };
 
     service.logout = function () {
       console.log('LOGOUT FIRED!');
-      Auth.$unauth();
+      Auth.$signOut();
       currentUser = null;
     };
   });

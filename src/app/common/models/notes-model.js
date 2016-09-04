@@ -8,12 +8,16 @@ angular.module('noterious.common')
       return result.data;
     }
 
+    function getAuthInfo() {
+        return '?auth=' + UserModel.getToken();
+    }
+
     function getUrl(boardId) {
-      return ENDPOINT_URI + 'users/' + UserModel.getCurrentUser() + '/boards/' + boardId + '/notes.json';
+      return ENDPOINT_URI + 'users/' + UserModel.getCurrentUser() + '/boards/' + boardId + '/notes.json' + getAuthInfo();
     }
 
     function getUrlForId(boardId, noteId) {
-      return ENDPOINT_URI + 'users/' + UserModel.getCurrentUser() + '/boards/' + boardId + '/notes/' + noteId + '.json'
+      return ENDPOINT_URI + 'users/' + UserModel.getCurrentUser() + '/boards/' + boardId + '/notes/' + noteId + '.json' + getAuthInfo()
     }
 
     service.all = function (boardId) {

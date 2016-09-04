@@ -8,16 +8,20 @@ angular.module('noterious.common')
       return result.data;
     }
 
-    function getUrl() {
-      return ENDPOINT_URI + 'users/' + UserModel.getCurrentUser() + '/boards.json';
+    function getAuthInfo() {
+        return '?auth=' + UserModel.getToken();
+    }
+
+      function getUrl() {
+      return ENDPOINT_URI + 'users/' + UserModel.getCurrentUser() + '/boards.json' + getAuthInfo();
     }
 
     function getUrlForId(boardId) {
-      return ENDPOINT_URI + 'users/' + UserModel.getCurrentUser() + '/boards/' + boardId + '.json';
+      return ENDPOINT_URI + 'users/' + UserModel.getCurrentUser() + '/boards/' + boardId + '.json'  + getAuthInfo();
     }
 
     service.all = function () {
-      return $http.get(getUrl()).then(extract);
+      return $http.get(getUrl()/*, getHttpConfig()*/).then(extract);
     };
 
     service.fetch = function (boardId) {
