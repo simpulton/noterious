@@ -28,6 +28,7 @@ To start off, you will need to set up an account with Firebase:
 * Navigate to the `Login & Auth` section of your dashboard and check the `Enable Email & Password Authentication` checkbox.
 * Navigate to the data tab and then copy the URL from your address bar. It should have the form of `https://<your-app-name>.firebaseio.com`.
 * Open the `src/app/noterious.js` file and replace the `ENDPOINT_URI` constant with the URL you copied. MAKE SURE there is a trailing slash at the end of the URL.
+* Open the `src/app/common/services/auth-service.js` and modify `config` according to the template you can find on `https://console.firebase.google.com/project/<your-app-name>/settings/general/` clicking `Add Firebase to your web app` button
 
 Run the App
 -------------------

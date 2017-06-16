@@ -25,7 +25,7 @@ angular.module('noterious', [
         controllerAs: 'ctrl',
         resolve: {
           'currentUser': ['Auth', function (Auth) {
-            return Auth.$requireAuth();
+            return Auth.$requireSignIn();
           }]
         }
       })
@@ -36,7 +36,7 @@ angular.module('noterious', [
         controllerAs: 'ctrl',
         resolve: {
           'currentUser': ['Auth', function (Auth) {
-            return Auth.$requireAuth();
+            return Auth.$requireSignIn();
           }]
         }
       })

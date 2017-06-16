@@ -24,12 +24,14 @@ angular.module('noterious')
       $state.go('login');
     };
 
-    main.auth.$onAuth(function (authData) {
-      if (authData) {
-        UserModel.setCurrentUser(authData.uid);
-        main.currentUser = authData.uid;
-      } else {
-        main.currentUser = null;
-      }
+    main.auth.$onAuthStateChanged(function(authData) {
+        if (authData) {
+            // User signed in!
+            UserModel.setCurrentUser(authData.uid);
+            main.currentUser = authData.uid;
+        } else {
+            // User logged out
+            main.currentUser = null
+        }
     });
   });
